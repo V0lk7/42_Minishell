@@ -15,13 +15,19 @@ NAME = minishell
 SRC_DIR = src
 OBJ_DIR = .obj
 
-SRC = 	src/main.c \
+SRC = 	src/builts.c \
+		src/echo.c \
+		src/env.c \
 		src/history.c \
+		src/init_f.c \
+		src/main.c \
+		src/pwd.c \
+		src/unset.c
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 CC = clang
-CFLAGS = -Wall -Wextra -g -lreadline
+CFLAGS = -Wall -Wextra -g -gdwarf-2 -lreadline
 
 .PHONY: all clean fclean re
 

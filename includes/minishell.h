@@ -15,10 +15,9 @@
 # include <curses.h>
 # include <dirent.h>
 # include <fcntl.h>
-# include <term.h>
-# include <readline/readline.h>
+# include <limits.h>
 # include <readline/history.h>
-# include <stdio.h>
+# include <readline/readline.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/ioctl.h>
@@ -26,9 +25,36 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <signal.h>
+# include <term.h>
 # include <termios.h>
 # include <unistd.h>
 # include "../libft/includes/libft.h"
 
+typedef struct s_builts
+{
+	char	*str;
+
+}	t_builts;
+
+typedef struct s_minis
+{	
+	char		**cmd;
+	char		**envp_cpy;
+	t_builts	*b_ptr;
+
+}	t_minis;
+
 void	history(char *argv);
+
+/*-----BuiltIN_f-----*/
+void	ft_echo(t_minis *minis);
+void	ft_env(t_minis *minis);
+void	ft_pwd(t_minis *minis);
+void	ft_unset(t_minis *minis);
+void	is_built(t_minis *minis);
+
+/*-----Init_f-----*/
+void	init_builts(t_builts *builts);
+void	init_minishell(t_minis *minis, t_builts *builts, char **envp);
+
 #endif
