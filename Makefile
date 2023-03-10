@@ -6,49 +6,84 @@
 #    By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 16:36:26 by kramjatt          #+#    #+#              #
-#    Updated: 2023/03/09 15:01:59 by jduval           ###   ########.fr        #
+#    Updated: 2023/03/10 16:48:44 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minishell
+NAME 		=	minishell
 
-SRC_DIR = src
-OBJ_DIR = .obj
+MAKEFLAGS	+=	--no-print-directory
 
-SRC = 	src/builts.c \
-		src/echo.c \
-		src/env.c \
-		src/history.c \
-		src/init_f.c \
-		src/main.c \
-		src/pwd.c \
-		src/unset.c
+###############################################################################
 
-OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+LIBS 		=	ft
 
-CC = clang
-CFLAGS = -Wall -Wextra -g -gdwarf-2 -lreadline
+LIBS_TARGET =	src/libft/libft.a
 
-.PHONY: all clean fclean re
+INCLUDES	=	src/libft/include
+
+###############################################################################
+
+SRC_DIR 	=	src
+
+OBJ_DIR 	=	.obj
+
+SRCS		:= 	built_in/builts.c		built_in/echo.c		\
+				built_in/env.c			built_in/pwd.c		\
+				built_in/unset.c		\
+
+SRCS		+=	process/history.c		process/main.c		\
+				process/init_f.c		\
+
+#SRCS		+=	parsing/valid_syntax.c	\
+
+SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
+
+OBJS 		:=	$(SRCS:%.c=$(OBJ_DIR)/%.o)
+
+DEPS		:=	$(OBJS:.o=.d)
+
+###############################################################################
+
+CC			=	clang
+
+CFLAGS		=	-Wall -Wextra -g -gdwarf-2
+
+CPPFLAGS	=	-MMD -MP $(addprefix -I,$(INCLUDES))
+
+LDFLAGS		=	$(addprefix -L,$(dir $(LIBS_TARGET)))
+
+LDLIBS		=	$(addprefix -l,$(LIBS))
+
+DIRDUP 		= 	mkdir -p $(@D)
+
+###############################################################################
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@make -C libft
-	@$(CC) $(CFLAGS) $(OBJ) libft/libft.a -o $(NAME)
-	
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -o $@ -c $<
+$(NAME): $(OBJS) $(LIBS_TARGET)
+	@$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -lreadline -o $(NAME)
+	$(info CREATED $(NAME))
 
-$(OBJ_DIR):
-	@mkdir $@
+$(LIBS_TARGET):
+	$(MAKE) -C $(dir $@)
+
+$(OBJ_DIR)/%.o : %.c
+	@$(DIRDUP)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+
+-include $(DEPS) test.mk
+
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@make clean -C libft
+	@make clean -C src/libft
+.PHONY: clean
 
 fclean: clean
 	@rm -f $(NAME)
-	@make fclean -C libft
+	@make fclean -C src/libft
+.PHONY: fclean
 
 re: fclean all
+.PHONY: re

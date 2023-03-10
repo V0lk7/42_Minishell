@@ -6,13 +6,13 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:34:52 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/02/24 19:59:25 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:27:31 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# include <curses.h>
+//# include <curses.h>
 # include <dirent.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -28,7 +28,7 @@
 # include <term.h>
 # include <termios.h>
 # include <unistd.h>
-# include "../libft/includes/libft.h"
+# include "../src/libft/include/libft.h"
 
 typedef struct s_builts
 {
