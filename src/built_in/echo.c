@@ -10,31 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/built_in.h"
 
-void	ft_echo(t_minis *minis)
+void	ft_echo(t_mini *mini)
 {
 	int	i;
 	int	backslash_n;
 
 	i = 0;
 	backslash_n = 0;
-	if (!minis->cmd[1])
+	if (!mini->cmd[1])
 	{
-		ft_printf("\n");
+		ft_putstr_fd(0, "\n");
 		return ;
 	}
-	if (!ft_strcmp(minis->cmd[1], " ") && !minis->cmd[2])
+	if (!ft_strcmp(mini->cmd[1], " ") && !mini->cmd[2])
 		return ;
-	while (minis->cmd[++i] && !ft_strcmp(minis->cmd[i], "-n"))
+	while (mini->cmd[++i] && !ft_strcmp(mini->cmd[i], "-n"))
 		backslash_n++;
-	while (minis->cmd[i])
+	while (mini->cmd[i])
 	{
-		ft_printf("%s", minis->cmd[i]);
-		if (minis->cmd[i + 1] && ft_strcmp(minis->cmd[i], "\0"))
-			ft_printf (" ");
+		ft_printf("%s", mini->cmd[i]);
+		if (mini->cmd[i + 1] && ft_strcmp(mini->cmd[i], "\0"))
+			ft_putstr_fd(0, " ");
 		i++;
 	}
-	ft_printf("\n");
-	free_array2d(minis->cmd);
+	ft_putstr_fd(0, "\n");
 }

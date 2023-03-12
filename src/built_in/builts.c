@@ -10,18 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/built_in.h"
 
-void	is_built(t_minis *minis)
+void	is_built(t_mini *mini)
 {
-	if (!minis->cmd[0])
+	if (!mini->cmd[0])
 		return ;
-	if (!strcmp(minis->b_ptr[1].str, minis->cmd[0]))
-		ft_echo(minis);
-	else if (!strcmp(minis->b_ptr[2].str, minis->cmd[0]))
-		ft_env(minis);
-	else if (!strcmp(minis->b_ptr[5].str, minis->cmd[0]))
-		ft_pwd(minis);
-	else if (!strcmp(minis->b_ptr[6].str, minis->cmd[0]))
-		ft_unset(minis);
+	if (!ft_strcmp(mini->b_ptr[1].str, mini->cmd[0]))
+		ft_echo(mini);
+	else if (!ft_strcmp(mini->b_ptr[2].str, mini->cmd[0]))
+		ft_env(mini);
+	else if (!ft_strcmp(mini->b_ptr[3].str, mini->cmd[0]))
+		ft_exit(mini);
+	else if (!ft_strcmp(mini->b_ptr[5].str, mini->cmd[0]))
+		ft_pwd(mini);
+	else if (!ft_strcmp(mini->b_ptr[6].str, mini->cmd[0]))
+		ft_unset(mini);
 }

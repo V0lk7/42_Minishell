@@ -16,7 +16,6 @@ t_bool	valid_character(const char *str, char c, int i)
 {
 	if (ft_isalnum(c) > 0 || ft_isspace(c) > 0)
 		return (TRUE);
-	
 }
 
 t_bool	valid_syntax(const char *str)

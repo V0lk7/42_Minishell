@@ -10,10 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/process.h"
 
 void	init_builts(t_builts *builts)
 {
+	builts[0].str = malloc(sizeof(char) * ft_strlen("cd") + 1);
+	builts[1].str = malloc(sizeof(char) * ft_strlen("echo") + 1);
+	builts[2].str = malloc(sizeof(char) * ft_strlen("env") + 1);
+	builts[3].str = malloc(sizeof(char) * ft_strlen("exit") + 1);
+	builts[4].str = malloc(sizeof(char) * ft_strlen("export") + 1);
+	builts[5].str = malloc(sizeof(char) * ft_strlen("pwd") + 1);
+	builts[6].str = malloc(sizeof(char) * ft_strlen("unset") + 1);
 	builts[0].str = "cd";
 	builts[1].str = "echo";
 	builts[2].str = "env";
@@ -21,11 +28,11 @@ void	init_builts(t_builts *builts)
 	builts[4].str = "export";
 	builts[5].str = "pwd";
 	builts[6].str = "unset";
-	builts[7].str = NULL;
 }
 
-void	init_minishell(t_minis *minis, t_builts *builts, char **envp)
+void	init_minishell(t_mini *mini, t_builts *builts, char **envp)
 {
-	minis->envp_cpy = cpy_array2d(envp);
-	minis->b_ptr = builts;
+	mini->envp_cpy = cpy_array2d(envp);
+	mini->b_ptr = builts;
+	mini->exit = 0;
 }

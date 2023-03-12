@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/built_in.h"
 
-void	ft_pwd(t_minis *minis)
+void	ft_pwd(t_mini *mini)
 {
 	char	cwd[PATH_MAX];
 
-	(void)minis;
+	(void)mini;
 	if (!getcwd(cwd, PATH_MAX))
 	{
 		perror("Error getcwd ");

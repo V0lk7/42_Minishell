@@ -21,7 +21,7 @@ char	**cpy_array2d(char **array2d)
 	if (array2d == NULL)
 		return (NULL);
 	cpy = malloc (sizeof(char *) * count_args_2d(array2d));
-	if (cpy == NULL)
+	if (!cpy || !array2d)
 		return (NULL);
 	while (array2d[i])
 	{

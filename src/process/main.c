@@ -10,38 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/process.h"
 
-static void	prompt(t_minis *minis, t_builts *builts, char **envp)
+static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 {
 	char	*line;
 
-	while (1)
+	while (!mini->exit)
 	{
 		line = readline("😈 Minishell 😈 ");
 		history(line);
-		minis->cmd = ft_split(line, 32);
-		is_built(minis);
+		mini->cmd = ft_split(line, 32);
+		is_built(mini);
 		free(line);
+		free_array2d(mini->cmd);
 	}
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_builts	*builts;
-	t_minis		*minis;
+	t_mini		mini;
+	int			exit_s;
 
 	(void)argc;
 	(void)argv;
 	if (argc != 1)
 	{
-		ft_putstr_fd("Invalid number of arguments\n", 2);
+		ft_putstr_fd(2, "Invalid number of arguments\n");
 		exit(EXIT_FAILURE);
 	}
-	builts = malloc(sizeof(t_builts) * 8);
-	minis = malloc(sizeof(t_minis));
+	builts = malloc(sizeof(t_builts) * 7);
 	init_builts(builts);
-	init_minishell(minis, builts, envp);
-	prompt(minis, builts, envp);
-	return (0);
+	init_minishell(&mini, builts, envp);
+	prompt(&mini, builts, envp);
+	exit_s = mini.exit;
+	//free_exit(&mini, builts);
+	return (exit_s);
 }

@@ -29,12 +29,13 @@ SRC_DIR 	=	src
 OBJ_DIR 	=	.obj
 
 SRCS		:= 	built_in/builts.c		built_in/echo.c		\
-				built_in/env.c			built_in/pwd.c		\
-				built_in/unset.c		\
+				built_in/env.c			built_in/exit.c		\
+				built_in/pwd.c			built_in/unset.c	\
 
 SRCS		+=	process/history.c		process/main.c		\
 				process/init_f.c		\
 
+SRCS		+=	clear/free_exit.c \
 #SRCS		+=	parsing/valid_syntax.c	\
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)

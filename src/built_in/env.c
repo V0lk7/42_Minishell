@@ -10,20 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/built_in.h"
 
-void	ft_env(t_minis *minis)
+void	ft_env(t_mini *mini)
 {
 	int		i;
 	int		length;
 
 	i = 0;
-	if (!minis->envp_cpy)
+	if (!mini->envp_cpy)
 		return ;
-	length = count_args_2d(minis->envp_cpy);
+	length = count_args_2d(mini->envp_cpy);
 	while (i < length)
 	{
-		printf("%s\n", minis->envp_cpy[i]);
+		printf("%s\n", mini->envp_cpy[i]);
 		i++;
 	}
 }
