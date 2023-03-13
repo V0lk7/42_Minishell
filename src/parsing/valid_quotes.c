@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_syntax.c                                     :+:      :+:    :+:   */
+/*   valid_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:51:19 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/10 16:43:15 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/13 15:39:30 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/parsing.h"
 
-t_bool	valid_character(const char *str, char c, int i)
-{
-	if (ft_isalnum(c) > 0 || ft_isspace(c) > 0)
-		return (TRUE);
-}
-
-t_bool	valid_syntax(const char *str)
+t_bool	valid_quotes(const char *str)
 {
 	t_bool	open;
 	int		i;
@@ -27,6 +21,8 @@ t_bool	valid_syntax(const char *str)
 	open = FALSE;
 	i = 0;
 	character = 0;
+	if (str == NULL)
+		return (FALSE);
 	while (str[i])
 	{
 		if (open == FALSE && (str[i] == 34 || str[i] == 39))
@@ -36,11 +32,6 @@ t_bool	valid_syntax(const char *str)
 		}
 		else if (open == TRUE && str[i] == character)
 			open = FALSE;
-		else if (open == FALSE)
-		{
-			if (valid_character(str, str[i], i) == FALSE)
-				return (FALSE);
-		}
 		else
 			i++;
 	}

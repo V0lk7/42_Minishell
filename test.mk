@@ -6,15 +6,15 @@
 #    By: jduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 13:51:31 by jduval            #+#    #+#              #
-#    Updated: 2023/03/09 13:55:33 by jduval           ###   ########.fr        #
+#    Updated: 2023/03/13 15:47:53 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 TEST		:=	$(shell find unitest -name '*.c')
-TEST_OBJS	:=	$(TEST:%.c=$(BUILD_DIR)/%.o)
+TEST_OBJS	:=	$(TEST:%.c=$(OBJ_DIR)/%.o)
 
-ARCHIVE		:=	test/minishell.a
-RUNNER		:=	test/test
+ARCHIVE		:=	unitest/minishell.a
+RUNNER		:=	unitest/test
 
 $(ARCHIVE): $(OBJS)
 	ar rcs $(ARCHIVE) $(OBJS)
@@ -30,21 +30,21 @@ clear:
 	rm -rf $(ARCHIVE)
 .PHONY: clear
 
-rclean: 
+rclean:
 	rm -rf test/test
 .PHONY: rclean
 
 test: clear fclean rclean $(RUNNER)
 .PHONY: test
 
-run:	
-	cd test/ && ./greatest_parallel ./test
+run:
+	cd unitest/ && ./greatest_parallel ./test
 .PHONY: run
 
-v:	
-	cd test/ && ./greatest_parallel -v ./test
+v:
+	cd unitest/ && ./greatest_parallel -v ./test
 .PHONY: v
 
 gdb:
-	cd test/ && gdb -args ./test
+	cd unitest/ && gdb -args ./test
 .PHONY: gdb
