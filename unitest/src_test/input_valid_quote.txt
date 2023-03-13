@@ -1,0 +1,13 @@
+je suis ton pere
+"je suis ton pere"
+hey "'boy'''" je suis 'la' hello there
+'hey' "boy" la 'chui bien'
+
+'hey boy " je suis la
+"double quote non ferme'
+"je " "suis ''
+'
+"
+""
+''
+"''"
