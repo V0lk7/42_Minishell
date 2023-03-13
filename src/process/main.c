@@ -6,11 +6,25 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/10 16:35:50 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/13 17:06:25 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/process.h"
+
+static int	only_spaces(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != 32)
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 {
@@ -20,10 +34,13 @@ static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 	{
 		line = readline("😈 Minishell 😈 ");
 		history(line);
-		mini->cmd = ft_split(line, 32);
-		is_built(mini);
-		free(line);
-		free_array2d(mini->cmd);
+		if (line && !only_spaces(line))
+		{
+			mini->cmd = ft_split(line, 32);
+			is_built(mini);
+			free(line);
+			free_array2d(mini->cmd);
+		}
 	}
 }
 
