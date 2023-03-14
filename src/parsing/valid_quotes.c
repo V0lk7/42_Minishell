@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:51:19 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/13 15:39:30 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/14 11:12:32 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ t_bool	valid_quotes(const char *str)
 		}
 		else if (open == TRUE && str[i] == character)
 			open = FALSE;
-		else
-			i++;
+		i++;
 	}
 	if (open == TRUE)
 		return (FALSE);

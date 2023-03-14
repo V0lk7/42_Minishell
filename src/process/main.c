@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/13 18:22:28 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:35:02 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 {
 	char	*line;
 
+	builts = NULL;
+	envp = NULL;
 	while (!mini->exit)
 	{
 		line = readline("😈 Minishell 😈 ");

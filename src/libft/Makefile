@@ -6,7 +6,7 @@
 #    By: jduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 13:18:12 by jduval            #+#    #+#              #
-#    Updated: 2023/03/10 14:46:38 by jduval           ###   ########.fr        #
+#    Updated: 2023/03/14 14:33:36 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS 		:=	libft/ft_bzero.c		\
 				libft/ft_isalnum.c		\
 				libft/ft_isascii.c		\
 				libft/ft_isprint.c		\
+				libft/ft_isspace.c		\
 				libft/ft_strlen.c		\
 				libft/ft_memset.c		\
 				libft/ft_isalpha.c		\
