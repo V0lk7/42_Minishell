@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:53:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/14 14:48:11 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/15 16:17:28 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 t_bool	valid_quotes(const char *str);
 /*-------syntax_is_valid.c-------*/
 t_bool	first_character(const char *str);
-//t_bool	syntax_is_valid(const char *str);
-
+t_spe	is_character_spe(int c);
+int		pass_whitespace(const char *str, int i);
+int		valid_redirection(const char *str, int i, char character);
+int		redirection_case(const char *str, int i);
+int		pipe_case(const char *str, int i);
+int		past_character(const char *str, int i, t_spe character);
 #endif
