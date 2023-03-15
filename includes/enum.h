@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
 /*   Updated: 2023/03/15 18:32:31 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:33:40 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +36,12 @@ typedef struct s_mini
 	t_builts	*b_ptr;
 
 }	t_mini;
+
+typedef enum e_spe
+{
+	NONE,
+	REDIRECTION,
+	PIPE
+}	t_spe;
 
 #endif
