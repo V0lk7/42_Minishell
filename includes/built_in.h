@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:30 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/13 17:55:31 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:29:15 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "../src/libft/include/libft.h"
 
 /*-----Built_IN_f-----*/
+void	ft_cd(t_mini *mini);
 void	ft_echo(t_mini *mini);
 void	ft_env(t_mini *mini);
 void	ft_exit(t_mini *mini);

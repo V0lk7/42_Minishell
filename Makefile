@@ -6,7 +6,7 @@
 #    By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 16:36:26 by kramjatt          #+#    #+#              #
-#    Updated: 2023/03/14 14:46:40 by jduval           ###   ########.fr        #
+#    Updated: 2023/03/15 18:37:02 by kramjatt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,16 +28,16 @@ SRC_DIR 	=	src
 
 OBJ_DIR 	=	.obj
 
-SRCS		:= 	built_in/builts.c		built_in/echo.c				\
-				built_in/env.c			built_in/exit.c				\
-				built_in/pwd.c			built_in/unset.c			\
+SRCS		:= 	built_in/builts.c		built_in/cd.c			built_in/echo.c		\
+				built_in/env.c			built_in/exit.c			built_in/pwd.c		\
+				built_in/unset.c
 
 SRCS		+=	process/history.c		process/main.c				\
 				process/init_f.c		\
 
-SRCS		+=	clear/free_exit.c \
+SRCS		+=	clear/free_exit.c		\
 
-SRCS		+=	parsing/valid_quotes.c	parsing/syntax_is_valid.c	\
+#SRCS		+=	parsing/valid_quotes.c	parsing/syntax_is_valid.c	\
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 

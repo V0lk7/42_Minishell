@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_exit.c                                        :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 17:56:05 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/15 15:41:26 by kramjatt         ###   ########.fr       */
+/*   Created: 2023/03/15 18:28:37 by kramjatt          #+#    #+#             */
+/*   Updated: 2023/03/15 19:25:59 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/clear.h"
+#include "../../includes/built_in.h"
 
-static void	free_tabstruct_element(t_builts *builts)
+static char	*get_directory(t_mini *mini, char *str)
 {
 	int	i;
 
-	i = -1;
-	while (++i)
-		free(builts[i].str);
+	i = 0;
+	while (mini->envp_cpy[i])
+	{
+		if (!ft_strcmp(mini->envp_cpy[i], str))
+			return (mini->envp_cpy[i]);
+		i++;
+	}
 }
 
-void	free_exit(t_mini *mini, t_builts *builts)
+void	ft_cd(t_mini *mini)
 {
-	free_array2d(mini->envp_cpy);
-	free_tabstruct_element(builts);
-	free(builts);
+	if (!mini->cmd[1])
+	{
+		mini->old_dir = mini->current_dir;
+		chdir("$HOME");
+		getcwd(mini->current_dir, PATH_MAX);
+	}
 }

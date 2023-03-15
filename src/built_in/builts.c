@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:45:11 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/10 15:45:13 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/15 18:29:47 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	is_built(t_mini *mini)
 {
 	if (!mini->cmd[0])
 		return ;
+	if (!ft_strcmp(mini->b_ptr[0].str, mini->cmd[0]))
+		ft_cd(mini);
 	if (!ft_strcmp(mini->b_ptr[1].str, mini->cmd[0]))
 		ft_echo(mini);
 	else if (!ft_strcmp(mini->b_ptr[2].str, mini->cmd[0]))

@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/13 17:55:26 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:32:31 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ typedef struct s_builts
 
 typedef struct s_mini
 {	
-	char		**cmd;
-	char		**envp_cpy;
 	int			exit;
+	char		*current_dir;
+	char		*old_dir;
+	char		**envp_cpy;
+	char		**cmd;
 	t_builts	*b_ptr;
 
 }	t_mini;

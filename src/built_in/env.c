@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:45:27 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/10 15:45:32 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/15 19:03:26 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	ft_env(t_mini *mini)
 {
 	int		i;
+	int		j;
+	int		null;
 	int		length;
 
 	i = 0;
@@ -23,7 +25,16 @@ void	ft_env(t_mini *mini)
 	length = count_args_2d(mini->envp_cpy);
 	while (i < length)
 	{
-		printf("%s\n", mini->envp_cpy[i]);
+		j = 0;
+		null = 0;
+		while (mini->envp_cpy[i][j])
+		{
+			if (mini->envp_cpy[i][j] == '=')
+				null++;
+			j++;
+		}
+		if (null)
+			printf("%s\n", mini->envp_cpy[i]);
 		i++;
 	}
 }
