@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:53:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/15 16:17:28 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/16 12:17:13 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ int		valid_redirection(const char *str, int i, char character);
 int		redirection_case(const char *str, int i);
 int		pipe_case(const char *str, int i);
 int		past_character(const char *str, int i, t_spe character);
+int		is_syntax_valid(const char *str);
 #endif
