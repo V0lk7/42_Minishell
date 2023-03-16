@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 14:14:34 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/15 17:10:59 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/16 13:43:54 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ int	valid_redirection(const char *str, int i, char character)
 		flag = NONE;
 	if (str[i + 1] == character && flag == NONE)
 		return (i + 2);
+	else if (str[i + 1] != character
+		&& is_character_spe(str[i + 1]) == REDIRECTION)
+		return (i + 2);
 	else if (str[i + 1] != character && is_character_spe(str[i + 1]) == NONE)
 		return (i + 1);
 	else
@@ -97,6 +100,8 @@ int	pipe_case(const char *str, int i)
 		i = redirection_case(str, i);
 		if (i < 0)
 			return (i * (-1));
+		else
+			return (i);
 	}
 	return (i);
 }
@@ -130,7 +135,7 @@ int	is_syntax_valid(const char *str)
 			character = is_character_spe(str[i]);
 			if (character == PIPE || character == REDIRECTION)
 			{
-				i = past_character(str, i + 1, character);
+				i = past_character(str, i, character);
 				if (i < 0)
 					return (i);
 				continue ;

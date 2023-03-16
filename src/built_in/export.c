@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:42:35 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/16 19:47:17 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/16 20:00:25 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	print_export(t_mini *mini)
 		k++;
 	}
 	k = 0;
-	while (tmp[k])
+	while (k < count_args_2d(mini->envp_cpy))
 	{
 		ft_printf("%s\n", tmp[k]);
 		k++;
