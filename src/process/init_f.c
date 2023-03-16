@@ -6,11 +6,12 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:46:35 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/15 18:34:53 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:06:25 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/process.h"
+#include <linux/limits.h>
 #include <unistd.h>
 
 void	init_builts(t_builts *builts)
@@ -34,6 +35,7 @@ void	init_builts(t_builts *builts)
 void	init_minishell(t_mini *mini, t_builts *builts, char **envp)
 {
 	mini->b_ptr = builts;
+	mini->current_dir = malloc(sizeof(char) * PATH_MAX);
 	getcwd(mini->current_dir, PATH_MAX);
 	mini->envp_cpy = cpy_array2d(envp);
 	mini->exit = 0;

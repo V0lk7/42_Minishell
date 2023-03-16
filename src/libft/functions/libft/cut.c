@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_exit.c                                        :+:      :+:    :+:   */
+/*   cut.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 17:56:05 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/16 17:58:39 by kramjatt         ###   ########.fr       */
+/*   Created: 2023/03/16 13:45:52 by kramjatt          #+#    #+#             */
+/*   Updated: 2023/03/16 13:46:12 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/clear.h"
+#include "libft.h"
 
-static void	free_tabstruct_element(t_builts *builts)
+char	*cut(char *str, char c)
 {
-	int	i;
+	char	*cut;
+	int		i;
+	int		j;
+	int		length;
 
-	i = -1;
-	while (++i)
-		free(builts[i].str);
-}
-
-void	free_exit(t_mini *mini, t_builts *builts)
-{
-	free(mini->current_dir);
-	free(mini->old_dir);
-	free_array2d(mini->envp_cpy);
-	free_array2d(mini->cmd);
-	free(mini);
-	free_tabstruct_element(builts);
-	free(builts);
+	i = 0;
+	length = 0;
+	while (str[length])
+		length++;
+	while (str[i] != c)
+		i++;
+	i++;
+	cut = malloc(sizeof(char) * (length - i) + 1);
+	j = 0;
+	while (str[i])
+	{
+		cut[j] = str[i];
+		i++;
+		j++;
+	}
+	cut[j] = '\0';
+	return (cut);
 }

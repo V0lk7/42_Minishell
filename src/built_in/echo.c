@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:45:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/15 18:00:26 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:04:12 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,4 @@ void	ft_echo(t_mini *mini)
 		else
 			without_flag(mini);
 	}
-	find_multiples_n(mini->cmd[1]);
 }
