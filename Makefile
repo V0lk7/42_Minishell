@@ -6,7 +6,7 @@
 #    By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 16:36:26 by kramjatt          #+#    #+#              #
-#    Updated: 2023/03/16 19:56:09 by kramjatt         ###   ########.fr        #
+#    Updated: 2023/03/17 12:04:13 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRCS		+=	process/history.c		process/main.c		\
 
 SRCS		+=	clear/free_exit.c		\
 
-SRCS		+=	parsing/valid_quotes.c	parsing/syntax_is_valid.c	\
+SRCS		+=	parsing/valid_quotes.c		parsing/syntax_is_valid.c	\
+				parsing/syntax_is_valid2.c 	parsing/syntax_management.c	\
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 

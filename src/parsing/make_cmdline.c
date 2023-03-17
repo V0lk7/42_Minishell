@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   make_cmdline.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 12:21:03 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/17 12:46:20 by jduval           ###   ########.fr       */
+/*   Created: 2023/03/17 14:42:19 by jduval            #+#    #+#             */
+/*   Updated: 2023/03/17 19:17:29 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar_fd(int fd, char c)
+t_lkfehsj	*make_args(const char str)
 {
-	write(fd, &c, 1);
+	int	i;
+	int	nbrs;
+
+	i = 0;
+	nbrs = 0;
+	i = pass_whitespace()
 }

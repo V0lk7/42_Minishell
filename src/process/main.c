@@ -6,11 +6,12 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/14 14:35:02 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/17 14:06:49 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/process.h"
+#include "../../includes/parsing.h"
 
 static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 {
@@ -22,13 +23,16 @@ static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 	{
 		line = readline("😈 Minishell 😈 ");
 		history(line);
-		if (line && line[0] != '\0')
+		if (syntax_management(line) == FALSE)
 		{
-			mini->cmd = ft_split(line, 32);
-			is_built(mini);
-			free(line);
-			free_array2d(mini->cmd);
+			if (line)
+				free(line);
+			continue;
 		}
+		mini->cmd = ft_split(line, 32);
+		is_built(mini);
+		free(line);
+		free_array2d(mini->cmd);
 	}
 }
 
