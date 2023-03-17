@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:21:46 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/16 13:46:59 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/17 11:15:09 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,10 @@ void		ft_lstclear(t_list **lst, void (*del)(void *));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int			ft_strcspn(char const *str, char const *reject);
+void		print_array2d(char **array2d);
 char		**cpy_array2d(char **array2d);
 int			count_args_2d(char **array2d);
+int			find_in_array2d(char **array, char *str);
 char		*cut(char *str, char c);
 void		free_array2d(char **argv);
 void		ft_strcpy(char *dst, const char *src);

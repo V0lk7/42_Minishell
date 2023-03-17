@@ -6,7 +6,7 @@
 #    By: jduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 13:18:12 by jduval            #+#    #+#              #
-#    Updated: 2023/03/16 13:47:37 by kramjatt         ###   ########.fr        #
+#    Updated: 2023/03/17 11:17:11 by kramjatt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,8 @@ SRCS 		:=	libft/ft_bzero.c		\
 				libft/count_args_2d.c	\
 				libft/cpy_array2d.c		\
 				libft/free_array2d.c	\
+				libft/print_array2d.c	\
+				libft/find_in_array2d.c	\
 				libft/cut.c				\
 				libft/ft_strcmp.c		\
 				libft/ft_strcpy.c		\

@@ -6,63 +6,70 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:42:35 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/16 20:00:25 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/17 20:13:47 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/built_in.h"
 
-static int	find(char **array, char *str)
+static char	**sort_export(t_mini *mini)
 {
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		if (!ft_strcmp(array[i], str))
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-static void	print_export(t_mini *mini)
-{
-	char	*onverra;
+	char	*smallest;
 	char	**tmp;
 	int		i;
 	int		k;
 
 	k = 0;
 	tmp = malloc(sizeof(char *) * count_args_2d(mini->envp_cpy));
-	while (k < count_args_2d(mini->envp_cpy))
+	while (k < count_args_2d(mini->envp_cpy) - 1)
 	{
 		i = 0;
-		while (find(tmp, mini->envp_cpy[i]))
+		tmp[k] = NULL;
+		while (find_in_array2d(tmp, mini->envp_cpy[i]))
 			i++;
-		onverra = mini->envp_cpy[i];
+		smallest = mini->envp_cpy[i];
 		i = 0;
-		while (mini->envp_cpy[i])
+		while (i < count_args_2d(mini->envp_cpy))
 		{
-			if (ft_strcmp(mini->envp_cpy[i], onverra) < 0 && !find(tmp, mini->envp_cpy[i]))
-				onverra = mini->envp_cpy[i];
+			if (ft_strcmp(mini->envp_cpy[i], smallest)
+				< 0 && !find_in_array2d(tmp, mini->envp_cpy[i]))
+				smallest = mini->envp_cpy[i];
 			i++;
 		}
-		tmp[k] = ft_strdup(onverra);
+		tmp[k] = ft_strdup(smallest);
 		k++;
 	}
-	k = 0;
-	while (k < count_args_2d(mini->envp_cpy))
+	tmp[k] = NULL;
+	return (tmp);
+}
+
+static char	**add_export(t_mini *mini, char *export)
+{
+	char	**cpy;
+	int		i;
+	int		length;
+
+	i = 0;
+	length = count_args_2d(mini->envp_cpy);
+	cpy = malloc(sizeof(char *) * length );
+	while (i < length - 2)
 	{
-		ft_printf("%s\n", tmp[k]);
-		k++;
+		cpy[i] = ft_strdup(mini->envp_cpy[i]);
+		i++;
 	}
+	cpy[i] = ft_strdup(export);
+	cpy[i + 1] = NULL;
+	free_array2d(mini->envp_cpy);
+	return (cpy);
 }
 
 void	ft_export(t_mini *mini)
 {
 	if (!mini->cmd[1])
-		print_export(mini);
-	else
-		ft_printf("En cours d'implementation");
+		print_export(sort_export(mini));
+	else if (mini->cmd[1] && verif_export(mini))
+	{
+		mini->envp_cpy = add_export(mini, mini->cmd[1]);
+		//!cmp_2d(mini->envp_cpy, mini->cmd[1]))
+	}
 }
