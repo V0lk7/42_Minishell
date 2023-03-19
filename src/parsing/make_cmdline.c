@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 14:42:19 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/17 23:34:39 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/19 17:35:09 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,28 @@ int	normal_word_lengh(char *str, int i)
 	}
 	return (j - 1);
 }
-/*
-t_type	*make_args(char *str, t_mini **utils)
+
+t_type	*make_lst_minishell(char *str, t_mini *utils)
 {
 	t_type	*head;
 	t_type	*tmp;
+	int		i;
+	int		count;
 
-	while (*str)
+	head = NULL;
+	i = 0;
+	count = 0;
+	while (str[i])
 	{
-		
+		if (head == NULL)
+		{
+			head = make_node(utils, str, &i, count);
+			if (head == NULL)
+				return (NULL);
+			continue ;
+		}
+		tmp = make_node(utils, str, &i, count);
+		add_back(&head, tmp);
 	}
-}*/
+	return (head);
+}

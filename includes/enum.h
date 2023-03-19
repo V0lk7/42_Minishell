@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/17 22:14:17 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/19 17:33:35 by jduval           ###   ########.fr       */
 /*   Updated: 2023/03/15 11:33:40 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -39,6 +39,23 @@ typedef enum e_way
 	APPEND
 }	t_way;
 
+typedef enum e_builts
+{
+	CD,
+	ECHO,
+	ENV,
+	EXIT,
+	EXPORT,
+	PWD,
+	UNSET
+}	t_builts;
+
+typedef enum e_class
+{
+	COMMAND,
+	REDIRECT
+}	t_class;
+
 /*--------Structs-------*/
 
 typedef struct s_builts
@@ -58,26 +75,28 @@ typedef struct s_mini
 
 }	t_mini;
 
-typedef	struct s_red
+typedef struct s_red
 {
-	char	*name;
+	char	*file;
 	t_way	way;
 	int		fd;
 }	t_red;
 
 typedef struct s_cmd
 {
-	char	**cmd;
-	t_bool	valid;
-	int		index;
-	t_mini	*utils;
+	t_builts	id;
+	char		**cmd;
+	t_bool		valid;
+	int			index;
+	t_mini		*utils;
 }	t_cmd;
 
 typedef union u_type
 {
-	t_red			rdirct;
-	t_cmd			cmds;
-	union u_type	*ptr;
+	t_class			name;
+	t_red			redirect;
+	t_cmd			cmd;
+	union u_type	*next;
 }	t_type;
 
 #endif
