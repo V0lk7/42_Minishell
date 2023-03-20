@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/18 16:41:20 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/17 22:21:59 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 				free(line);
 			continue ;
 		}
-		mini->cmd = ft_split(line, 32);
+		mini->cmd = ft_split(line, ' ');
 		is_built(mini);
 		free(line);
 		free_array2d(mini->cmd);
@@ -42,7 +42,6 @@ int	main(int argc, char **argv, char **envp)
 	t_mini		mini;
 	int			exit_s;
 
-	(void)argc;
 	(void)argv;
 	if (argc != 1)
 	{
