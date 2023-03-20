@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:53:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/19 17:30:34 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/20 17:42:29 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,7 @@ t_bool	syntax_management(char *str);
 /*-------make_cmdline.c-------*/
 int		normal_word_lengh(char *str, int i);
 t_type	*make_ulst_minishell(char *str, t_mini *utils);
+/*-------simplify_user_input.c-------*/
+char	**isolate_by_pipe(char *str);
+
 #endif

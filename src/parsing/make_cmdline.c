@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 14:42:19 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/19 17:35:09 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/20 13:16:01 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,39 @@ int	normal_word_lengh(char *str, int i)
 	}
 	return (j - 1);
 }
+/*
+t_type	*make_node(t_mini *utils, char *str, int *i, int count)
+{
+	int	k;
+	t_type	node;
+	t_type	tmp;
 
-t_type	*make_lst_minishell(char *str, t_mini *utils)
+	k = *i;
+	
+}
+
+t_type	*make_ulst_minishell(char *str, t_mini *utils)
 {
 	t_type	*head;
 	t_type	*tmp;
-	int		i;
-	int		count;
+	char	**array;
 
 	head = NULL;
-	i = 0;
-	count = 0;
-	while (str[i])
+	array = pipe_separation(str);
+	if (array == NULL)
+		return (NULL);
+	while (array[i])
 	{
 		if (head == NULL)
+			head = nodes_creator(array, i, utils);
+		tmp = nodes_creator(array, i, utils);
+		if (tmp == NULL)
 		{
-			head = make_node(utils, str, &i, count);
-			if (head == NULL)
-				return (NULL);
-			continue ;
+			free_ulst(&head);
+			return (NULL);
 		}
-		tmp = make_node(utils, str, &i, count);
 		add_back(&head, tmp);
+		i++;	
 	}
 	return (head);
-}
+}*/

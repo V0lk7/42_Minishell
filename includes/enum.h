@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/19 17:33:35 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/20 15:14:22 by jduval           ###   ########.fr       */
 /*   Updated: 2023/03/15 11:33:40 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@ typedef enum e_way
 	APPEND
 }	t_way;
 
-typedef enum e_builts
+typedef enum e_builtin
 {
 	CD,
 	ECHO,
@@ -48,7 +48,7 @@ typedef enum e_builts
 	EXPORT,
 	PWD,
 	UNSET
-}	t_builts;
+}	t_builtin;
 
 typedef enum e_class
 {
@@ -93,10 +93,15 @@ typedef struct s_cmd
 
 typedef union u_type
 {
-	t_class			name;
-	t_red			redirect;
+	t_red			rdict;
 	t_cmd			cmd;
-	union u_type	*next;
 }	t_type;
+
+typedef struct s_data
+{
+	t_class			name;
+	t_type			*data;
+	struct s_data	*next;
+}	t_data;
 
 #endif

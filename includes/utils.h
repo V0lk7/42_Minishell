@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:14:38 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/19 17:17:44 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/20 17:45:26 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ t_type	*new_noide(t_class name, t_red *redirect, t_cmd *command);
 void	add_back_unode(t_type **head, t_type *node);
 t_type	*reach_last_node(t_type *head);
 int		count_cmd(t_type *head);
+/*--------split_by_pipe_utils.c-------*/
+int		*find_index_pipe(char *str);
 
 #endif

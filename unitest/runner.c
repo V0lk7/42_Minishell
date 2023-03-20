@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:56:09 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/17 23:22:49 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/20 15:18:13 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ SUITE(test_redirection_case);
 SUITE(test_pipe_case);
 SUITE(test_syntax_is_valid);
 SUITE(test_normal_word_lengh);
+SUITE(test_nbrs_of_pipe);
+SUITE(test_find_index_pipe);
+SUITE(test_isolate_by_pipe);
 
 GREATEST_MAIN_DEFS();
 
@@ -38,6 +41,9 @@ int	main(int argc, char **argv)
 	RUN_SUITE(test_pipe_case);
 	RUN_SUITE(test_syntax_is_valid);
 	RUN_SUITE(test_normal_word_lengh);
+	RUN_SUITE(test_nbrs_of_pipe);
+	RUN_SUITE(test_find_index_pipe);
+	RUN_SUITE(test_isolate_by_pipe);
 
 	GREATEST_MAIN_END();	/* display result */
 }
