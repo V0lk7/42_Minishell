@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/17 19:17:11 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/18 13:21:08 by kramjatt         ###   ########.fr       */
 /*   Updated: 2023/03/15 11:33:40 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -58,13 +58,7 @@ typedef struct s_mini
 
 }	t_mini;
 
-typedef union	u_type
-{
-	t_red	redirect;
-	t_cmd	commands;
-}	t_type;
-
-typedef	struct	s_red
+/*typedef struct s_red
 {
 	char	*name;
 	t_way	way;
@@ -72,7 +66,7 @@ typedef	struct	s_red
 	t_type	*ptr;
 }	t_red;
 
-typedef struct	s_cmd
+typedef struct s_cmd
 {
 	char	**cmd;
 	t_bool	valid;
@@ -81,11 +75,11 @@ typedef struct	s_cmd
 	t_sorceler	*ptr;
 }	t_cmd;
 
-typedef union	u_sorcelerie
+typedef union u_sorcelerie
 {
 	t_red	redirect;
 	t_cmd	commands;
 
 }	t_sorcelerie;
-
+*/
 #endif

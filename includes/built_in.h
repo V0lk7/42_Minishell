@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:30 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/17 19:10:18 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:58:11 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	is_built(t_mini *mini);
 
 /*-----Utils_f-----*/
 void	print_export(char **array);
-int		cmp_2d(char **array, char *str);
+int		compare(char **array, char *str);
+int		search_c(char *str, char c);
 int		verif_export(t_mini *mini);
 
 /*-----Init_f-----*/

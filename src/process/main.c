@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/17 14:06:49 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/18 16:41:20 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 		{
 			if (line)
 				free(line);
-			continue;
+			continue ;
 		}
 		mini->cmd = ft_split(line, 32);
 		is_built(mini);
