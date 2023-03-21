@@ -43,6 +43,22 @@ static char	**sort_export(t_mini *mini)
 	return (tmp);
 }
 
+/*static int	check_char(char *str, char *export)
+{
+	int	equal;
+
+	equal = search_c(str, '=');
+	if (equal == -1 && !ft_strncmp(str, export, ft_strlen(export)))
+		return (-1);
+	if (equal == -1 && ft_strncmp(str, export, ft_strlen(export)))
+		return (1);
+	if (equal != -1  && !ft_strncmp(str, export, equal - 1))
+		return (1);
+	else
+		return (0);
+
+}*/
+
 static char	**add_export(t_mini *mini, char *export)
 {
 	char	**cpy;

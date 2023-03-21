@@ -41,10 +41,9 @@ SRCS		+=	clear/free_exit.c		\
 
 SRCS		+=	parsing/valid_quotes.c		parsing/syntax_is_valid.c	\
 				parsing/syntax_is_valid2.c 	parsing/syntax_management.c	\
-				parsing/simplify_user_input.c	\
-				parsing/make_cmdline.c	\
+				parsing/simplify_user_input.c	parsing/make_cmdline.c	\
 
-SRCS		+=	utils/split_by_pipe_utils.c	\
+SRCS		+=	utils/split_by_pipe_utils.c	utils/dollars.c				\
 #utils/list_utils.c	\
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)

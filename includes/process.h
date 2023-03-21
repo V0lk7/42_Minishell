@@ -22,6 +22,7 @@
 # include "built_in.h"
 # include "enum.h"
 # include "clear.h"
+# include "utils.h"
 # include "../src/libft/include/libft.h"
 
 void	history(char *argv);

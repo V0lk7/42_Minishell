@@ -27,13 +27,12 @@ int	normal_word_lengh(char *str, int i)
 	return (j - 1);
 }
 
-t_type	*make_data_by_line(char *str)
+/*t_type	*make_data_by_line(char *str)
 {
 	int	nbr_rafter;
 
 	nbr_rafter = find_rafter(str);
 }
-/*
 t_type	*make_ulst_minishell(char *str, t_mini *utils)
 {
 	t_type	*head;

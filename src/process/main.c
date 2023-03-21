@@ -30,6 +30,7 @@ static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 			continue ;
 		}
 		mini->cmd = ft_split(line, ' ');
+		dollars(mini);
 		is_built(mini);
 		free(line);
 		free_array2d(mini->cmd);

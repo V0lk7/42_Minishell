@@ -21,11 +21,13 @@
 /*--------Structs-------*/
 
 /*--------list_utils.c-------*/
-t_type	*new_noide(t_class name, t_red *redirect, t_cmd *command);
 void	add_back_unode(t_type **head, t_type *node);
-t_type	*reach_last_node(t_type *head);
 int		count_cmd(t_type *head);
+t_type	*new_noide(t_class name, t_red *redirect, t_cmd *command);
+t_type	*reach_last_node(t_type *head);
 /*--------split_by_pipe_utils.c-------*/
 int		*find_index_pipe(char *str);
 
+/*--------$-------*/
+void	dollars(t_mini *mini);
 #endif
