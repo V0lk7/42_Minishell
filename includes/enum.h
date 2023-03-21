@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/15 11:33:40 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/21 11:30:29 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,6 @@ typedef struct s_mini
 
 }	t_mini;
 
-/*typedef struct s_red
-{
-	char	*name;
 typedef struct s_red
 {
 	char	*file;
@@ -93,17 +90,12 @@ typedef struct s_cmd
 	t_mini		*utils;
 }	t_cmd;
 
-typedef union u_sorcelerie
-=======
 typedef union u_type
 {
 	t_red			rdict;
 	t_cmd			cmd;
 }	t_type;
 
-<<<<<<< HEAD
-}	t_sorcelerie;
-*/
 typedef struct s_data
 {
 	t_class			name;
