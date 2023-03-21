@@ -6,32 +6,15 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 14:42:19 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/21 12:04:40 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/21 21:33:52 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/enum.h"
 #include "../../includes/parsing.h"
 
-int	normal_word_lengh(char *str, int i)
-{
-	int	j;
-
-	j = 0;
-	while (str[i + j])
-	{
-		if (is_character_spe(str[i + j]) || ft_isspace(str[i + j]) == 1)
-			break ;
-		j++;
-	}
-	return (j - 1);
-}
-
-/*t_type	*make_data_by_line(char *str)
-=======
 /*
 t_type	*make_data_by_line(char *str)
->>>>>>> 9dd321c70c55ceaaa82e3f46b372057f8da14690
 {
 	int	nbr_rafter;
 	t_type	*data;
@@ -39,10 +22,7 @@ t_type	*make_data_by_line(char *str)
 	nbr_rafter = find_rafter(str);
 	data = put_redirection(str, nbr_rafter);
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 9dd321c70c55ceaaa82e3f46b372057f8da14690
 t_type	*make_ulst_minishell(char *str, t_mini *utils)
 {
 	t_type	*head;
