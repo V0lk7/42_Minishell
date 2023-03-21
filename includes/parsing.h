@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:53:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/20 17:42:29 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/21 16:39:11 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ int		pass_whitespace(const char *str, int i);
 int		valid_redirection(const char *str, int i, char character);
 /*-------syntax_management.c-------*/
 t_bool	syntax_management(char *str);
-/*-------make_cmdline.c-------*/
-int		normal_word_lengh(char *str, int i);
-t_type	*make_ulst_minishell(char *str, t_mini *utils);
 /*-------simplify_user_input.c-------*/
 char	**isolate_by_pipe(char *str);
+/*-------make_data.c-------*/
+t_data	*create_node_redirect(const char *str, int *i, int tmp);
 
 #endif
