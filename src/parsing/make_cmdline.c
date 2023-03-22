@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 14:42:19 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/21 21:33:52 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/22 13:34:12 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 #include "../../includes/parsing.h"
 
 /*
-t_type	*make_data_by_line(char *str)
-{
-	int	nbr_rafter;
-	t_type	*data;
-
-	nbr_rafter = find_rafter(str);
-	data = put_redirection(str, nbr_rafter);
-}
-
 t_type	*make_ulst_minishell(char *str, t_mini *utils)
 {
 	t_type	*head;
