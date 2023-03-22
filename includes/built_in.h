@@ -35,7 +35,7 @@ void	is_built(t_mini *mini);
 void	print_export(char **array);
 int		compare(char **array, char *str);
 int		search_c(char *str, char c);
-int		verif_export(t_mini *mini);
+int		verif_export(char *cmd);
 
 /*-----Init_f-----*/
 void	init_builts(t_builts *builts);

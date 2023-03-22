@@ -23,12 +23,14 @@ static void	update_pwd(t_mini *mini)
 	mini->current_dir = malloc(sizeof(char) * PATH_MAX);
 	if (!getcwd(mini->current_dir, PATH_MAX))
 		perror(0);
-	while (ft_strncmp(mini->envp_cpy[i], "OLDPWD=", 7))
+	while (mini->envp_cpy[i] && ft_strncmp(mini->envp_cpy[i], "OLDPWD=", 7))
 		i++;
-	mini->envp_cpy[i] = ft_strjoin("OLDPWD=", mini->old_dir);
-	while (ft_strncmp(mini->envp_cpy[j], "PWD=", 4))
+	if (i != count_args_2d(mini->envp_cpy))
+		mini->envp_cpy[i] = ft_strjoin("OLDPWD=", mini->old_dir);
+	while (mini->envp_cpy[i] && ft_strncmp(mini->envp_cpy[j], "PWD=", 4))
 		j++;
-	mini->envp_cpy[j] = ft_strjoin("PWD=", mini->current_dir);
+	if (j != count_args_2d(mini->envp_cpy))
+		mini->envp_cpy[j] = ft_strjoin("PWD=", mini->current_dir);
 }
 
 static char	*find_dir(t_mini *mini, char *str)
@@ -65,9 +67,13 @@ static void	cut_last_directory(t_mini *mini)
 
 void	ft_cd(t_mini *mini)
 {
-	mini->old_dir = ft_strdup(mini->current_dir);
 	if (!mini->cmd[1])
-		chdir(find_dir(mini, "HOME="));
+	{	
+		if (find_in(mini->envp_cpy, "HOME") != -1)
+			chdir(find_dir(mini, "HOME="));
+		ft_putstr_fd(2, "cd: HOME not set\n");
+		return ;
+	}
 	else if (!ft_strncmp(mini->cmd[1], "..", 2))
 	{
 		cut_last_directory(mini);
@@ -81,5 +87,6 @@ void	ft_cd(t_mini *mini)
 			perror(0);
 		}
 	}
+	mini->old_dir = ft_strdup(mini->current_dir);
 	update_pwd(mini);
 }

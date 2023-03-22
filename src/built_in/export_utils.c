@@ -55,28 +55,27 @@ int	compare(char **array, char *str)
 	return (0);
 }
 
-
-int	verif_export(t_mini *mini)
+int	verif_export(char *cmd)
 {
 	int	i;
 	int	equal;
 
-	if (!ft_isalpha(mini->cmd[1][0]) || mini->cmd[2])
+	if (!ft_isalpha(cmd[0]))
 	{
-		ft_printf("export: %s: not a valid identifier\n", mini->cmd[1]);
+		ft_printf("export: %s: not a valid identifier\n", cmd);
 		return (0);
 	}
 	i = 1;
-	equal = search_c(mini->cmd[1], '=');
+	equal = search_c(cmd, '=');
 	if (equal == -1)
-		equal = ft_strlen(mini->cmd[1]);
+		equal = ft_strlen(cmd);
 	while (i < equal)
 	{
-		if (mini->cmd[1][equal - 1] != '+')
+		if (cmd[equal - 1] != '+')
 		{
-			if (!ft_isalnum(mini->cmd[1][i]))
+			if (!ft_isalnum(cmd[i]))
 			{
-				ft_printf("export: %s: not a valid identifier\n", mini->cmd[1]);
+				ft_printf("export: %s: not a valid identifier\n", cmd);
 				return (0);
 			}
 		}

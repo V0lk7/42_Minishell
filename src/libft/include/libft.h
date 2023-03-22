@@ -85,6 +85,7 @@ void		print_array2d(char **array2d);
 char		**cpy_array2d(char **array2d);
 int			count_args_2d(char **array2d);
 int			find_in_array2d(char **array, char *str);
+int			find_in(char **array, char *str);
 char		*cut(char *str, char c);
 int			search_c(char *str, char c);
 void		free_array2d(char **argv);

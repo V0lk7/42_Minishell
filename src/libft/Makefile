@@ -80,6 +80,7 @@ SRCS 		:=	libft/ft_bzero.c		\
 				libft/free_array2d.c	\
 				libft/print_array2d.c	\
 				libft/find_in_array2d.c	\
+				libft/find_in.c	\
 				libft/cut.c				\
 				libft/search_c.c				\
 				libft/ft_strcmp.c		\

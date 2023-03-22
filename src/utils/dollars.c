@@ -56,13 +56,15 @@ static void	find_dollar(t_mini *mini, char *dollar, int index)
 		j++;
 	}
 	cpy[i] = '\0';
+	ft_printf("CPY %s\n", cpy);
 	j = 0;
 	while (j < length)
 	{
-		if (!ft_strncmp(mini->envp_cpy[j], cpy, ft_strlen(cpy)))
+		i = search_c(mini->envp_cpy[j], '=');
+		if (!ft_strncmp(mini->envp_cpy[j], cpy, i))
 		{
-			i = search_c(mini->envp_cpy[j], '=');
 			cpy = cut_dollar(mini->envp_cpy[j]);
+			ft_printf("CUT %s\n", cpy);
 			mini->cmd[index] = ft_strdup(cpy);
 			return ;
 		}
@@ -80,7 +82,7 @@ void	dollars(t_mini *mini)
 	length = count_args_2d(mini->cmd);
 	while (i < length)
 	{
-		if (verif_dollar(mini->cmd[i]))
+		if (verif_dollar(mini->cmd[i]) == 1)
 			find_dollar(mini, mini->cmd[i], i);
 		i++;
 	}
