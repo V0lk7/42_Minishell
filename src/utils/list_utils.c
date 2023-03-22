@@ -6,38 +6,31 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:37:20 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/21 17:40:40 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/22 14:07:36 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/enum.h"
+#include "../../includes/utils.h"
 
 t_data	*new_node_redirect(t_class name, char *file, t_way way)
 {
 	t_data	*node;
-	t_type	*type;
 
 	node = malloc(sizeof(t_data));
 	if (node == NULL)
 		return (NULL);
-	type = malloc(sizeof(t_type));
-	if (type == NULL)
-	{
-		free(node);
-		return (NULL);
-	}
-	node->data = type;
 	node->name = name;
-	node->data->rdict.file = file;
-	node->data->rdict.way = way;
-	node->data->rdict.fd = 0;
+	node->data.rdict.file = file;
+	node->data.rdict.way = way;
+	node->data.rdict.fd = 0;
 	node->next = NULL;
 	return (node);
 }
-/*
-void	add_back_node(t_type **head, t_type *node)
+
+void	add_back_node(t_data **head, t_data *node)
 {
-	t_type	*tmp;
+	t_data	*tmp;
 
 	if (head == NULL || node == NULL)
 		return ;
@@ -51,9 +44,9 @@ void	add_back_node(t_type **head, t_type *node)
 	return ;
 }
 
-t_type	*reach_last_node(t_type *head)
+t_data	*reach_last_node(t_data *head)
 {
-	t_type	*tmp;
+	t_data	*tmp;
 
 	if (head == NULL)
 		return (NULL);
@@ -65,4 +58,4 @@ t_type	*reach_last_node(t_type *head)
 		tmp = tmp->next;
 	}
 	return (tmp);
-}*/
+}

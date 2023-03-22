@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/21 11:30:29 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/22 13:29:20 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef union u_type
 typedef struct s_data
 {
 	t_class			name;
-	t_type			*data;
+	t_type			data;
 	struct s_data	*next;
 }	t_data;
 
