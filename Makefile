@@ -6,7 +6,7 @@
 #    By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 16:36:26 by kramjatt          #+#    #+#              #
-#    Updated: 2023/03/22 16:26:55 by jduval           ###   ########.fr        #
+#    Updated: 2023/03/23 13:41:40 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ DEPS		:=	$(OBJS:.o=.d)
 
 CC			=	clang
 
-CFLAGS		=	-Wall -Wextra -Werror -g -gdwarf-2
+CFLAGS		=	-Wall -Werror -g -gdwarf-2
 
 CPPFLAGS	=	-MMD -MP $(addprefix -I,$(INCLUDES))
 

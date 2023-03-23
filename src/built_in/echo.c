@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:45:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/16 10:04:12 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:21:16 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static void	with_flag(t_mini *mini)
 
 void	ft_echo(t_mini *mini)
 {
-	int	i;
+//	int	i;
 
-	i = 1;
+//	i = 1;
 	if (!mini->cmd[1])
 	{
 		ft_putstr_fd(1, "\n");

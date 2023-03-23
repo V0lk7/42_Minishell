@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:14:38 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/22 18:37:12 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/23 13:44:03 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 /*--------Structs-------*/
 
 /*--------list_utils.c-------*/
-t_data	*new_node_redirect(t_class name, char *file, t_way way);
+t_data	*new_node_command(char **array, t_mini *utils, int index);
+t_data	*new_node_redirect(t_class name, char *file, t_way way, int index);
 void	add_back_node(t_data **head, t_data *node);
 t_data	*reach_last_node(t_data *head);
 /*--------split_by_pipe_utils.c-------*/
