@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:53:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/22 14:10:18 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/24 16:19:37 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,13 @@ int		valid_redirection(const char *str, int i, char character);
 t_bool	syntax_management(char *str);
 /*-------simplify_user_input.c-------*/
 char	**isolate_by_pipe(char *str);
+/*-------make_cmdline.c-------*/
+t_data	*make_lst_line(char *str, t_mini *utils);
 /*-------make_data.c-------*/
-t_data	*create_node_redirect(const char *str, int *i, int tmp);
-t_data	*put_redirection(const char *, int nbr);
+t_data	*create_node_command(const char *str, t_mini *utils, int words, int i);
+t_data	*create_node_redirect(const char *str, int *i, int tmp, int index);
+t_data	*put_redirection(const char *, int nbr, int index);
+/*-------make_path.c-------*/
+char	**make_array_path(char **envp);
 
 #endif

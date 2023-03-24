@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:54:42 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/20 17:51:17 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/23 13:42:39 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,7 @@ char	**isolate_by_pipe(char *str)
 {
 	int		*index;
 	char	**array;
-	int		i;
 
-	i = 0;
 	index = find_index_pipe(str);
 	if (index == NULL)
 		return (NULL);

@@ -6,7 +6,7 @@
 #    By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 16:36:26 by kramjatt          #+#    #+#              #
-#    Updated: 2023/03/22 16:26:55 by jduval           ###   ########.fr        #
+#    Updated: 2023/03/24 16:18:20 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,10 +39,10 @@ SRCS		+=	process/history.c		process/main.c		\
 
 SRCS		+=	clear/free_exit.c		clear/free_lst.c	\
 
-SRCS		+=	parsing/valid_quotes.c		parsing/syntax_is_valid.c	\
-				parsing/syntax_is_valid2.c 	parsing/syntax_management.c	\
-				parsing/simplify_user_input.c	parsing/make_cmdline.c	\
-				parsing/make_data.c		\
+SRCS		+=	parsing/valid_quotes.c			parsing/syntax_is_valid.c	\
+				parsing/syntax_is_valid2.c 		parsing/syntax_management.c	\
+				parsing/simplify_user_input.c	parsing/make_cmdline.c		\
+				parsing/make_data.c				parsing/make_path.c			\
 
 SRCS		+=	utils/split_by_pipe_utils.c	\
 				utils/list_utils.c			\

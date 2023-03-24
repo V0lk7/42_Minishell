@@ -6,14 +6,31 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:37:20 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/22 14:07:36 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/23 13:46:33 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/enum.h"
 #include "../../includes/utils.h"
 
-t_data	*new_node_redirect(t_class name, char *file, t_way way)
+t_data	*new_node_command(char **array, t_mini *utils, int index)
+{
+	t_data	*node;
+
+	node = malloc(sizeof(t_data));
+	if (node == NULL)
+		return (NULL);
+	node->name = COMMAND;
+	node->index = index;
+	node->next = NULL;
+	node->data.cmd.cmd = array;
+	node->data.cmd.utils = utils;
+	node->data.cmd.id = CD;
+	node->data.cmd.valid = -1;
+	return (node);
+}
+
+t_data	*new_node_redirect(t_class name, char *file, t_way way, int index)
 {
 	t_data	*node;
 
@@ -21,6 +38,7 @@ t_data	*new_node_redirect(t_class name, char *file, t_way way)
 	if (node == NULL)
 		return (NULL);
 	node->name = name;
+	node->index = index;
 	node->data.rdict.file = file;
 	node->data.rdict.way = way;
 	node->data.rdict.fd = 0;

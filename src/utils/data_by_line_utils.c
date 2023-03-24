@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 11:43:24 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/21 18:02:51 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/24 14:19:01 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,18 +93,17 @@ int	normal_word_lengh(const char *str, int i)
 	int	j;
 	int	quote;
 
+	quote = 0;
 	j = 0;
-	if (str[i] == '\'' || str[i] == '\"')
-		quote = str[i];
-	else
-		quote = 0;
 	while (str[i + j])
 	{
-		if (quote != 0 && j > 0 && str[i + j] == quote)
-			return (j);
+		if (quote == 0 && (str[i + j] == '\'' || str[i + j] == '\"'))
+			quote = str[i + j];
 		else if (quote == 0 && (ft_isspace(str[i + j])
-			|| is_character_spe(str[i + j])))
+			|| is_character_spe(str[i + j]) == REDIRECTION))
 			break ;
+		else if (quote > 0 && str[i + j] == quote)
+			quote = 0;
 		j++;
 	}
 	return (j - 1);

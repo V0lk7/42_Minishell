@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/22 13:29:20 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/23 13:47:04 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,9 @@ typedef struct s_red
 
 typedef struct s_cmd
 {
-	t_builts	id;
+	t_builtin	id;
 	char		**cmd;
 	t_bool		valid;
-	int			index;
 	t_mini		*utils;
 }	t_cmd;
 
@@ -100,6 +99,7 @@ typedef struct s_data
 {
 	t_class			name;
 	t_type			data;
+	int				index;
 	struct s_data	*next;
 }	t_data;
 
