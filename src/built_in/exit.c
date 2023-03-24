@@ -23,6 +23,4 @@ void	ft_exit(t_mini *mini)
 		return ;
 	else
 		mini->exit = ft_atoi(mini->cmd[1]);
-	free_exit(mini, mini->b_ptr);
-	exit(0);
 }

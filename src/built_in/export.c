@@ -43,14 +43,14 @@ static char	**sort_export(t_mini *mini)
 	return (tmp);
 }
 
-/*static void	crush_export(t_mini *mini, char *export)
+static void	crush_export(t_mini *mini, char *export)
 {
 	int	find;
 
-	find = find_in(mini->envp_cpy, export);
+	find = find_in_eq(mini->envp_cpy, export);
 	mini->envp_cpy[find] = ft_strdup(export);
-	return ; 
-}*/
+	return ;
+}
 
 static char	**add_export(t_mini *mini, char *export)
 {
@@ -114,13 +114,18 @@ void	ft_export(t_mini *mini)
 		while (mini->cmd[i] && verif_export(mini->cmd[i]))
 		{
 			equal = search_c(mini->cmd[i], '=');
-			if (equal == -1)
-				mini->envp_cpy = add_export(mini, mini->cmd[i]);
-			else if (equal != -1 && mini->cmd[i][equal - 1] != '+')
-				mini->envp_cpy = add_export(mini, mini->cmd[i]);
-			else if (compare(mini->envp_cpy, mini->cmd[i])
-				&& mini->cmd[i][equal - 1] == '+')
-				join_export(mini, mini->cmd[i]);
+			if (equal != -1)
+			{
+				if (find_in_eq(mini->envp_cpy, mini->cmd[i]) == -1 && mini->cmd[i][equal - 1] != '+')
+					mini->envp_cpy = add_export(mini, mini->cmd[i]);
+				else if (find_in_eq(mini->envp_cpy, mini->cmd[i]) != -1 && mini->cmd[i][equal - 1] != '+')
+					crush_export(mini, mini->cmd[i]);
+				else if (compare(mini->envp_cpy, mini->cmd[i]) && mini->cmd[i][equal - 1] == '+')
+					join_export(mini, mini->cmd[i]);
+			}
+			else
+				if (find_in(mini->envp_cpy, mini->cmd[i]) == -1)
+					mini->envp_cpy = add_export(mini, mini->cmd[i]);
 			i++;
 		}
 	}

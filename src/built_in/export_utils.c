@@ -46,7 +46,7 @@ int	compare(char **array, char *str)
 	i = 0;
 	if (str[equal - 1] == '+')
 		equal = equal - 2;
-	while (i < count_args_2d(array) - 1)
+	while (i < count_args_2d(array))
 	{
 		if (!ft_strncmp(array[i], str, equal))
 			return (1);
