@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_lst.c                                         :+:      :+:    :+:   */
+/*   command_control.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 13:57:41 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/24 14:48:58 by jduval           ###   ########.fr       */
+/*   Created: 2023/03/24 17:02:47 by jduval            #+#    #+#             */
+/*   Updated: 2023/03/24 17:29:10 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/clear.h"
-#include "../../includes/enum.h"
+#include "../../includes/parsing.h"
 
-void	free_all_nodes(t_data **head)
+char	*type_of_command(t_data *data, char **path)
+{
+	
+}
+
+t_data	*command_manager(t_data **head)
 {
 	t_data	*tmp;
-	int		i;
+	char	*command;
 
-	while (*head != NULL)
+	tmp = (*head);
+	while (tmp != NULL)
 	{
-		tmp = *head;
-		if (tmp->name == REDIRECT)
-			free((*head)->data.rdict.file);
-		else
+		if (tmp->name == COMMAND)
 		{
-			i = 0;
-			while (tmp->data.cmd.cmd[i])
+			command = tmp->data.cmd.cmd[0];
+			command = type_of_command(tmp->data, tmp->data.cmd.utils.path);
+			if (command == NULL)
 			{
-				free(tmp->data.cmd.cmd[i]);
-				i++;
+				free_all_nodes((*head));
+				return (NULL);
 			}
-			free(tmp->data.cmd.cmd);
 		}
-		*head = (*head)->next;
-		free(tmp);
+		tmp = tmp->next;
 	}
+	return ((*head));
 }

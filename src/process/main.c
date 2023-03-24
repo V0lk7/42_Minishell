@@ -6,12 +6,13 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/23 17:58:35 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/24 16:28:51 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/process.h"
 #include "../../includes/parsing.h"
+#include "../../includes/clear.h"
 #include "../../includes/enum.h"
 
 static void	display_lst(t_data *data, int flag);
@@ -33,6 +34,11 @@ static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 				free(line);
 			continue ;
 		}
+		if (ft_strcmp("exit", line) == 0)
+		{
+			free(line);
+			exit (0);
+		}
 		mini->cmd = ft_split(line, ' ');
 		lst = make_lst_line(line, mini);
 		free(line);
@@ -41,9 +47,10 @@ static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 			free_array2d(mini->cmd);
 			return ;
 		}
-		display_lst(lst, 1);
-		//dollars(mini);
-		//is_built(mini);
+		display_lst(lst, 0);
+		dollars(mini);
+		is_built(mini);
+		free_all_nodes(&lst);
 		free_array2d(mini->cmd);
 	}
 }

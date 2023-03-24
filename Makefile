@@ -6,7 +6,7 @@
 #    By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 16:36:26 by kramjatt          #+#    #+#              #
-#    Updated: 2023/03/23 13:41:40 by jduval           ###   ########.fr        #
+#    Updated: 2023/03/24 16:18:20 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,10 +40,10 @@ SRCS		+=	process/history.c		process/main.c		\
 SRCS		+=	clear/free_exit.c		\
 				clear/free_lst.c	\
 
-SRCS		+=	parsing/valid_quotes.c		parsing/syntax_is_valid.c	\
-				parsing/syntax_is_valid2.c 	parsing/syntax_management.c	\
-				parsing/simplify_user_input.c	parsing/make_cmdline.c	\
-				parsing/make_data.c		\
+SRCS		+=	parsing/valid_quotes.c			parsing/syntax_is_valid.c	\
+				parsing/syntax_is_valid2.c 		parsing/syntax_management.c	\
+				parsing/simplify_user_input.c	parsing/make_cmdline.c		\
+				parsing/make_data.c				parsing/make_path.c			\
 
 SRCS		+=	utils/split_by_pipe_utils.c	\
 				utils/list_utils.c	\
@@ -61,7 +61,7 @@ DEPS		:=	$(OBJS:.o=.d)
 
 CC			=	clang
 
-CFLAGS		=	-Wall -Werror -g -gdwarf-2
+CFLAGS		=	-Wall -Wextra -Werror -g -gdwarf-2
 
 CPPFLAGS	=	-MMD -MP $(addprefix -I,$(INCLUDES))
 
