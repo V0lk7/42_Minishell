@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 14:48:58 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/22 18:47:27 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/24 14:18:52 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ int	pass_next_word(const char *str, int i)
 	while (str[i] == character)
 		i++;
 	i = pass_whitespace(str, i);
-	while (str[i] && ft_isspace(str[i]) == 0)
-		i++;
-	return (i - 1);
+	i += normal_word_lengh(str, i);
+	return (i);
 }
 
 static void	fill_cmdline(char **cmd, const char *str, int *i, int j)
@@ -67,7 +66,7 @@ char	**fill_array_cmd(const char *str, int words)
 {
 	char	**cmd;
 	int		i;
-	
+
 	cmd = malloc(sizeof(char *) * (words + 1));
 	if (cmd == NULL)
 		return (NULL);
