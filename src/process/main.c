@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/24 16:28:51 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/25 16:51:07 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../../includes/clear.h"
 #include "../../includes/enum.h"
 
-static void	display_lst(t_data *data, int flag);
+static void	display_lst(t_data *data, t_builts *builts, char **envp, int flag);
 
 static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 {
@@ -23,15 +23,13 @@ static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 	t_data	*lst;
 
 	builts = NULL;
-	envp = NULL;
 	while (!mini->exit)
 	{
 		line = readline("😈 Minishell 😈 ");
 		history(line);
 		if (syntax_management(line) == FALSE)
 		{
-			if (line)
-				free(line);
+			free(line);
 			continue ;
 		}
 		if (ft_strcmp("exit", line) == 0)
@@ -40,18 +38,28 @@ static void	prompt(t_mini *mini, t_builts *builts, char **envp)
 			exit (0);
 		}
 		mini->cmd = ft_split(line, ' ');
+		mini->path = make_array_path(envp); 
 		lst = make_lst_line(line, mini);
 		free(line);
 		if (lst == NULL)
 		{
+			free_array2d(mini->path);
 			free_array2d(mini->cmd);
 			return ;
 		}
-		display_lst(lst, 0);
+		lst = command_manager(&lst);
+		if (lst == NULL)
+		{
+			free_array2d(mini->path);
+			free_array2d(mini->cmd);
+			return ;
+		}
+		display_lst(lst, builts, envp, 1);
 		dollars(mini);
 		is_built(mini);
 		free_all_nodes(&lst);
 		free_array2d(mini->cmd);
+		free_array2d(mini->path);
 	}
 }
 
@@ -76,12 +84,16 @@ int	main(int argc, char **argv, char **envp)
 	return (exit_s);
 }
 
-static void	display_lst(t_data *data, int flag)
+static void	display_lst(t_data *data, t_builts *builts, char **envp, int flag)
 {
 	t_data	*tmp = data;
 
 	if (flag == 0)
 		return ;
+	if (flag == 15000)
+		builts->str = NULL;
+	if (flag == 16000)
+		ft_printf("%s\n", envp[0]);
 	while (tmp != NULL)
 	{
 		if (tmp->name == REDIRECTION)
@@ -96,6 +108,8 @@ static void	display_lst(t_data *data, int flag)
 		{
 			ft_printf("-----|COMMAND|-----\n");
 			ft_printf("-----|INDEX = %i|-----\n", tmp->index);
+			ft_printf("|-|valid = %i|-|\n", tmp->data.cmd.valid);
+			ft_printf("|-|id = %i|-|\n", tmp->data.cmd.id);
 			for (int i = 0; tmp->data.cmd.cmd[i]; i++)
 				ft_printf("|-|cmd[%i] = %s|-|\n", i, tmp->data.cmd.cmd[i]);
 		}

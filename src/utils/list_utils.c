@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:37:20 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/23 13:46:33 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/25 16:40:27 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_data	*new_node_command(char **array, t_mini *utils, int index)
 	node->next = NULL;
 	node->data.cmd.cmd = array;
 	node->data.cmd.utils = utils;
-	node->data.cmd.id = CD;
+	node->data.cmd.id = 0;
 	node->data.cmd.valid = -1;
 	return (node);
 }
