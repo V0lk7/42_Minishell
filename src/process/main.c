@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/26 16:32:08 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/26 18:47:38 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,40 +31,30 @@ static void	prompt(t_mini *mini, char **envp)
 			free(line);
 			continue ;
 		}
-		if (ft_strcmp("exit", line) == 0)
-		{
-			free(line);
-			exit (0);
-		}
-		//mini->cmd = ft_split(line, ' ');
 		mini->path = make_array_path(envp); 
 		lst = make_lst_line(line, mini);
 		free(line);
 		if (lst == NULL)
 		{
 			free_array2d(mini->path);
-			//free_array2d(mini->cmd);
 			return ;
 		}
 		lst = command_manager(&lst);
 		if (lst == NULL)
 		{
 			free_array2d(mini->path);
-			//free_array2d(mini->cmd);
 			return ;
 		}
 		display_lst(lst, 1);
 		//dollars(mini);
 		is_built(&lst->data.cmd);
 		free_all_nodes(&lst);
-		//free_array2d(mini->cmd);
 		free_array2d(mini->path);
 	}
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	//t_builts	*builts;
 	t_mini		mini;
 	int			exit_s;
 
@@ -74,8 +64,6 @@ int	main(int argc, char **argv, char **envp)
 		ft_putstr_fd(2, "Invalid number of arguments\n");
 		exit(EXIT_FAILURE);
 	}
-	//builts = malloc(sizeof(t_builts) * 7);
-	//init_builts(builts);
 	init_minishell(&mini, envp);
 	prompt(&mini, envp);
 	exit_s = mini.exit;
