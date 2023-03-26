@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:46:10 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/10 15:46:16 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/26 15:59:11 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ static char	**realloc_unset(char **envp_cpy, int unset)
 	return (array);
 }
 
-void	ft_unset(t_mini *mini)
+void	ft_unset(t_cmd *cmd)
 {
 	int		i;
 	int		length;
 
 	i = 0;
-	length = count_args_2d(mini->cmd);
-	if (length != 2 || !mini->cmd[0] || !mini->cmd[1])
+	length = count_args_2d(cmd->cmd);
+	if (length != 2 || !cmd->cmd[0] || !cmd->cmd[1])
 		return ;
-	while (ft_strncmp(mini->cmd[1], mini->envp_cpy[i],
-			ft_strlen(mini->cmd[1])))
+	while (ft_strncmp(cmd->cmd[1], cmd->mini->envp_cpy[i],
+			ft_strlen(cmd->cmd[1])))
 		i++;
-	mini->envp_cpy = realloc_unset(mini->envp_cpy, i);
+	cmd->mini->envp_cpy = realloc_unset(cmd->mini->envp_cpy, i);
 }

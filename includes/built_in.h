@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:30 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/18 13:58:11 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/26 16:17:54 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@
 # include "../src/libft/include/libft.h"
 
 /*-----Built_IN_f-----*/
-void	ft_cd(t_mini *mini);
-void	ft_echo(t_mini *mini);
-void	ft_env(t_mini *mini);
-void	ft_exit(t_mini *mini);
-void	ft_export(t_mini *mini);
-void	ft_pwd(t_mini *mini);
-void	ft_unset(t_mini *mini);
-void	is_built(t_mini *mini);
+void	ft_cd(t_cmd *cmd);
+void	ft_echo(t_cmd *cmd);
+void	ft_env(t_cmd *cmd);
+void	ft_exit(t_cmd *cmd);
+void	ft_export(t_cmd *cmd);
+void	ft_pwd(t_cmd *cmd);
+void	ft_unset(t_cmd *cmd);
+
+//void	is_built(t_mini *mini);
+void	is_built(t_cmd *cmd);
 
 /*-----Utils_f-----*/
 void	print_export(char **array);
@@ -38,6 +40,6 @@ int		search_c(char *str, char c);
 int		verif_export(char *cmd);
 
 /*-----Init_f-----*/
-void	init_builts(t_builts *builts);
+//void	init_builts(t_builts *builts);
 
 #endif

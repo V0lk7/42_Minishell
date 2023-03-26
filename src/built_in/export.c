@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:42:35 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/18 19:32:44 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/26 16:21:56 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,31 +101,31 @@ static void	join_export(t_mini *mini, char *export)
 	mini->envp_cpy[i] = ft_strjoin(mini->envp_cpy[i], cpy);
 }
 
-void	ft_export(t_mini *mini)
+void	ft_export(t_cmd *cmd)
 {
 	int	equal;
 	int	i;
 
 	i = 1;
-	if (!mini->cmd[1])
-		print_export(sort_export(mini));
-	else if (mini->cmd[1])
+	if (!cmd->cmd[1])
+		print_export(sort_export(cmd->mini));
+	else if (cmd->cmd[1])
 	{
-		while (mini->cmd[i] && verif_export(mini->cmd[i]))
+		while (cmd->cmd[i] && verif_export(cmd->cmd[i]))
 		{
-			equal = search_c(mini->cmd[i], '=');
+			equal = search_c(cmd->cmd[i], '=');
 			if (equal != -1)
 			{
-				if (find_in_eq(mini->envp_cpy, mini->cmd[i]) == -1 && mini->cmd[i][equal - 1] != '+')
-					mini->envp_cpy = add_export(mini, mini->cmd[i]);
-				else if (find_in_eq(mini->envp_cpy, mini->cmd[i]) != -1 && mini->cmd[i][equal - 1] != '+')
-					crush_export(mini, mini->cmd[i]);
-				else if (compare(mini->envp_cpy, mini->cmd[i]) && mini->cmd[i][equal - 1] == '+')
-					join_export(mini, mini->cmd[i]);
+				if (find_in_eq(cmd->mini->envp_cpy, cmd->cmd[i]) == -1 && cmd->cmd[i][equal - 1] != '+')
+					cmd->mini->envp_cpy = add_export(cmd->mini, cmd->cmd[i]);
+				else if (find_in_eq(cmd->mini->envp_cpy, cmd->cmd[i]) != -1 && cmd->cmd[i][equal - 1] != '+')
+					crush_export(cmd->mini, cmd->cmd[i]);
+				else if (compare(cmd->mini->envp_cpy, cmd->cmd[i]) && cmd->cmd[i][equal - 1] == '+')
+					join_export(cmd->mini, cmd->cmd[i]);
 			}
 			else
-				if (find_in(mini->envp_cpy, mini->cmd[i]) == -1)
-					mini->envp_cpy = add_export(mini, mini->cmd[i]);
+				if (find_in(cmd->mini->envp_cpy, cmd->cmd[i]) == -1)
+					cmd->mini->envp_cpy = add_export(cmd->mini, cmd->cmd[i]);
 			i++;
 		}
 	}

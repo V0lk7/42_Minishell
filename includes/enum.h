@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/25 16:37:42 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/26 16:19:11 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,13 @@ typedef enum e_class
 
 /*--------Structs-------*/
 
+/*
 typedef struct s_builts
 {
 	char	*str;
 
 }	t_builts;
+*/
 
 typedef struct s_mini
 {	
@@ -58,9 +60,9 @@ typedef struct s_mini
 	char		*current_dir;
 	char		*old_dir;
 	char		**envp_cpy;
-	char		**cmd;
+	//char		**cmd;
 	char		**path;
-	t_builts	*b_ptr;
+	//t_builts	*b_ptr;
 
 }	t_mini;
 
@@ -76,7 +78,7 @@ typedef struct s_cmd
 	int			id;
 	char		**cmd;
 	int			valid;
-	t_mini		*utils;
+	t_mini		*mini;
 }	t_cmd;
 
 typedef union u_type
@@ -92,5 +94,7 @@ typedef struct s_data
 	int				index;
 	struct s_data	*next;
 }	t_data;
+
+typedef void	t_builts(t_cmd *cmd);
 
 #endif

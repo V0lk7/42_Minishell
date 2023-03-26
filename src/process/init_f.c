@@ -6,14 +6,14 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:46:35 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/17 22:12:53 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/26 16:09:35 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/process.h"
 #include <linux/limits.h>
 #include <unistd.h>
-
+/*
 void	init_builts(t_builts *builts)
 {
 	builts[0].str = malloc(sizeof(char) * ft_strlen("cd") + 1);
@@ -31,10 +31,10 @@ void	init_builts(t_builts *builts)
 	builts[5].str = "pwd";
 	builts[6].str = "unset";
 }
-
-void	init_minishell(t_mini *mini, t_builts *builts, char **envp)
+*/
+void	init_minishell(t_mini *mini, char **envp)
 {
-	mini->b_ptr = builts;
+	//mini->b_ptr = builts;
 	mini->current_dir = malloc(sizeof(char) * PATH_MAX);
 	getcwd(mini->current_dir, PATH_MAX);
 	mini->envp_cpy = cpy_array2d(envp);

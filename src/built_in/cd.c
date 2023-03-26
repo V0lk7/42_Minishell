@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:28:37 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/16 19:56:57 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/26 16:45:53 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,28 +65,31 @@ static void	cut_last_directory(t_mini *mini)
 	}
 }
 
-void	ft_cd(t_mini *mini)
+void	ft_cd(t_cmd *cmd)
 {
-	if (!mini->cmd[1])
-	{	
-		if (find_in(mini->envp_cpy, "HOME") != -1)
-			chdir(find_dir(mini, "HOME="));
-		ft_putstr_fd(2, "cd: HOME not set\n");
-		return ;
-	}
-	else if (!ft_strncmp(mini->cmd[1], "..", 2))
+	if (!cmd->cmd[1])
 	{
-		cut_last_directory(mini);
-		chdir(mini->current_dir);
-	}
-	else if (mini->cmd[1])
-	{
-		if (chdir(mini->cmd[1]) == -1)
+		if (find_in(cmd->mini->envp_cpy, "HOME") != -1)
+			chdir(find_dir(cmd->mini, "HOME="));
+		else
 		{
-			ft_printf("cd : %s ", mini->cmd[1]);
+			ft_putstr_fd(2, "cd: HOME not set\n");
+			return ;
+		}
+	}
+	else if (!ft_strncmp(cmd->cmd[1], "..", 2))
+	{
+		cut_last_directory(cmd->mini);
+		chdir(cmd->mini->current_dir);
+	}
+	else if (cmd->cmd[1])
+	{
+		if (chdir(cmd->cmd[1]) == -1)
+		{
+			ft_printf("cd : %s ", cmd->cmd[1]);
 			perror(0);
 		}
 	}
-	mini->old_dir = ft_strdup(mini->current_dir);
-	update_pwd(mini);
+	cmd->mini->old_dir = ft_strdup(cmd->mini->current_dir);
+	update_pwd(cmd->mini);
 }

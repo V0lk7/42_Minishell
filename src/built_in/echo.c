@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:45:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/23 12:21:16 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/26 15:42:14 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,53 +26,50 @@ static int	find_multiples_n(char *str)
 	return (1);
 }
 
-static void	without_flag(t_mini *mini)
+static void	without_flag(char **cmd)
 {
 	int	i;
 
 	i = 1;
-	while (mini->cmd[i])
+	while (cmd[i])
 	{
-		ft_printf("%s", mini->cmd[i]);
-		if (i != count_args_2d(mini->cmd) - 1)
+		ft_printf("%s", cmd[i]);
+		if (i != count_args_2d(cmd) - 1)
 			ft_putstr_fd(1, " ");
 		i++;
 	}	
 	ft_putstr_fd(1, "\n");
 }
 
-static void	with_flag(t_mini *mini)
+static void	with_flag(char	**cmd)
 {
 	int	i;
 
 	i = 2;
-	while (mini->cmd[i])
+	while (cmd[i])
 	{
-		ft_printf("%s", mini->cmd[i]);
-		if (i != count_args_2d(mini->cmd) - 1)
+		ft_printf("%s", cmd[i]);
+		if (i != count_args_2d(cmd) - 1)
 			ft_putstr_fd(1, " ");
 		i++;
 	}
 }
 
-void	ft_echo(t_mini *mini)
+void	ft_echo(t_cmd *cmd)
 {
-//	int	i;
-
-//	i = 1;
-	if (!mini->cmd[1])
+	if (!cmd->cmd[1])
 	{
 		ft_putstr_fd(1, "\n");
 		return ;
 	}
-	else if (mini->cmd[1] && !ft_strcmp(mini->cmd[1], "-n"))
-		with_flag(mini);
-	else if (mini->cmd[1] && ft_strcmp(mini->cmd[1], "-n"))
+	else if (cmd->cmd[1] && !ft_strcmp(cmd->cmd[1], "-n"))
+		with_flag(cmd->cmd);
+	else if (cmd->cmd[1] && ft_strcmp(cmd->cmd[1], "-n"))
 	{
-		if (!ft_strncmp(mini->cmd[1], "-n", 2)
-			&& find_multiples_n(mini->cmd[1]))
-			with_flag(mini);
+		if (!ft_strncmp(cmd->cmd[1], "-n", 2)
+			&& find_multiples_n(cmd->cmd[1]))
+			with_flag(cmd->cmd);
 		else
-			without_flag(mini);
+			without_flag(cmd->cmd);
 	}
 }

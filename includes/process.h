@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:54 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/13 17:55:55 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/03/26 16:23:47 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@
 void	history(char *argv);
 
 /*-----Init_f-----*/
-void	init_minishell(t_mini *mini, t_builts *builts, char **envp);
+void	init_minishell(t_mini *mini, char **envp);
 
 #endif

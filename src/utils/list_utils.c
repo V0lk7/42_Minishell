@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:37:20 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/25 16:40:27 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/26 16:25:45 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_data	*new_node_command(char **array, t_mini *utils, int index)
 	node->index = index;
 	node->next = NULL;
 	node->data.cmd.cmd = array;
-	node->data.cmd.utils = utils;
+	node->data.cmd.mini = utils;
 	node->data.cmd.id = 0;
 	node->data.cmd.valid = -1;
 	return (node);

@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:02:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/26 14:43:29 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/26 16:24:35 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_data	*command_manager(t_data **head)
 	{
 		if (tmp->name == COMMAND)
 		{
-			flag = type_of_command(&tmp->data.cmd, tmp->data.cmd.utils);
+			flag = type_of_command(&tmp->data.cmd, tmp->data.cmd.mini);
 			if (flag == 1)
 			{
 				free_all_nodes(&(*head));

@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:14:38 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/23 13:44:03 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/26 16:27:21 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ int		pass_next_word(const char *str, int i);
 char	**fill_array_cmd(const char *str, int words);
 
 /*--------$-------*/
-void	dollars(t_mini *mini);
+//void	dollars(t_mini *mini);
 #endif
