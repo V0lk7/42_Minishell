@@ -15,8 +15,6 @@
 #include "../../includes/clear.h"
 #include "../../includes/enum.h"
 
-static void	display_lst(t_data *data, int flag);
-
 static void	prompt(t_mini *mini, char **envp)
 {
 	char	*line;
@@ -45,7 +43,6 @@ static void	prompt(t_mini *mini, char **envp)
 			free_array2d(mini->path);
 			return ;
 		}
-		display_lst(lst, 1);
 		//dollars(mini);
 		is_built(&lst->data.cmd);
 		free_all_nodes(&lst);
@@ -69,34 +66,4 @@ int	main(int argc, char **argv, char **envp)
 	exit_s = mini.exit;
 	free_exit(&mini);
 	return (exit_s);
-}
-
-static void	display_lst(t_data *data, int flag)
-{
-	t_data	*tmp = data;
-
-	if (flag == 0)
-		return ;
-	while (tmp != NULL)
-	{
-		if (tmp->name == REDIRECTION)
-		{
-			ft_printf("-----|REDIRECTION|-----\n");
-			ft_printf("-----|INDEX = %i|-----\n", tmp->index);
-			ft_printf("|-|file = %s|-|\n", tmp->data.rdict.file);
-			ft_printf("|-|WAY = %i|-|\n", tmp->data.rdict.way);
-			ft_printf("|-|fd = %i|-|\n", tmp->data.rdict.fd);
-		}
-		else
-		{
-			ft_printf("-----|COMMAND|-----\n");
-			ft_printf("-----|INDEX = %i|-----\n", tmp->index);
-			ft_printf("|-|valid = %i|-|\n", tmp->data.cmd.valid);
-			ft_printf("|-|id = %i|-|\n", tmp->data.cmd.id);
-			for (int i = 0; tmp->data.cmd.cmd[i]; i++)
-				ft_printf("|-|cmd[%i] = %s|-|\n", i, tmp->data.cmd.cmd[i]);
-		}
-		tmp = tmp->next;
-		ft_printf("\n");
-	}
 }

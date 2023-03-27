@@ -71,6 +71,34 @@ static char	**add_export(t_mini *mini, char *export)
 	return (cpy);
 }
 
+static void	add_export_plus(t_mini *mini, char *export)
+{
+	char	*without_plus;
+	int		i;
+	int		j;
+	int		equal;
+	int		length;
+
+	i = 0;
+	j = 0;
+	length = find_in_eq(mini->envp_cpy, export);
+	if (length == -1)
+		length = count_args_2d(mini->envp_cpy) - 1;
+	equal = search_c(export, '=');
+	without_plus = malloc(sizeof(char) * (ft_strlen(export) + 1));
+	while (i < (int)ft_strlen(export))
+	{
+		if (i != equal - 1)
+		{
+			without_plus[j] = export[i];
+			j++;
+		}
+		i++;
+	}
+	without_plus[j] = '\0';
+	mini->envp_cpy[length] = ft_strdup(without_plus);
+}
+
 static void	join_export(t_mini *mini, char *export)
 {
 	char	*cpy;
@@ -122,6 +150,8 @@ void	ft_export(t_cmd *cmd)
 					crush_export(cmd->mini, cmd->cmd[i]);
 				else if (compare(cmd->mini->envp_cpy, cmd->cmd[i]) && cmd->cmd[i][equal - 1] == '+')
 					join_export(cmd->mini, cmd->cmd[i]);
+				else if (find_in_eq(cmd->mini->envp_cpy, cmd->cmd[i]) == -1 && cmd->cmd[i][equal - 1] == '+')
+					add_export_plus(cmd->mini, cmd->cmd[i]);
 			}
 			else
 				if (find_in(cmd->mini->envp_cpy, cmd->cmd[i]) == -1)

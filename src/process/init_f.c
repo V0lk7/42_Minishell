@@ -19,4 +19,5 @@ void	init_minishell(t_mini *mini, char **envp)
 	getcwd(mini->current_dir, PATH_MAX);
 	mini->envp_cpy = cpy_array2d(envp);
 	mini->exit = 0;
+	g_status = 0;
 }
