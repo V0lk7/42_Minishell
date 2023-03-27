@@ -1,0 +1,107 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   management_minishell.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/27 13:07:18 by jduval            #+#    #+#             */
+/*   Updated: 2023/03/27 17:39:50 by jduval           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/process.h"
+#include "../../includes/parsing.h"
+#include "../../includes/clear.h"
+#include "../../includes/enum.h"
+
+
+static void	display_lst(t_data *data, int flag);
+
+static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
+{
+	t_data	*cmdline;
+
+	mini->path = make_array_path(envp);
+	if (mini->path == NULL)
+		return (NULL);
+	cmdline = make_lst_line(line, mini);
+	if (cmdline == NULL)
+	{
+		free_array2d(mini->path);
+		return (NULL);
+	}
+	//position of variable expansion and quote removal
+	cmdline = command_manager(&cmdline);
+	return (cmdline);
+}
+/*
+static t_bool	is_pipeline(t_data *cmdline)
+{
+	t_data	*tmp;
+
+	tmp = cmdline;
+	while (tmp)
+	{
+		if (tmp->index > 0)
+			return (TRUE);
+		tmp = tmp->next;
+	}
+	return (FALSE);
+}
+*/
+static void	execution_management(t_data *cmdline)
+{
+//	if (is_pipeline(cmdline) == TRUE)
+//		pipeline_execution(cmdline);
+//	else
+	normal_execution(cmdline);
+	return ;
+}
+
+void	minishell_management(char *line, t_mini *mini, char **envp)
+{
+	t_data	*cmdline;
+
+	history(line);
+	if (syntactical_parsing(line) == FALSE)
+		return ;
+	cmdline = data_treatment(line, mini, envp);
+	if (cmdline == NULL)
+		return ;
+	execution_management(cmdline);
+	free_all_nodes(&cmdline);
+	display_lst(cmdline, 0);
+	free_array2d(mini->path);
+	return ;
+}
+
+static void	display_lst(t_data *data, int flag)
+{
+	t_data	*tmp = data;
+
+	if (flag == 0)
+		return ;
+	while (tmp != NULL)
+	{
+		if (tmp->name == REDIRECTION)
+		{
+			ft_printf("-----|REDIRECTION|-----\n");
+			ft_printf("-----|INDEX = %i|-----\n", tmp->index);
+			ft_printf("|-|file = %s|-|\n", tmp->data.rdict.file);
+			ft_printf("|-|WAY = %i|-|\n", tmp->data.rdict.way);
+			ft_printf("|-|fd = %i|-|\n", tmp->data.rdict.fd);
+		}
+		else
+		{
+			ft_printf("-----|COMMAND|-----\n");
+			ft_printf("-----|INDEX = %i|-----\n", tmp->index);
+			ft_printf("|-|valid = %i|-|\n", tmp->data.cmd.valid);
+			ft_printf("|-|id = %i|-|\n", tmp->data.cmd.id);
+			for (int i = 0; tmp->data.cmd.cmd[i]; i++)
+				ft_printf("|-|cmd[%i] = %s|-|\n", i, tmp->data.cmd.cmd[i]);
+		}
+		tmp = tmp->next;
+		ft_printf("\n");
+	}
+}

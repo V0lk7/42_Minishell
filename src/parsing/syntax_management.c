@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:20:53 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/17 16:48:22 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/27 17:28:59 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	syntax_error(const char *str, int flag, int index)
 	return ;
 }
 
-t_bool	syntax_management(char *str)
+t_bool	syntactical_parsing(char *str)
 {
 	int	value;
 
