@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:53:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/25 17:02:28 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/27 17:28:48 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_spe	is_character_spe(int c);
 int		pass_whitespace(const char *str, int i);
 int		valid_redirection(const char *str, int i, char character);
 /*-------syntax_management.c-------*/
-t_bool	syntax_management(char *str);
+t_bool	syntactical_parsing(char *str);
 /*-------simplify_user_input.c-------*/
 char	**isolate_by_pipe(char *str);
 /*-------make_cmdline.c-------*/

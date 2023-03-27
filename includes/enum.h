@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/26 18:58:22 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/27 16:27:32 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,15 @@ typedef struct s_data
 	int				index;
 	struct s_data	*next;
 }	t_data;
+
+typedef struct s_fd
+{
+	int	fds[2];
+	int	write;
+	int	read;
+	int	std_in;
+	int	std_out;
+}	t_fd;
 
 typedef void	t_builts(t_cmd *cmd);
 

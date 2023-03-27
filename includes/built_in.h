@@ -34,9 +34,11 @@ void	ft_unset(t_cmd *cmd);
 void	is_built(t_cmd *cmd);
 
 /*-----Utils_f-----*/
+void	crush_export(t_mini *mini, char *exported);
 void	print_export(char **array);
 int		compare(char **array, char *str);
 int		search_c(char *str, char c);
+char	**sort_export(t_mini *mini);
 int		verif_export(char *cmd);
 
 /*-----Init_f-----*/

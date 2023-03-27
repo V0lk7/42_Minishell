@@ -88,6 +88,7 @@ int			find_in_array2d(char **array, char *str);
 int			find_in(char **array, char *str);
 int			find_in_eq(char **array, char *str);
 char		*cut(char *str, char c);
+int			compare(char **array, char *str);
 int			search_c(char *str, char c);
 void		free_array2d(char **argv);
 void		ft_strcpy(char *dst, const char *src);

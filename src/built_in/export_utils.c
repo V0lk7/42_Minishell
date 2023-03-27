@@ -37,22 +37,35 @@ void	print_export(char **array)
 	}
 }
 
-int	compare(char **array, char *str)
+char	**sort_export(t_mini *mini)
 {
-	int	equal;
-	int	i;
+	char	*smallest;
+	char	**tmp;
+	int		i;
+	int		k;
 
-	equal = search_c(str, '=');
-	i = 0;
-	if (str[equal - 1] == '+')
-		equal = equal - 2;
-	while (i < count_args_2d(array))
+	k = 0;
+	tmp = malloc(sizeof(char *) * (count_args_2d(mini->envp_cpy) + 1));
+	while (k < count_args_2d(mini->envp_cpy))
 	{
-		if (!ft_strncmp(array[i], str, equal))
-			return (1);
-		i++;
+		i = 0;
+		tmp[k] = NULL;
+		while (find_in_array2d(tmp, mini->envp_cpy[i]))
+			i++;
+		smallest = mini->envp_cpy[i];
+		i = 0;
+		while (i < count_args_2d(mini->envp_cpy))
+		{
+			if (ft_strcmp(mini->envp_cpy[i], smallest)
+				< 0 && !find_in_array2d(tmp, mini->envp_cpy[i]))
+				smallest = mini->envp_cpy[i];
+			i++;
+		}
+		tmp[k] = ft_strdup(smallest);
+		k++;
 	}
-	return (0);
+	tmp[k] = NULL;
+	return (tmp);
 }
 
 int	verif_export(char *cmd)
@@ -82,4 +95,13 @@ int	verif_export(char *cmd)
 		i++;
 	}
 	return (1);
+}
+
+void	crush_export(t_mini *mini, char *exported)
+{
+	int	find;
+
+	find = find_in_eq(mini->envp_cpy, exported);
+	mini->envp_cpy[find] = ft_strdup(exported);
+	return ;
 }

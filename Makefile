@@ -6,7 +6,7 @@
 #    By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 16:36:26 by kramjatt          #+#    #+#              #
-#    Updated: 2023/03/26 16:27:43 by jduval           ###   ########.fr        #
+#    Updated: 2023/03/27 17:17:37 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,9 @@ SRCS		:= 	built_in/builts.c		built_in/cd.c		\
 				built_in/export_utils.c built_in/pwd.c		\
 				built_in/unset.c							\
 
-SRCS		+=	process/history.c		process/main.c		\
-				process/init_f.c							\
+SRCS		+=	process/history.c			process/main.c					\
+				process/init_f.c			process/management_minishell.c	\
+				process/normal_execution.c	\
 
 SRCS		+=	clear/free_exit.c		clear/free_lst.c	\
 
