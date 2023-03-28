@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:17:14 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/28 12:53:17 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/28 17:44:25 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,46 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-t_data	*redirection_management(t_data *lst, t_fd *fds)
+int	pipe_redirection(t_data *tmp, t_fd *fds, int last)
+{
+	if (tmp->index == 1)
+	{
+		if (dup2(fds->write, STDOUT_FILENO) == -1)
+			return (1);
+		return (0);
+	}
+	else if (tmp->index == last)
+	{
+		if (dup2(fds->read, STDIN_FILENO) == -1)
+			return (1);
+		return (0);
+	}
+	if (dup2(fds->read, STDIN_FILENO) == -1)
+		return (1);
+	if (dup2(fds->write, STDOUT_FILENO) == -1)
+		return (1);
+	return (0);
+}
+
+int	pipe_rdir_management(t_data *tmp, t_fd *fds)
+{
+	int	last;
+	int	flag;
+
+	last = find_last_sequence(tmp);
+	flag = pipe_redirection(tmp, fds, last);
+	if (tmp->index > 1 && tmp->index <= last)
+		close(fds->read);
+	close(fds->write);
+	close(fds->fds[0]);
+	return (flag);
+}
+
+t_data	*redirection_management(t_data *lst, t_fd *fds, int	index)
 {
 	t_way	type;
 
-	while (lst && lst->name == REDIRECTION)
+	while (lst && lst->name == REDIRECTION && lst->index == index)
 	{
 		type = lst->data.rdict.way;
 		if (type == IN || type == HDOC)

@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:14:38 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/28 13:03:21 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/28 17:55:40 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ t_data	*new_node_redirect(t_class name, char *file, t_way way, int index);
 void	add_back_node(t_data **head, t_data *node);
 t_data	*reach_last_node(t_data *head);
 int		type_of_cmd(t_data *lst);
+/*--------list_utils2.c-------*/
+t_bool	is_pipeline(t_data *cmdline);
+int		find_last_sequence(t_data *lst);
+t_data	*next_sequence(t_data *lst);
 /*--------split_by_pipe_utils.c-------*/
 int		*find_index_pipe(char *str);
 /*--------data_by_line_utils.c-------*/

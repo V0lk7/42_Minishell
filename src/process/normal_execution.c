@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:30:42 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/28 13:55:19 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/28 17:51:51 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	builtin_execution(t_data *lst, t_fd *fds)
 {
 	fds->std_in = dup(STDIN_FILENO);
 	fds->std_out = dup(STDOUT_FILENO);
-	lst = redirection_management(lst, fds);
+	lst = redirection_management(lst, fds, lst->index);
 	if (lst && lst->name == COMMAND)
 		is_built(&lst->data.cmd);
 	if (dup2(fds->std_in, STDIN_FILENO) == -1)
@@ -41,7 +41,7 @@ static int	command_execution(t_data *lst, t_fd *fds, t_mini *mini)
 	pid = fork();
 	if (pid == 0)
 	{
-		tmp = redirection_management(tmp, fds);
+		tmp = redirection_management(tmp, fds, tmp->index);
 		if (tmp->name == COMMAND)
 		{
 			if (tmp->data.cmd.valid < 0)
@@ -50,26 +50,25 @@ static int	command_execution(t_data *lst, t_fd *fds, t_mini *mini)
 			{
 				execve(tmp->data.cmd.cmd[0], tmp->data.cmd.cmd, mini->envp_cpy);
 				perror(NULL);
-				exit(127);
+				//set variable global a 127 jcrois
 			}
 		}
 		free_all(lst, mini);
-		exit(0);
+		exit(0);//global plus tard
 	}
 	waitpid(pid, &wstatus, 0);
-	return (wstatus);
+	return (wstatus);//gobal
 }
 
-void	normal_execution(t_data *lst, t_mini *mini)
+void	normal_execution(t_data *lst, t_mini *mini, t_fd *fds)
 {
 	int		type;
-	t_fd	fds;
 
 	//here_doc(lst);
 	type = type_of_cmd(lst);
 	if (type >= 0 || type == -2)
-		builtin_execution(lst, &fds);
+		builtin_execution(lst, fds);
 	else if (type == -1)
-		command_execution(lst, &fds, mini);
+		command_execution(lst, fds, mini);
 	return ;
 }

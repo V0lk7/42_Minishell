@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:07:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/28 14:07:36 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/28 17:48:39 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../../includes/parsing.h"
 #include "../../includes/clear.h"
 #include "../../includes/enum.h"
+#include "../../includes/utils.h"
 
 static void	display_lst(t_data *data, int flag);
 
@@ -34,33 +35,20 @@ static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 	cmdline = command_manager(&cmdline);
 	return (cmdline);
 }
-/*
-static t_bool	is_pipeline(t_data *cmdline)
-{
-	t_data	*tmp;
 
-	tmp = cmdline;
-	while (tmp)
-	{
-		if (tmp->index > 0)
-			return (TRUE);
-		tmp = tmp->next;
-	}
-	return (FALSE);
-}
-*/
-static void	execution_management(t_data *cmdline, t_mini *mini)
+static void	execution_management(t_data *cmdline, t_mini *mini, t_fd *fds)
 {
-//	if (is_pipeline(cmdline) == TRUE)
-//		pipeline_execution(cmdline);
-//	else
-	normal_execution(cmdline, mini);
+	if (is_pipeline(cmdline) == TRUE)
+		pipeline_execution(cmdline, fds, mini);
+	else
+		normal_execution(cmdline, mini, fds);
 	return ;
 }
 
 void	minishell_management(char *line, t_mini *mini, char **envp)
 {
 	t_data	*cmdline;
+	t_fd	fds;
 
 	history(line);
 	if (syntactical_parsing(line) == FALSE)
@@ -68,7 +56,7 @@ void	minishell_management(char *line, t_mini *mini, char **envp)
 	cmdline = data_treatment(line, mini, envp);
 	if (cmdline == NULL)
 		return ;
-	execution_management(cmdline, mini);
+	execution_management(cmdline, mini, &fds);
 	display_lst(cmdline, 0);
 	free_all_nodes(&cmdline);
 	free_array2d(mini->path);

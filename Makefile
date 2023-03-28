@@ -6,7 +6,7 @@
 #    By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 16:36:26 by kramjatt          #+#    #+#              #
-#    Updated: 2023/03/28 13:38:48 by jduval           ###   ########.fr        #
+#    Updated: 2023/03/28 17:56:17 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS		:= 	built_in/builts.c		built_in/cd.c		\
 SRCS		+=	process/history.c			process/main.c					\
 				process/init_f.c			process/management_minishell.c	\
 				process/normal_execution.c	process/duplicate_functions.c	\
+				process/pipeline_execution.c	\
 
 SRCS		+=	clear/free_exit.c		clear/free_lst.c	\
 				clear/free_in_fork.c	\
@@ -52,6 +53,7 @@ SRCS		+=	utils/split_by_pipe_utils.c	\
 				utils/data_by_line_utils.c	\
 				utils/make_command_utils.c	\
 				utils/errors.c				\
+				utils/list_utils2.c			\
 				#utils/dollars.c				\
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
