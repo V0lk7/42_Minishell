@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/27 17:47:57 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/28 14:03:13 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ static void	prompt(t_mini *mini, char **envp)
 	while (!mini->exit)
 	{
 		line = readline("😈 Minishell 😈 ");
+		if (line == NULL)
+		{
+			ft_printf("exit\n");
+			return ;
+		}
 		minishell_management(line, mini, envp);
 		free(line);
 		//dollars(mini);

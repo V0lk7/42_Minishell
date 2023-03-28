@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:54 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/27 17:12:17 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/28 13:34:36 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ void	init_minishell(t_mini *mini, char **envp);
 /*-----management_minishell.c-----*/
 void	minishell_management(char *line, t_mini *mini, char **envp);
 /*-----normal_execution.c-----*/
-void	normal_execution(t_data *cmdline);
+void	normal_execution(t_data *lst, t_mini *mini);
+/*-----duplicate_functions.c-----*/
+int		in_redirection(t_red *rdict, t_fd *fds);
+int		out_redirection(t_red *rdict, t_fd *fds);
+t_data	*redirection_management(t_data *tmp, t_fd *fds);
 
 #endif

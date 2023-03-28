@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:37:20 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/26 16:25:45 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/28 10:59:13 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,18 @@ t_data	*reach_last_node(t_data *head)
 		tmp = tmp->next;
 	}
 	return (tmp);
+}
+
+int	type_of_cmd(t_data *lst)
+{
+	t_data	*tmp;
+
+	tmp = lst;
+	while (tmp)
+	{
+		if (tmp->name == COMMAND)
+			return (tmp->data.cmd.id);
+		tmp = tmp->next;
+	}
+	return (-2);
 }

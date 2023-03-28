@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_exit.c                                        :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 17:56:05 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/28 14:11:56 by jduval           ###   ########.fr       */
+/*   Created: 2023/03/28 12:59:08 by jduval            #+#    #+#             */
+/*   Updated: 2023/03/28 13:05:30 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/clear.h"
+#include "../libft/include/libft.h"
 
-void	free_exit(t_mini *mini)
+void	command_not_found(char *cmd)
 {
-	free(mini->current_dir);
-	free_array2d(mini->envp_cpy);
+	ft_putstr_fd(2, "😈 Minishell 😈 : Command '");
+	ft_putstr_fd(2, cmd);
+	ft_putstr_fd(2, "' not found\n");
 }

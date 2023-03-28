@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_exit.c                                        :+:      :+:    :+:   */
+/*   free_in_fork.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 17:56:05 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/28 14:11:56 by jduval           ###   ########.fr       */
+/*   Created: 2023/03/28 13:36:30 by jduval            #+#    #+#             */
+/*   Updated: 2023/03/28 13:37:47 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/clear.h"
 
-void	free_exit(t_mini *mini)
+void	free_all(t_data *lst, t_mini *mini)
 {
-	free(mini->current_dir);
-	free_array2d(mini->envp_cpy);
+	free_all_nodes(&lst);
+	free_exit(mini);
 }

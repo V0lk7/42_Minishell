@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:28 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/26 16:17:09 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/28 13:38:24 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,6 @@
 void	free_exit(t_mini *mini);
 /*--------free_lst.c-------*/
 void	free_all_nodes(t_data **head);
+/*--------free_in_fork.c-------*/
+void	free_all(t_data *lst, t_mini *mini);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:07:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/27 17:39:50 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/28 14:07:36 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "../../includes/parsing.h"
 #include "../../includes/clear.h"
 #include "../../includes/enum.h"
-
 
 static void	display_lst(t_data *data, int flag);
 
@@ -50,12 +49,12 @@ static t_bool	is_pipeline(t_data *cmdline)
 	return (FALSE);
 }
 */
-static void	execution_management(t_data *cmdline)
+static void	execution_management(t_data *cmdline, t_mini *mini)
 {
 //	if (is_pipeline(cmdline) == TRUE)
 //		pipeline_execution(cmdline);
 //	else
-	normal_execution(cmdline);
+	normal_execution(cmdline, mini);
 	return ;
 }
 
@@ -69,9 +68,9 @@ void	minishell_management(char *line, t_mini *mini, char **envp)
 	cmdline = data_treatment(line, mini, envp);
 	if (cmdline == NULL)
 		return ;
-	execution_management(cmdline);
-	free_all_nodes(&cmdline);
+	execution_management(cmdline, mini);
 	display_lst(cmdline, 0);
+	free_all_nodes(&cmdline);
 	free_array2d(mini->path);
 	return ;
 }
