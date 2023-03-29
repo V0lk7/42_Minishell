@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:17:14 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/28 17:44:25 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/29 17:16:33 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	pipe_redirection(t_data *tmp, t_fd *fds, int last)
 {
-	if (tmp->index == 1)
+	if (tmp->index == 0)
 	{
 		if (dup2(fds->write, STDOUT_FILENO) == -1)
 			return (1);
@@ -29,10 +29,13 @@ int	pipe_redirection(t_data *tmp, t_fd *fds, int last)
 			return (1);
 		return (0);
 	}
-	if (dup2(fds->read, STDIN_FILENO) == -1)
-		return (1);
-	if (dup2(fds->write, STDOUT_FILENO) == -1)
-		return (1);
+	else if (tmp->index > 0 && tmp->index < last)
+	{
+		if (dup2(fds->read, STDIN_FILENO) == -1)
+			return (1);
+		if (dup2(fds->write, STDOUT_FILENO) == -1)
+			return (1);
+	}
 	return (0);
 }
 
@@ -43,9 +46,9 @@ int	pipe_rdir_management(t_data *tmp, t_fd *fds)
 
 	last = find_last_sequence(tmp);
 	flag = pipe_redirection(tmp, fds, last);
-	if (tmp->index > 1 && tmp->index <= last)
+	if (tmp->index > 0 && tmp->index <= last)
 		close(fds->read);
-	close(fds->write);
+	close(fds->fds[1]);
 	close(fds->fds[0]);
 	return (flag);
 }
@@ -80,12 +83,12 @@ int	in_redirection(t_red *rdict, t_fd *fds)
 		fds->read = rdict->fd;
 	if (fds->read == -1)
 	{
-		perror(NULL);
+		perror("😈 Minishell 😈 ");
 		return (-1);
 	}
 	if (dup2(fds->read, STDIN_FILENO) == -1)
 	{
-		perror(NULL);
+		perror("😈 Minishell 😈 ");
 		return (-1);
 	}
 	close(fds->read);
@@ -100,12 +103,12 @@ int	out_redirection(t_red *rdict, t_fd *fds)
 		fds->write = open(rdict->file, O_CREAT | O_APPEND | O_WRONLY, 0644);
 	if (fds->write == -1)
 	{
-		perror(NULL);
+		perror("😈 Minishell 😈 ");
 		return (-1);
 	}
 	if (dup2(fds->write, STDOUT_FILENO) == -1)
 	{
-		perror(NULL);
+		perror("😈 Minishell 😈 ");
 		return (-1);
 	}
 	close(fds->write);

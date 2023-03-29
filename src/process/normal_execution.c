@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:30:42 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/28 17:51:51 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/29 16:55:26 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 #include "../../includes/built_in.h"
 #include "../../includes/enum.h"
 
-static void	builtin_execution(t_data *lst, t_fd *fds)
+static void	builtin_execution(t_data *lst, t_fd *fds, int id)
 {
-	fds->std_in = dup(STDIN_FILENO);
-	fds->std_out = dup(STDOUT_FILENO);
+	if (id != 3)
+	{
+		fds->std_in = dup(STDIN_FILENO);
+		fds->std_out = dup(STDOUT_FILENO);
+	}
 	lst = redirection_management(lst, fds, lst->index);
 	if (lst && lst->name == COMMAND)
 		is_built(&lst->data.cmd);
@@ -35,7 +38,6 @@ static int	command_execution(t_data *lst, t_fd *fds, t_mini *mini)
 {
 	pid_t	pid;
 	t_data	*tmp;
-	int		wstatus;
 
 	tmp = lst;
 	pid = fork();
@@ -50,13 +52,12 @@ static int	command_execution(t_data *lst, t_fd *fds, t_mini *mini)
 			{
 				execve(tmp->data.cmd.cmd[0], tmp->data.cmd.cmd, mini->envp_cpy);
 				perror(NULL);
-				g_status = 127;
 			}
 		}
 		free_all(lst, mini);
-		exit(g_status);
+		exit(127);
 	}
-	waitpid(pid, &wstatus, 0);
+	waitpid(pid, &g_status, 0);
 	return (g_status);
 }
 
@@ -64,10 +65,9 @@ void	normal_execution(t_data *lst, t_mini *mini, t_fd *fds)
 {
 	int		type;
 
-	//here_doc(lst);
 	type = type_of_cmd(lst);
 	if (type >= 0 || type == -2)
-		builtin_execution(lst, fds);
+		builtin_execution(lst, fds, type);
 	else if (type == -1)
 		command_execution(lst, fds, mini);
 	return ;

@@ -6,13 +6,15 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:02:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/26 16:24:35 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/29 16:14:56 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parsing.h"
 #include "../../includes/enum.h"
 #include "../../includes/clear.h"
+#include <limits.h>
+#include <unistd.h>
 
 static int	is_builtin(const char *cmd)
 {
@@ -49,6 +51,8 @@ static int	is_cmd_valid(char *cmd, char *arg, char **path)
 	valid = access(arg, F_OK);
 	if (valid == 0 && ft_strncmp(arg, "./", 2) == 0)
 		return (valid);
+	else if (valid == 0 && ft_strncmp(arg, "./" ,2) != 0)
+		return (-1);
 	while (path[i] && valid == -1)
 	{
 		len = ft_strlen(path[i]);
@@ -71,10 +75,15 @@ int	type_of_command(t_cmd *cmd, t_mini *utils)
 		cmd->valid = 0;
 		return (0);
 	}
-	arg = ft_calloc(1000, sizeof(char));
+	arg = ft_calloc(_POSIX_ARG_MAX, sizeof(char));
 	if (arg == NULL)
 		return (1);
 	cmd->valid = is_cmd_valid(cmd->cmd[0], arg, utils->path);
+	if (cmd->valid == -1)
+	{
+		free(arg);
+		return (0);
+	}
 	free(cmd->cmd[0]);
 	cmd->cmd[0] = arg;
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:07:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/28 17:48:39 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/29 17:24:46 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	display_lst(t_data *data, int flag);
 static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 {
 	t_data	*cmdline;
+	t_data	*tmp;
 
 	mini->path = make_array_path(envp);
 	if (mini->path == NULL)
@@ -31,6 +32,13 @@ static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 		free_array2d(mini->path);
 		return (NULL);
 	}
+	tmp = cmdline;
+	while (tmp)
+	{
+		if (tmp->name == COMMAND)
+			expansion(&tmp->data.cmd);
+		tmp = tmp->next;
+	}
 	//position of variable expansion and quote removal
 	cmdline = command_manager(&cmdline);
 	return (cmdline);
@@ -38,6 +46,8 @@ static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 
 static void	execution_management(t_data *cmdline, t_mini *mini, t_fd *fds)
 {
+	//return ;
+	//here_doc position, si ctrl-C dans hdoc, ne pas passer dans les if suivant
 	if (is_pipeline(cmdline) == TRUE)
 		pipeline_execution(cmdline, fds, mini);
 	else
