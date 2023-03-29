@@ -49,7 +49,6 @@ int	main(int argc, char **argv, char **envp)
 	}
 	init_minishell(&mini, envp);
 	prompt(&mini, envp);
-	exit_s = mini.exit;
 	free_exit(&mini);
-	return (exit_s);
+	return (0);
 }
