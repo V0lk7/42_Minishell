@@ -32,7 +32,7 @@ int	find_rafter(const char *str)
 			count++;
 			while (str[i] == '<' || str[i] == '>')
 				i++;
-			continue;
+			continue ;
 		}
 		i++;
 	}
@@ -100,7 +100,7 @@ int	normal_word_lengh(const char *str, int i)
 		if (quote == 0 && (str[i + j] == '\'' || str[i + j] == '\"'))
 			quote = str[i + j];
 		else if (quote == 0 && (ft_isspace(str[i + j])
-			|| is_character_spe(str[i + j]) == REDIRECTION))
+				|| is_character_spe(str[i + j]) == REDIRECTION))
 			break ;
 		else if (quote > 0 && str[i + j] == quote)
 			quote = 0;

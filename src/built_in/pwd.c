@@ -23,4 +23,5 @@ void	ft_pwd(t_cmd *cmd)
 		return ;
 	}
 	printf("%s\n", cwd);
+	g_status = 0;
 }

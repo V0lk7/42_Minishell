@@ -23,18 +23,31 @@ void	ft_env(t_cmd *cmd)
 	if (!cmd->mini->envp_cpy)
 		return ;
 	length = count_args_2d(cmd->mini->envp_cpy);
-	while (i < length)
+	if (cmd->cmd[1] && cmd->cmd[1][0] == '-')
 	{
-		j = 0;
-		null = 0;
-		while (cmd->mini->envp_cpy[i][j])
+		ft_printf("env : option invalide -- '%s'\n", cmd->cmd[1]);
+		g_status = 125;
+	}
+	else if (cmd->cmd[1])
+	{
+		ft_printf("env: «%s»: Aucun fichier ou dossier de ce type\n", cmd->cmd[1]);
+		g_status = 127;
+	}
+	else
+	{
+		while (i < length)
 		{
-			if (cmd->mini->envp_cpy[i][j] == '=')
-				null++;
-			j++;
+			j = 0;
+			null = 0;
+			while (cmd->mini->envp_cpy[i][j])
+			{
+				if (cmd->mini->envp_cpy[i][j] == '=')
+					null++;
+				j++;
+			}
+			if (null)
+				ft_printf("%s\n", cmd->mini->envp_cpy[i]);
+			i++;
 		}
-		if (null)
-			ft_printf("%s\n", cmd->mini->envp_cpy[i]);
-		i++;
 	}
 }

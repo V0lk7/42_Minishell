@@ -50,7 +50,7 @@ int	pipe_rdir_management(t_data *tmp, t_fd *fds)
 	return (flag);
 }
 
-t_data	*redirection_management(t_data *lst, t_fd *fds, int	index)
+t_data	*redirection_management(t_data *lst, t_fd *fds, int index)
 {
 	t_way	type;
 

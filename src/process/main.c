@@ -15,6 +15,8 @@
 #include "../../includes/clear.h"
 #include "../../includes/enum.h"
 
+int	g_status;
+
 static void	prompt(t_mini *mini, char **envp)
 {
 	char	*line;
@@ -29,7 +31,7 @@ static void	prompt(t_mini *mini, char **envp)
 		}
 		minishell_management(line, mini, envp);
 		free(line);
-		//dollars(mini);
+		//expansion(cmd);
 	}
 }
 
@@ -39,6 +41,7 @@ int	main(int argc, char **argv, char **envp)
 	int			exit_s;
 
 	(void)argv;
+	g_status = 0;
 	if (argc != 1)
 	{
 		ft_putstr_fd(2, "Invalid number of arguments\n");

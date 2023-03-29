@@ -88,6 +88,7 @@ void	ft_cd(t_cmd *cmd)
 		{
 			ft_printf("cd : %s ", cmd->cmd[1]);
 			perror(0);
+			g_status = 1;
 		}
 	}
 	cmd->mini->old_dir = ft_strdup(cmd->mini->current_dir);

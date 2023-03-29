@@ -73,9 +73,16 @@ int	verif_export(char *cmd)
 	int	i;
 	int	equal;
 
+	if (cmd[0] == '-')
+	{
+		ft_printf("export: %s : option non valable", cmd);
+		g_status = 2;
+		return (0);
+	}
 	if (!ft_isalpha(cmd[0]))
 	{
 		ft_printf("export: %s: not a valid identifier\n", cmd);
+		g_status = 1;
 		return (0);
 	}
 	i = 1;
@@ -89,6 +96,7 @@ int	verif_export(char *cmd)
 			if (!ft_isalnum(cmd[i]))
 			{
 				ft_printf("export: %s: not a valid identifier\n", cmd);
+				g_status = 1;
 				return (0);
 			}
 		}

@@ -45,8 +45,11 @@ void	ft_unset(t_cmd *cmd)
 	length = count_args_2d(cmd->cmd);
 	if (length != 2 || !cmd->cmd[0] || !cmd->cmd[1])
 		return ;
-	while (ft_strncmp(cmd->cmd[1], cmd->mini->envp_cpy[i],
+	while (cmd->mini->envp_cpy[i]
+		&& ft_strncmp(cmd->cmd[1], cmd->mini->envp_cpy[i],
 			ft_strlen(cmd->cmd[1])))
 		i++;
+	if (!cmd->mini->envp_cpy[i])
+		return ;
 	cmd->mini->envp_cpy = realloc_unset(cmd->mini->envp_cpy, i);
 }

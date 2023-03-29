@@ -28,33 +28,33 @@ SRC_DIR 	=	src
 
 OBJ_DIR 	=	.obj
 
-SRCS		:= 	built_in/builts.c		built_in/cd.c		\
-				built_in/echo.c			built_in/env.c		\
-				built_in/exit.c			built_in/export.c	\
-				built_in/export_utils.c built_in/pwd.c		\
-				built_in/unset.c							\
+SRCS		:= 	built_in/builts.c				built_in/cd.c						\
+				built_in/echo.c					built_in/env.c						\
+				built_in/exit.c					built_in/export.c					\
+				built_in/export_utils.c 		built_in/pwd.c						\
+				built_in/unset.c													\
 
-SRCS		+=	process/history.c			process/main.c					\
-				process/init_f.c			process/management_minishell.c	\
-				process/normal_execution.c	process/duplicate_functions.c	\
-				process/pipeline_execution.c	\
+SRCS		+=	clear/free_exit.c				clear/free_lst.c					\
+				clear/free_in_fork.c												\
 
-SRCS		+=	clear/free_exit.c		clear/free_lst.c	\
-				clear/free_in_fork.c	\
+SRCS		+=	parsing/valid_quotes.c			parsing/syntax_is_valid.c			\
+				parsing/syntax_is_valid2.c 		parsing/syntax_management.c			\
+				parsing/simplify_user_input.c	parsing/make_cmdline.c				\
+				parsing/make_data.c				parsing/make_path.c					\
+				parsing/command_control.c											\
 
-SRCS		+=	parsing/valid_quotes.c			parsing/syntax_is_valid.c	\
-				parsing/syntax_is_valid2.c 		parsing/syntax_management.c	\
-				parsing/simplify_user_input.c	parsing/make_cmdline.c		\
-				parsing/make_data.c				parsing/make_path.c			\
-				parsing/command_control.c	\
+SRCS		+=	process/history.c				process/main.c						\
+				process/init_f.c				process/management_minishell.c		\
+				process/normal_execution.c		process/duplicate_functions.c		\
+				process/pipeline_execution.c										\
 
-SRCS		+=	utils/split_by_pipe_utils.c	\
-				utils/list_utils.c			\
-				utils/data_by_line_utils.c	\
-				utils/make_command_utils.c	\
-				utils/errors.c				\
-				utils/list_utils2.c			\
-				#utils/dollars.c				\
+SRCS		+=	utils/split_by_pipe_utils.c											\
+				utils/list_utils.c													\
+				utils/data_by_line_utils.c											\
+				utils/make_command_utils.c											\
+				utils/errors.c														\
+				utils/list_utils2.c													\
+				utils/expansion.c													\
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 

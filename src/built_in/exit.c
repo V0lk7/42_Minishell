@@ -14,13 +14,29 @@
 
 void	ft_exit(t_cmd *cmd)
 {
-	cmd->mini->exit = 1;
-	if (count_args_2d(cmd->cmd) > 2)
-		ft_putstr_fd(2, "Too many arguments");//nexit pas et apres numeric args --> exit code 1
-	else if (cmd->cmd[1] && !ft_isdigit(cmd->cmd[1][0]))
-		ft_putstr_fd(2, "Numeric argument required");//avant, exit correctement exit 2
+	g_status = 0;
+	if (cmd->cmd[1] && !ft_isdigit(cmd->cmd[1][0]))
+	{
+		ft_putstr_fd(2, "exit: Numeric argument required\n");
+		g_status = 2;
+		exit(g_status);
+	}
+	else if (count_args_2d(cmd->cmd) > 2)
+	{
+		ft_putstr_fd(2, "exit: Too many arguments\n");
+		g_status = 1;
+		exit(g_status);
+	}
 	else if (!cmd->cmd[1])
-		return ;
+		exit(g_status);
 	else
-		cmd->mini->exit = ft_atoi(cmd->cmd[1]);
+	{
+		if (!ft_strncmp(cmd->cmd[1], "-1", 2))
+			g_status = 255;
+		else if (!ft_strncmp(cmd->cmd[1], "256", 3))
+			g_status = 0;
+		else
+			g_status = ft_atoi(cmd->cmd[1]);
+		exit(g_status);
+	}
 }

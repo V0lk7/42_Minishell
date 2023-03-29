@@ -50,14 +50,14 @@ static int	command_execution(t_data *lst, t_fd *fds, t_mini *mini)
 			{
 				execve(tmp->data.cmd.cmd[0], tmp->data.cmd.cmd, mini->envp_cpy);
 				perror(NULL);
-				//set variable global a 127 jcrois
+				g_status = 127;
 			}
 		}
 		free_all(lst, mini);
-		exit(0);//global plus tard
+		exit(g_status);
 	}
 	waitpid(pid, &wstatus, 0);
-	return (wstatus);//gobal
+	return (g_status);
 }
 
 void	normal_execution(t_data *lst, t_mini *mini, t_fd *fds)

@@ -29,7 +29,6 @@ static char	*cut_dollar(char *cmd)
 	j = 0;
 	while (i < (int)ft_strlen(cmd))
 	{
-
 		cut[j] = cmd[i];
 		i++;
 		j++;
@@ -38,7 +37,7 @@ static char	*cut_dollar(char *cmd)
 	return (cut);
 }
 
-static void	find_dollar(t_mini *mini, char *dollar, int index)
+static void	find_dollar(t_cmd *cmd, char *dollar, int index)
 {
 	char	*cpy;
 	int		i;
@@ -47,7 +46,7 @@ static void	find_dollar(t_mini *mini, char *dollar, int index)
 
 	i = 0;
 	j = 1;
-	length = count_args_2d(mini->envp_cpy);
+	length = count_args_2d(cmd->mini->envp_cpy);
 	cpy = malloc (sizeof (char) * ft_strlen(dollar) + 1);
 	while (i < (int)ft_strlen(dollar))
 	{
@@ -56,16 +55,14 @@ static void	find_dollar(t_mini *mini, char *dollar, int index)
 		j++;
 	}
 	cpy[i] = '\0';
-	ft_printf("CPY %s\n", cpy);
 	j = 0;
 	while (j < length)
 	{
-		i = search_c(mini->envp_cpy[j], '=');
-		if (!ft_strncmp(mini->envp_cpy[j], cpy, i))
+		i = search_c(cmd->mini->envp_cpy[j], '=');
+		if (!ft_strncmp(cmd->mini->envp_cpy[j], cpy, i))
 		{
-			cpy = cut_dollar(mini->envp_cpy[j]);
-			ft_printf("CUT %s\n", cpy);
-			mini->cmd[index] = ft_strdup(cpy);
+			cpy = cut_dollar(cmd->mini->envp_cpy[j]);
+			cmd->cmd[index] = ft_strdup(cpy);
 			return ;
 		}
 		j++;
@@ -73,17 +70,17 @@ static void	find_dollar(t_mini *mini, char *dollar, int index)
 	return ;
 }
 
-void	dollars(t_mini *mini)
+void	expansion(t_cmd *cmd)
 {
 	int	i;
 	int	length;
 
 	i = 0;
-	length = count_args_2d(mini->cmd);
+	length = count_args_2d(cmd->cmd);
 	while (i < length)
 	{
-		if (verif_dollar(mini->cmd[i]) == 1)
-			find_dollar(mini, mini->cmd[i], i);
+		if (verif_dollar(cmd->cmd[i]) == 1)
+			find_dollar(cmd, cmd->cmd[i], i);
 		i++;
 	}
 }

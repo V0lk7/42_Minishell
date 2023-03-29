@@ -21,7 +21,7 @@
 
 /*--------Enum-------*/
 
-extern int			g_status;
+extern int		g_status;
 
 typedef enum e_spe
 {

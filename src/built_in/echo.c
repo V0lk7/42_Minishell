@@ -62,6 +62,8 @@ void	ft_echo(t_cmd *cmd)
 		ft_putstr_fd(1, "\n");
 		return ;
 	}
+	else if (cmd->cmd[1] && !ft_strncmp(cmd->cmd[1], "$?", 2))
+		ft_printf("%d\n", g_status);
 	else if (cmd->cmd[1] && !ft_strcmp(cmd->cmd[1], "-n"))
 		with_flag(cmd->cmd);
 	else if (cmd->cmd[1] && ft_strcmp(cmd->cmd[1], "-n"))
