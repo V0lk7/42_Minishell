@@ -38,7 +38,6 @@ static void	prompt(t_mini *mini, char **envp)
 int	main(int argc, char **argv, char **envp)
 {
 	t_mini		mini;
-	int			exit_s;
 
 	(void)argv;
 	g_status = 0;
