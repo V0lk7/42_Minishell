@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/28 14:03:13 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/29 17:25:03 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	prompt(t_mini *mini, char **envp)
 		}
 		minishell_management(line, mini, envp);
 		free(line);
-		//expansion(cmd);
 	}
 }
 

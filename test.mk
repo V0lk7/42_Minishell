@@ -6,7 +6,7 @@
 #    By: jduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 13:51:31 by jduval            #+#    #+#              #
-#    Updated: 2023/03/20 13:26:52 by jduval           ###   ########.fr        #
+#    Updated: 2023/03/29 17:28:39 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,10 @@ test: clear fclean rclean $(RUNNER)
 run:
 	cd unitest/ && greatest_parallel ./test
 .PHONY: run
+
+flemme:
+	valgrind --trace-children=yes --track-fds=yes --suppressions=vsupp ./minishell
+.PHONY: flemme
 
 v:
 	cd unitest/ && greatest_parallel -v ./test

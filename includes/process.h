@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:54 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/28 17:50:51 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/29 16:21:31 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	minishell_management(char *line, t_mini *mini, char **envp);
 /*-----normal_execution.c-----*/
 void	normal_execution(t_data *lst, t_mini *mini, t_fd *fds);
 /*-----normal_execution.c-----*/
+void	execution_part(t_data *tmp, t_data *lst, t_fd *fds, t_mini *mini);
 int		pipeline_execution(t_data *lst, t_fd *fds, t_mini *mini);
 /*-----duplicate_functions.c-----*/
 int		pipe_redirection(t_data *tmp, t_fd *fds, int last);
