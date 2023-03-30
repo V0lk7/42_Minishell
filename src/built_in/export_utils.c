@@ -75,7 +75,7 @@ int	verif_export(char *cmd)
 
 	if (cmd[0] == '-')
 	{
-		ft_printf("export: %s : option non valable", cmd);
+		ft_printf("export: %s : option non valable\n", cmd);
 		g_status = 2;
 		return (0);
 	}

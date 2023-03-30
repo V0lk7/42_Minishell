@@ -26,52 +26,58 @@ static int	find_multiples_n(char *str)
 	return (1);
 }
 
-static void	without_flag(char **cmd)
+static void	without_flag(char *cmd)
 {
-	int	i;
-
-	i = 1;
-	while (cmd[i])
-	{
-		ft_printf("%s", cmd[i]);
-		if (i != count_args_2d(cmd) - 1)
-			ft_putstr_fd(1, " ");
-		i++;
-	}	
+	ft_printf("%s", cmd);
 	ft_putstr_fd(1, "\n");
 }
 
-static void	with_flag(char	**cmd)
+static void	with_flag(char	*cmd)
 {
+	ft_printf("%s", cmd);
+}
+
+static int	count_flags(char **cmd)
+{
+	int	flags;
 	int	i;
 
-	i = 2;
-	while (cmd[i])
+	i = 1;
+	flags = 0;
+	while (i < count_args_2d(cmd))
 	{
-		ft_printf("%s", cmd[i]);
-		if (i != count_args_2d(cmd) - 1)
-			ft_putstr_fd(1, " ");
+		if (!ft_strncmp(cmd[i], "-n", 2) && find_multiples_n(cmd[i]))
+			flags++;
+		else
+			break ;
 		i++;
 	}
+	return (flags);
 }
 
 void	ft_echo(t_cmd *cmd)
 {
+	int	i;
+
+	i = count_flags(cmd->cmd) + 1;
 	if (!cmd->cmd[1])
 	{
 		ft_putstr_fd(1, "\n");
 		return ;
 	}
-	else if (cmd->cmd[1] && !ft_strncmp(cmd->cmd[1], "$?", 2))
-		ft_printf("%d\n", g_status);
-	else if (cmd->cmd[1] && !ft_strcmp(cmd->cmd[1], "-n"))
-		with_flag(cmd->cmd);
-	else if (cmd->cmd[1] && ft_strcmp(cmd->cmd[1], "-n"))
+	else
 	{
-		if (!ft_strncmp(cmd->cmd[1], "-n", 2)
-			&& find_multiples_n(cmd->cmd[1]))
-			with_flag(cmd->cmd);
-		else
-			without_flag(cmd->cmd);
+		while (i < count_args_2d(cmd->cmd))
+		{
+			if (cmd->cmd[i] && !ft_strncmp(cmd->cmd[i], "$?", 2))
+				ft_printf("%d\n", g_status);
+			else if (count_flags(cmd->cmd))
+				with_flag(cmd->cmd[i]);
+			else if (!count_flags(cmd->cmd))
+				without_flag(cmd->cmd[i]);
+			if (i != count_args_2d(cmd->cmd) - 1)
+				ft_putstr_fd(1, " ");
+			i++;
+		}
 	}
 }
