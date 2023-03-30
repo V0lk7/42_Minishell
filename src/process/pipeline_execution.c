@@ -6,31 +6,37 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:50:12 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/29 17:54:39 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/30 13:49:14 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/enum.h"
 #include "../../includes/utils.h"
 #include "../../includes/process.h"
-#include <errno.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 static int	exec_utils(t_data *tmp, t_mini *mini)
 {
+	int	flag;
+
+	flag = 1;
 	if (tmp->data.cmd.valid < 0)
-		command_not_found(tmp->data.cmd.cmd[0]);
+		flag = errors_command(&tmp->data.cmd);
 	else
 	{
 		execve(tmp->data.cmd.cmd[0], tmp->data.cmd.cmd, mini->envp_cpy);
 		perror("😈 Minishell 😈 ");
 	}
-	return (127);
+	return (flag);
 }
 
 void	execution_part(t_data *tmp, t_data *lst, t_fd *fds, t_mini *mini)
 {
 	int	index;
+	int	flag;
 
+	flag = 0;
 	index = tmp->index;
 	if (pipe_rdir_management(tmp, fds) == 1)
 	{
@@ -44,10 +50,10 @@ void	execution_part(t_data *tmp, t_data *lst, t_fd *fds, t_mini *mini)
 		if (tmp->data.cmd.id >= 0)
 			is_built(&tmp->data.cmd);
 		else
-			g_status = exec_utils(tmp, mini);
+			flag = exec_utils(tmp, mini);
 	}
 	free_all(lst, mini);
-	exit(g_status);
+	exit(flag);
 }
 
 void	close_fd_pipe(t_data *tmp, t_fd *fds, int last)
@@ -81,8 +87,8 @@ int	pipeline_execution(t_data *lst, t_fd *fds, t_mini *mini)
 		tmp = next_sequence(tmp);
 		fds->read = fds->fds[0];
 	}
-	waitpid(pid, &g_status, 0);
+	waitpid(pid, &last, 0);
 	while (waitpid(-1, NULL, 0) > -1)
 		continue ;
-	return (g_status);
+	return (WEXITSTATUS(last));
 }

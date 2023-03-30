@@ -6,13 +6,14 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:02:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/29 16:14:56 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/30 11:52:27 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parsing.h"
 #include "../../includes/enum.h"
 #include "../../includes/clear.h"
+#include "../../includes/utils.h"
 #include <limits.h>
 #include <unistd.h>
 
@@ -48,8 +49,8 @@ static int	is_cmd_valid(char *cmd, char *arg, char **path)
 	i = 0;
 	len = ft_strlen(cmd);
 	ft_strlcpy(arg, cmd, len + 1);
-	valid = access(arg, F_OK);
-	if (valid == 0 && ft_strncmp(arg, "./", 2) == 0)
+	valid = type_of_file(arg);
+	if (valid == -2 || ft_strncmp(arg, "./", 2) == 0)
 		return (valid);
 	else if (valid == 0 && ft_strncmp(arg, "./" ,2) != 0)
 		return (-1);
@@ -59,7 +60,7 @@ static int	is_cmd_valid(char *cmd, char *arg, char **path)
 		ft_strlcpy(arg, path[i], len + 1);
 		len += ft_strlen(arg) + 1;
 		ft_strlcat(arg, cmd, len);
-		valid = access(arg, F_OK);
+		valid = type_of_file(arg);
 		i++;
 	}
 	return (valid);
@@ -79,7 +80,7 @@ int	type_of_command(t_cmd *cmd, t_mini *utils)
 	if (arg == NULL)
 		return (1);
 	cmd->valid = is_cmd_valid(cmd->cmd[0], arg, utils->path);
-	if (cmd->valid == -1)
+	if (cmd->valid < 0)
 	{
 		free(arg);
 		return (0);

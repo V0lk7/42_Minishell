@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:14:38 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/28 17:55:40 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/30 18:29:00 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,21 @@ int		count_words(const char *str, int redirect);
 int		pass_next_word(const char *str, int i);
 char	**fill_array_cmd(const char *str, int words);
 
+/*--------command_data_utils.c-------*/
+int		type_of_file(char *str);
+
 /*--------errors.c-------*/
+int		errors_command(t_cmd *cmd);
 void	command_not_found(char *cmd);
+void	command_is_directory(char *cmd);
+int		ctrl_d_hdoc(char *str, int n);
 
 /*--------$-------*/
 void	expansion(t_cmd *cmd);
+
+/*--------hdoc_utils.c-------*/
+int		create_tmp_hdoc(t_red *node);
+t_hdoc	*create_hdoc_node(char *str, int flag);
+void	add_back_hdoc(t_hdoc **head, t_hdoc *node);
+t_hdoc	*reach_last_hdoc(t_hdoc *head);
 #endif

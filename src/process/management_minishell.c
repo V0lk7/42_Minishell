@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:07:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/29 17:24:46 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/30 18:46:49 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,16 @@ static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 
 static void	execution_management(t_data *cmdline, t_mini *mini, t_fd *fds)
 {
-	//return ;
-	//here_doc position, si ctrl-C dans hdoc, ne pas passer dans les if suivant
+	//here_doc position, si ctrl-C dans hdoc c130, ne pas passer dans les if suivant
+	//ctrl -d warning: here-document at line 1 delimited by end-of-file (wanted `lol')
+	g_status = here_doc(cmdline);
+	return ;
+	if (g_status == 130)
+		return ;
 	if (is_pipeline(cmdline) == TRUE)
-		pipeline_execution(cmdline, fds, mini);
+		g_status = pipeline_execution(cmdline, fds, mini);
 	else
-		normal_execution(cmdline, mini, fds);
+		g_status = normal_execution(cmdline, mini, fds);
 	return ;
 }
 
@@ -62,16 +66,24 @@ void	minishell_management(char *line, t_mini *mini, char **envp)
 
 	history(line);
 	if (syntactical_parsing(line) == FALSE)
+	{
+		g_status = 2;
 		return ;
+	}
 	cmdline = data_treatment(line, mini, envp);
 	if (cmdline == NULL)
+	{
+		g_status = 1;
 		return ;
+	}
 	execution_management(cmdline, mini, &fds);
 	display_lst(cmdline, 0);
 	free_all_nodes(&cmdline);
 	free_array2d(mini->path);
 	return ;
 }
+
+static void display_hdoc(char *file, t_hdoc *hdoc);
 
 static void	display_lst(t_data *data, int flag)
 {
@@ -83,11 +95,16 @@ static void	display_lst(t_data *data, int flag)
 	{
 		if (tmp->name == REDIRECTION)
 		{
-			ft_printf("-----|REDIRECTION|-----\n");
-			ft_printf("-----|INDEX = %i|-----\n", tmp->index);
-			ft_printf("|-|file = %s|-|\n", tmp->data.rdict.file);
-			ft_printf("|-|WAY = %i|-|\n", tmp->data.rdict.way);
-			ft_printf("|-|fd = %i|-|\n", tmp->data.rdict.fd);
+			if (tmp->data.rdict.way == HDOC)
+				display_hdoc(tmp->data.rdict.file, tmp->data.rdict.input);
+			else
+			{
+				ft_printf("-----|REDIRECTION|-----\n");
+				ft_printf("-----|INDEX = %i|-----\n", tmp->index);
+				ft_printf("|-|file = %s|-|\n", tmp->data.rdict.file);
+				ft_printf("|-|WAY = %i|-|\n", tmp->data.rdict.way);
+				ft_printf("|-|fd = %i|-|\n", tmp->data.rdict.fd);
+			}
 		}
 		else
 		{
@@ -101,4 +118,17 @@ static void	display_lst(t_data *data, int flag)
 		tmp = tmp->next;
 		ft_printf("\n");
 	}
+}
+
+static void display_hdoc(char *file, t_hdoc *hdoc)
+{
+	ft_printf("file = %s\n", file);
+
+	while (hdoc != NULL)
+	{
+		ft_printf("\n|last = %i|\n", hdoc->last);
+		ft_printf("%s", hdoc->line);
+		hdoc = hdoc->next;
+	}
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:54 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/29 16:21:31 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/30 15:28:06 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_minishell(t_mini *mini, char **envp);
 /*-----management_minishell.c-----*/
 void	minishell_management(char *line, t_mini *mini, char **envp);
 /*-----normal_execution.c-----*/
-void	normal_execution(t_data *lst, t_mini *mini, t_fd *fds);
+int		normal_execution(t_data *lst, t_mini *mini, t_fd *fds);
 /*-----normal_execution.c-----*/
 void	execution_part(t_data *tmp, t_data *lst, t_fd *fds, t_mini *mini);
 int		pipeline_execution(t_data *lst, t_fd *fds, t_mini *mini);
@@ -42,5 +42,7 @@ int		pipe_rdir_management(t_data *tmp, t_fd *fds);
 t_data	*redirection_management(t_data *tmp, t_fd *fds, int index);
 int		in_redirection(t_red *rdict, t_fd *fds);
 int		out_redirection(t_red *rdict, t_fd *fds);
+/*-----here_doc.c-----*/
+int		here_doc(t_data *lst);
 
 #endif

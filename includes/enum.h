@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/29 11:38:54 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/30 18:11:18 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,18 @@ typedef struct s_mini
 	char		**path;
 }	t_mini;
 
+typedef struct s_hdoc
+{
+	char			*line;
+	int				last;
+	struct s_hdoc	*next;
+}	t_hdoc;
+
 typedef struct s_red
 {
 	char	*file;
 	t_way	way;
+	t_hdoc	*input;
 	int		fd;
 }	t_red;
 
