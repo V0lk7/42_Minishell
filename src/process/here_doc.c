@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 13:58:52 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/30 18:35:18 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/31 16:26:50 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,32 @@ static int	do_here_doc(t_red *node)
 	return (0);
 }
 
+static int	put_hdoc_in_file(t_red *red)
+{
+	t_hdoc	*tmp;
+	int		flag;
+
+	flag = create_tmp_hdoc(red);
+	if (flag == -1)
+		return (-1);
+	if (red->file[0] == '\'' || red->file[0] == '\"')
+		flag = 1;
+	tmp = red->input;
+	while (tmp)
+	{
+		if (flag == 0)
+			//expansion de str ... style expansion(tmp->line)
+		ft_putstr_fd(red->w_fd, tmp->line);
+		if (tmp->last == 1)
+			ft_putstr_fd(red->w_fd, "\0");
+		else
+			ft_putstr_fd(red->w_fd, "\n");
+		tmp = tmp->next;
+	}
+	close (red->w_fd);
+	return (0);
+}
+
 int	here_doc(t_data *lst)
 {
 	int	status;
@@ -68,7 +94,11 @@ int	here_doc(t_data *lst)
 		if (lst->name == REDIRECTION)
 		{
 			if (lst->data.rdict.way == HDOC)
+			{
 				status = do_here_doc(&lst->data.rdict);
+				if (put_hdoc_in_file(&lst->data.rdict) == -1)
+					return (-1);
+			}
 		}
 		lst = lst->next;
 	}

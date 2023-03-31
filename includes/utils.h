@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:14:38 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/30 18:29:00 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/31 17:26:55 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,5 @@ int		create_tmp_hdoc(t_red *node);
 t_hdoc	*create_hdoc_node(char *str, int flag);
 void	add_back_hdoc(t_hdoc **head, t_hdoc *node);
 t_hdoc	*reach_last_hdoc(t_hdoc *head);
+void	close_here_doc(t_data *lst);
 #endif

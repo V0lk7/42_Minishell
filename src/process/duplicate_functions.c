@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:17:14 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/30 16:59:45 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/31 18:53:03 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	in_redirection(t_red *rdict, t_fd *fds)
 	if (rdict->way == IN)
 		fds->read = open(rdict->file, O_RDONLY);
 	else
-		fds->read = rdict->fd;
+		fds->read = rdict->r_fd;
 	if (fds->read == -1)
 	{
 		perror("😈 Minishell 😈 ");

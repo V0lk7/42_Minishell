@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:07:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/30 18:46:49 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/31 12:49:55 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	execution_management(t_data *cmdline, t_mini *mini, t_fd *fds)
 	//here_doc position, si ctrl-C dans hdoc c130, ne pas passer dans les if suivant
 	//ctrl -d warning: here-document at line 1 delimited by end-of-file (wanted `lol')
 	g_status = here_doc(cmdline);
-	return ;
 	if (g_status == 130)
 		return ;
 	if (is_pipeline(cmdline) == TRUE)
@@ -103,7 +102,8 @@ static void	display_lst(t_data *data, int flag)
 				ft_printf("-----|INDEX = %i|-----\n", tmp->index);
 				ft_printf("|-|file = %s|-|\n", tmp->data.rdict.file);
 				ft_printf("|-|WAY = %i|-|\n", tmp->data.rdict.way);
-				ft_printf("|-|fd = %i|-|\n", tmp->data.rdict.fd);
+				ft_printf("|-|fd = %i|-|\n", tmp->data.rdict.r_fd);
+				ft_printf("|-|fd = %i|-|\n", tmp->data.rdict.w_fd);
 			}
 		}
 		else

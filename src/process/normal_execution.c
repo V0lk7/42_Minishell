@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:30:42 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/30 13:55:12 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/31 18:56:23 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,16 @@ static int	command_execution(t_data *lst, t_fd *fds, t_mini *mini)
 	pid = fork();
 	if (pid == 0)
 	{
+		signal(SIGQUIT, SIG_DFL);
+		signal(SIGINT, f_handler);
 		tmp = redirection_management(tmp, fds, tmp->index);
 		if (tmp->name == COMMAND)
 			status = cmd_exec_part(tmp, mini);
 		free_all(lst, mini);
 		exit(status);
 	}
+	signal(SIGQUIT, f_handler);
+	signal(SIGINT, f_handler);
 	waitpid(pid, &status, 0);
 	return (WEXITSTATUS(status));
 }

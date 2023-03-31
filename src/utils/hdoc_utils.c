@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:07:35 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/30 18:28:32 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/31 14:19:30 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,25 @@ int	create_tmp_hdoc(t_red *node)
 {
 	char	*nbr;
 	int		i;
-	int		len;
 	char	name[_POSIX_ARG_MAX];
 
 	i = 0;
-	len = 0;
-	while (node->fd < 0 && i < 999)
+	while (node->w_fd < 0 && i < 999)
 	{
 		nbr = ft_itoa(i);
 		if (nbr == NULL)
 			return (-1);
-		len = ft_strlen(nbr);
 		ft_strlcpy(name, "/tmp/", 6);
-		ft_strlcat(name, nbr, len + 6);
-		node->fd = open(name, O_CREAT | O_EXCL | O_WRONLY | O_RDONLY, 0644);
+		ft_strlcat(name, nbr, ft_strlen(nbr) + 6);
+		node->w_fd = open(name, O_CREAT | O_EXCL | O_WRONLY, 0644);
 		free (nbr);
-		if (node->fd == -1 && errno != EEXIST)
+		if (node->w_fd == -1 && errno != EEXIST)
 			return (-1);
 		i++;
 	}
+	node->r_fd = open(name, O_RDONLY);
 	unlink(name);
-	return (node->fd);
+	return (0);
 }
 
 t_hdoc	*create_hdoc_node(char *str, int flag)
@@ -89,4 +87,17 @@ void	add_back_hdoc(t_hdoc **head, t_hdoc *node)
 		tmp->next = node;
 	}
 	return ;
+}
+
+void	close_here_doc(t_data *lst)
+{
+	while (lst)
+	{
+		if (lst->name == REDIRECTION)
+		{
+			if (lst->data.rdict.way == HDOC)
+				close (lst->data.rdict.r_fd);
+		}
+		lst = lst->next;
+	}
 }

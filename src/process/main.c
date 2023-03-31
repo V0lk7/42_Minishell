@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/30 14:07:28 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/31 18:22:41 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "../../includes/parsing.h"
 #include "../../includes/clear.h"
 #include "../../includes/enum.h"
+#include "../../includes/utils.h"
+#include <signal.h>
 
 int	g_status;
 
@@ -23,6 +25,8 @@ static void	prompt(t_mini *mini, char **envp)
 
 	while (1)
 	{
+		signal(SIGINT, n_handler);
+		signal(SIGQUIT, SIG_IGN);
 		line = readline("😈 Minishell 😈 ");
 		if (line == NULL)
 		{

@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:50:12 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/30 13:49:14 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/31 18:58:58 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	execution_part(t_data *tmp, t_data *lst, t_fd *fds, t_mini *mini)
 
 	flag = 0;
 	index = tmp->index;
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, f_handler);
 	if (pipe_rdir_management(tmp, fds) == 1)
 	{
 		perror("😈 Minishell 😈 ");
@@ -45,6 +47,7 @@ void	execution_part(t_data *tmp, t_data *lst, t_fd *fds, t_mini *mini)
 		exit (1);
 	}
 	tmp = redirection_management(tmp, fds, tmp->index);
+	close_here_doc(lst);
 	if (tmp && tmp->index == index && tmp->name == COMMAND)
 	{
 		if (tmp->data.cmd.id >= 0)
@@ -58,7 +61,7 @@ void	execution_part(t_data *tmp, t_data *lst, t_fd *fds, t_mini *mini)
 
 void	close_fd_pipe(t_data *tmp, t_fd *fds, int last)
 {
-	if (tmp && tmp->index > 0)
+	if (tmp && tmp->index > 0 && tmp->index < last)
 		close (fds->read);
 	if (tmp && tmp->index < last)
 		close(fds->fds[1]);
@@ -87,7 +90,10 @@ int	pipeline_execution(t_data *lst, t_fd *fds, t_mini *mini)
 		tmp = next_sequence(tmp);
 		fds->read = fds->fds[0];
 	}
+	signal(SIGQUIT, f_handler);
+	signal(SIGINT, f_handler);
 	waitpid(pid, &last, 0);
+	close(fds->read);
 	while (waitpid(-1, NULL, 0) > -1)
 		continue ;
 	return (WEXITSTATUS(last));

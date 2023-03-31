@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:53:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/27 17:28:48 by jduval           ###   ########.fr       */
+/*   Updated: 2023/03/31 15:43:49 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_data	*make_lst_line(char *str, t_mini *utils);
 /*-------make_data.c-------*/
 t_data	*create_node_command(const char *str, t_mini *utils, int words, int i);
 t_data	*create_node_redirect(const char *str, int *i, int tmp, int index);
-t_data	*put_redirection(const char *, int nbr, int index);
+t_data	*put_redirection(const char *str, int nbr, int index);
 /*-------make_path.c-------*/
 char	**make_array_path(char **envp);
 /*-------make_path.c-------*/
