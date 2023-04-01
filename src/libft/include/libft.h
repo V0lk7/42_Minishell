@@ -33,6 +33,7 @@ typedef struct s_list
 }	t_list;
 
 /*--------LIBFT------*/
+
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);
@@ -94,13 +95,15 @@ char		**ft_split(char *s, char c);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t nmemb, size_t size);
 
+int			compare(char **array, char *str);
+int			count_c(char *str, char c);
+char		*cut(char *str, char c);
 int			find_in(char **array, char *str);
 int			find_in_eq(char **array, char *str);
-char		*cut(char *str, char c);
-int			compare(char **array, char *str);
 int			search_c(char *str, char c);
 
 /*-------OLD_GNL-------*/
+
 char		*ft_strjoin_gnl(char *s1, char *s2);
 int			ft_flag(char *buffer);
 void		ft_move(char **buffer, int len);
@@ -108,9 +111,11 @@ int			ft_read_for(char **buffer, int fd);
 char		*get_next_line(int fd);
 
 /*-------NEW_GNL-------*/
+
 char		*ft_gnl(int fd);
 
 /*-------PRINTF-------*/
+
 int			ft_printf(const char *format, ...);
 int			ft_putchar_printf(char c, int fd);
 int			ft_putstr_printf(char *s, int fd);

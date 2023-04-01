@@ -16,6 +16,7 @@
 void	free_hdoc(t_hdoc *input)
 {
 	t_hdoc	*tmp;
+
 	while (input != NULL)
 	{
 		tmp = input;

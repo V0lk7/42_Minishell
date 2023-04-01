@@ -65,18 +65,21 @@ static void	cut_last_directory(t_mini *mini)
 	}
 }
 
+static void	cd_home(t_cmd *cmd)
+{
+	if (find_in(cmd->mini->envp_cpy, "HOME") != -1)
+		chdir(find_dir(cmd->mini, "HOME="));
+	else
+	{
+		ft_putstr_fd(2, "cd: HOME not set\n");
+		return ;
+	}
+}
+
 void	ft_cd(t_cmd *cmd)
 {
 	if (!cmd->cmd[1])
-	{
-		if (find_in(cmd->mini->envp_cpy, "HOME") != -1)
-			chdir(find_dir(cmd->mini, "HOME="));
-		else
-		{
-			ft_putstr_fd(2, "cd: HOME not set\n");
-			return ;
-		}
-	}
+		cd_home(cmd);
 	else if (!ft_strncmp(cmd->cmd[1], "..", 2))
 	{
 		cut_last_directory(cmd->mini);

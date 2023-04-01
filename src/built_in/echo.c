@@ -42,7 +42,7 @@ static int	count_flags(char **cmd)
 
 	i = 1;
 	flags = 0;
-	while (cmd[i]) 
+	while (cmd[i])
 	{
 		if (!ft_strncmp(cmd[i], "-n", 2) && find_multiples_n(cmd[i]))
 			flags++;

@@ -52,7 +52,7 @@ static int	is_cmd_valid(char *cmd, char *arg, char **path)
 	valid = type_of_file(arg);
 	if (valid == -2 || ft_strncmp(arg, "./", 2) == 0)
 		return (valid);
-	else if (valid == 0 && ft_strncmp(arg, "./" ,2) != 0)
+	else if (valid == 0 && ft_strncmp(arg, "./", 2) != 0)
 		return (-1);
 	while (path[i] && valid == -1)
 	{

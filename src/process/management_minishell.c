@@ -39,15 +39,12 @@ static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 			expansion(&tmp->data.cmd);
 		tmp = tmp->next;
 	}
-	//position of variable expansion and quote removal
 	cmdline = command_manager(&cmdline);
 	return (cmdline);
 }
 
 static void	execution_management(t_data *cmdline, t_mini *mini, t_fd *fds)
 {
-	//here_doc position, si ctrl-C dans hdoc c130, ne pas passer dans les if suivant
-	//ctrl -d warning: here-document at line 1 delimited by end-of-file (wanted `lol')
 	g_status = here_doc(cmdline);
 	if (g_status == 130)
 		return ;
@@ -82,7 +79,7 @@ void	minishell_management(char *line, t_mini *mini, char **envp)
 	return ;
 }
 
-static void display_hdoc(char *file, t_hdoc *hdoc);
+static void	display_hdoc(char *file, t_hdoc *hdoc);
 
 static void	display_lst(t_data *data, int flag)
 {
@@ -120,10 +117,9 @@ static void	display_lst(t_data *data, int flag)
 	}
 }
 
-static void display_hdoc(char *file, t_hdoc *hdoc)
+static void	display_hdoc(char *file, t_hdoc *hdoc)
 {
 	ft_printf("file = %s\n", file);
-
 	while (hdoc != NULL)
 	{
 		ft_printf("\n|last = %i|\n", hdoc->last);

@@ -20,7 +20,8 @@ void	n_handler(int signal)
 	{
 		g_status = 130;
 		ft_printf("\n");
-		rl_on_new_line ();
+		rl_replace_line("", 0);
+		rl_on_new_line();
 		rl_redisplay();
 		return ;
 	}

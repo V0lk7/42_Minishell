@@ -53,14 +53,11 @@ char	**sort_export(t_mini *mini)
 		while (find_in_array2d(tmp, mini->envp_cpy[i]))
 			i++;
 		smallest = mini->envp_cpy[i];
-		i = 0;
-		while (i < count_args_2d(mini->envp_cpy))
-		{
+		i = -1;
+		while (++i < count_args_2d(mini->envp_cpy))
 			if (ft_strcmp(mini->envp_cpy[i], smallest)
 				< 0 && !find_in_array2d(tmp, mini->envp_cpy[i]))
 				smallest = mini->envp_cpy[i];
-			i++;
-		}
 		tmp[k] = ft_strdup(smallest);
 		k++;
 	}
@@ -68,11 +65,8 @@ char	**sort_export(t_mini *mini)
 	return (tmp);
 }
 
-int	verif_export(char *cmd)
+static int	error_export(char *cmd)
 {
-	int	i;
-	int	equal;
-
 	if (cmd[0] == '-')
 	{
 		ft_printf("export: %s : option non valable\n", cmd);
@@ -85,7 +79,17 @@ int	verif_export(char *cmd)
 		g_status = 1;
 		return (0);
 	}
+	return (1);
+}
+
+int	verif_export(char *cmd)
+{
+	int	i;
+	int	equal;
+
 	i = 1;
+	if (!error_export(cmd))
+		return (0);
 	equal = search_c(cmd, '=');
 	if (equal == -1)
 		equal = ft_strlen(cmd);

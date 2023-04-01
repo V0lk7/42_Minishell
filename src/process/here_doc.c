@@ -71,8 +71,7 @@ static int	put_hdoc_in_file(t_red *red)
 	tmp = red->input;
 	while (tmp)
 	{
-		if (flag == 0)
-			//expansion de str ... style expansion(tmp->line)
+		//if (flag == 0) //expansion de str ... style expansion(tmp->line)
 		ft_putstr_fd(red->w_fd, tmp->line);
 		if (tmp->last == 1)
 			ft_putstr_fd(red->w_fd, "\0");
