@@ -97,7 +97,7 @@ int	verif_export(char *cmd)
 	{
 		if (cmd[equal - 1] != '+')
 		{
-			if (!ft_isalnum(cmd[i]))
+			if (!ft_isalnum(cmd[i]) && cmd[i] != '_')
 			{
 				ft_printf("export: %s: not a valid identifier\n", cmd);
 				g_status = 1;
