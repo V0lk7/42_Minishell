@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:07:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/31 12:49:55 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/03 15:37:51 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 
 static void	execution_management(t_data *cmdline, t_mini *mini, t_fd *fds)
 {
-	g_status = here_doc(cmdline);
-	if (g_status == 130)
+	if (here_doc(cmdline) == -1)
 		return ;
 	if (is_pipeline(cmdline) == TRUE)
 		g_status = pipeline_execution(cmdline, fds, mini);
