@@ -100,6 +100,7 @@ int			compare(char **array, char *str);
 int			count_c(char *str, char c);
 char		*cut(char *str, char c);
 int			find_in(char **array, char *str);
+int			find_expansion_array(char **array, char *str);
 int			find_in_eq(char **array, char *str);
 int			search_c(char *str, char c);
 
