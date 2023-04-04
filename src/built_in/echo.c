@@ -31,8 +31,6 @@ static void	without_flag(char **cmd, int i)
 	ft_printf("%s", cmd[i]);
 	if (cmd[i + 1] == NULL)
 		ft_printf("\n");
-	else
-		ft_printf(" ");
 }
 
 static int	count_flags(char **cmd)
@@ -72,6 +70,8 @@ void	ft_echo(t_cmd *cmd)
 		else if (!count_flags(cmd->cmd))
 			without_flag(cmd->cmd, i);
 		i++;
+		if (i < count_args_2d(cmd->cmd))
+			ft_printf(" ");
 	}
 	return ;
 }
