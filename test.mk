@@ -6,7 +6,7 @@
 #    By: jduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 13:51:31 by jduval            #+#    #+#              #
-#    Updated: 2023/03/31 16:15:59 by jduval           ###   ########.fr        #
+#    Updated: 2023/04/04 09:57:51 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ run:
 .PHONY: run
 
 flemme:
-	valgrind --trace-children=yes --track-fds=yes --leak-check=full --show-leak-kinds=all --suppressions=vsupp ./minishell
+	valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all --suppressions=vsupp ./minishell
 .PHONY: flemme
 
 v:

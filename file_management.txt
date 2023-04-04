@@ -59,3 +59,7 @@ ERRORS/ 	: Gestion de toute les possible erreur (malloc, fonction interne,
 				mauvaise commande, parsing ...).
 
 UTILS/ 		: Fichier utilitaire qui ne se retrouve dans aucun dossier du dessus.
+
+TEST :
+
+

@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/31 18:22:41 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/04 10:24:38 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	prompt(t_mini *mini, char **envp)
 		if (line == NULL)
 		{
 			ft_printf("exit\n");
+			g_status = 0;
 			return ;
 		}
 		minishell_management(line, mini, envp);
@@ -52,5 +53,5 @@ int	main(int argc, char **argv, char **envp)
 	init_minishell(&mini, envp);
 	prompt(&mini, envp);
 	free_exit(&mini);
-	return (0);
+	return (g_status);
 }

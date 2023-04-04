@@ -6,7 +6,7 @@
 #    By: jduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 13:18:12 by jduval            #+#    #+#              #
-#    Updated: 2023/03/17 11:17:11 by kramjatt         ###   ########.fr        #
+#    Updated: 2023/04/04 15:24:22 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS 		:=	libft/ft_bzero.c		\
 				libft/ft_memcmp.c		\
 				libft/ft_strnstr.c		\
 				libft/ft_atoi.c			\
+				libft/ft_atoll.c		\
 				libft/ft_calloc.c		\
 				libft/ft_strdup.c		\
 				libft/ft_substr.c		\

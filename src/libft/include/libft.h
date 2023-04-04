@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 14:21:46 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/17 20:19:49 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:22:53 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void		free_array2d(char **argv);
 void		print_array2d(char **array2d);
 
 int			ft_atoi(const char *nptr);
+long long	ft_atoll(const char *nptr);
 int			ft_atoi_base(char *str, int str_base);
 char		*ft_itoa(int n);
 char		**ft_split(char *s, char c);

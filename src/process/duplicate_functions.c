@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:17:14 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/31 18:53:03 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/04 13:38:05 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	pipe_rdir_management(t_data *tmp, t_fd *fds)
 
 	last = find_last_sequence(tmp);
 	flag = pipe_redirection(tmp, fds, last);
+	if (flag == 1)
+		perror("😈 Minishell 😈 ");
 	if (tmp->index > 0 && tmp->index <= last)
 		close(fds->read);
 	close(fds->fds[1]);
