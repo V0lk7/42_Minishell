@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:17:14 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/04 13:38:05 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/05 13:53:40 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ int	in_redirection(t_red *rdict, t_fd *fds)
 		perror("😈 Minishell 😈 ");
 		return (-1);
 	}
-	close(fds->read);
+	if (fds->read > 0)
+		close(fds->read);
 	return (0);
 }
 
@@ -113,6 +114,7 @@ int	out_redirection(t_red *rdict, t_fd *fds)
 		perror("😈 Minishell 😈 ");
 		return (-1);
 	}
-	close(fds->write);
+	if (fds->write > 0)
+		close(fds->write);
 	return (0);
 }

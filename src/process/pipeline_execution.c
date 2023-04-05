@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:50:12 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/04 13:23:55 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/05 15:45:45 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <sys/wait.h>
 #include <errno.h>
 
-static int	exec_utils(t_data *tmp, t_mini *mini)
+int	exec_utils(t_data *tmp, t_mini *mini)
 {
 	int	status;
 
@@ -47,15 +47,7 @@ void	execution_part(t_data *tmp, t_data *lst, t_fd *fds, t_mini *mini)
 	tmp = redirection_management(tmp, fds, tmp->index);
 	close_here_doc(lst);
 	if (tmp && tmp->index == index && tmp->name == COMMAND)
-	{
-		if (tmp->data.cmd.id >= 0)
-		{
-			is_built(&tmp->data.cmd);
-			free_all(lst, mini);
-			exit (g_status);
-		}
-		g_status = exec_utils(tmp, mini);
-	}
+		chose_builtin_or_exec(tmp, lst, mini);
 	free_all(lst, mini);
 	exit(g_status);
 }
@@ -105,11 +97,5 @@ int	pipeline_execution(t_data *lst, t_fd *fds, t_mini *mini)
 		fds->read = fds->fds[0];
 	}
 	last = utils_end_pipeline(pid, fds->read);
-//	signal(SIGQUIT, f_handler);
-//	signal(SIGINT, f_handler);
-//	waitpid(pid, &last, 0);
-//	close(fds->read);
-//	while (waitpid(-1, NULL, 0) > -1)
-//		continue ;
 	return (WEXITSTATUS(last));
 }

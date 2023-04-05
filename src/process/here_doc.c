@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 13:58:52 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/31 16:26:50 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/05 13:28:08 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,32 @@ static int	hdoc_node_create(char *limits, char *str, t_hdoc **head, int line)
 	return (flag);
 }
 
+int	hdoc_rl_event_hook(void)
+{
+	if (g_status == -130)
+		rl_done = 1;
+	return (0);
+}
+
 static int	do_here_doc(t_red *node)
 {
 	char	*str;
 	int		line;
 	int		value;
 
+	rl_event_hook = hdoc_rl_event_hook;
+	signal(SIGINT, sigint_hdoc);
 	line = 1;
 	while (1)
 	{
 		str = readline("> ");
+		if (g_status == -130)
+		{
+			if (str != NULL)
+				free(str);
+			free_hdoc(node->input);
+			return (-1);
+		}
 		value = hdoc_node_create(node->file, str, &node->input, line);
 		if (value == -1)
 			return (1);
@@ -61,17 +77,12 @@ static int	do_here_doc(t_red *node)
 static int	put_hdoc_in_file(t_red *red)
 {
 	t_hdoc	*tmp;
-	int		flag;
 
-	flag = create_tmp_hdoc(red);
-	if (flag == -1)
+	if (create_tmp_hdoc(red) == -1)
 		return (-1);
-	if (red->file[0] == '\'' || red->file[0] == '\"')
-		flag = 1;
 	tmp = red->input;
 	while (tmp)
 	{
-		//if (flag == 0) //expansion de str ... style expansion(tmp->line)
 		ft_putstr_fd(red->w_fd, tmp->line);
 		if (tmp->last == 1)
 			ft_putstr_fd(red->w_fd, "\0");
@@ -95,6 +106,8 @@ int	here_doc(t_data *lst)
 			if (lst->data.rdict.way == HDOC)
 			{
 				status = do_here_doc(&lst->data.rdict);
+				if (status == -1)
+					return (-1);
 				if (put_hdoc_in_file(&lst->data.rdict) == -1)
 					return (-1);
 			}

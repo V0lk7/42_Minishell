@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:14:38 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/31 17:26:55 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/05 10:02:52 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		errors_command(t_cmd *cmd);
 void	command_not_found(char *cmd);
 void	command_is_directory(char *cmd);
 int		ctrl_d_hdoc(char *str, int n);
+void	error_exit(char *str);
 
 /*--------$-------*/
 void	expansion(t_cmd *cmd);

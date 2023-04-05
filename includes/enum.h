@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/31 12:45:27 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/05 14:20:16 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef enum e_class
 
 typedef struct s_mini
 {	
-	int			exit;
 	char		*current_dir;
 	char		*old_dir;
 	char		**envp_cpy;

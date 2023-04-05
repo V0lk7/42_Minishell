@@ -6,13 +6,13 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:59:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/30 18:22:26 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/05 14:11:32 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/include/libft.h"
 #include "../../includes/utils.h"
-#include <stdio.h>
+#include <readline/readline.h>
 
 int	errors_command(t_cmd *cmd)
 {
@@ -56,11 +56,18 @@ int	ctrl_d_hdoc(char *str, int n)
 		perror(NULL);
 		return (1);
 	}
-	ft_putstr_fd(2, "> 😈 Minishell 😈: warning: here-document at line ");
+	ft_putstr_fd(2, "😈 Minishell 😈: warning: here-document at line ");
 	ft_putstr_fd(2, line);
 	ft_putstr_fd(2, " delimited by end-of-file (wanted `");
 	ft_putstr_fd(2, str);
 	ft_putstr_fd(2, "\')\n");
 	free (line);
 	return (0);
+}
+
+void error_exit(char *str)
+{
+	ft_putstr_fd(2, "😈 Minishell 😈 : exit: ");
+	ft_putstr_fd(2, str);
+	ft_putstr_fd(2, ": Numeric argument required\n");
 }

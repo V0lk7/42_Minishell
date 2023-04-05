@@ -1,49 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   utils_pipeline.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/31 16:45:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/05 13:21:19 by jduval           ###   ########.fr       */
+/*   Created: 2023/04/05 10:46:11 by jduval            #+#    #+#             */
+/*   Updated: 2023/04/05 10:54:15 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/process.h"
+#include "../../includes/built_in.h"
 #include "../../includes/enum.h"
-#include <signal.h>
 
-void	n_handler(int signal)
+void	chose_builtin_or_exec(t_data *tmp, t_data *lst, t_mini *mini)
 {
-	if (signal == SIGINT)
+	if (tmp->data.cmd.id >= 0 && tmp->data.cmd.id != 3)
 	{
-		g_status = 130;
-		ft_printf("\n");
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-		return ;
+		is_built(&tmp->data.cmd);
+		free_all(lst, mini);
+		exit (g_status);
 	}
-	return ;
-}
-
-void	f_handler(int signal)
-{
-	if (signal == SIGQUIT)
+	else if (tmp->data.cmd.id == 3)
 	{
-		g_status = 131;
-		ft_printf("Quit (core dumped)\n");
+		ft_exit(&tmp->data.cmd, lst, mini);
+		exit (g_status);
 	}
-	if (signal == SIGINT)
-	{
-		g_status = 130;
-		ft_printf("\n");
-	}
-}
-
-void	sigint_hdoc(int signal)
-{
-	if (signal == SIGINT)
-		g_status = -130;
+	g_status = exec_utils(tmp, mini);
 }

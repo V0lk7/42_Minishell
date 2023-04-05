@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:30 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/26 16:17:54 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/05 09:57:17 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 void	ft_cd(t_cmd *cmd);
 void	ft_echo(t_cmd *cmd);
 void	ft_env(t_cmd *cmd);
-void	ft_exit(t_cmd *cmd);
+void	ft_exit(t_cmd *cmd, t_data *lst, t_mini *mini);
 void	ft_export(t_cmd *cmd);
 void	ft_pwd(t_cmd *cmd);
 void	ft_unset(t_cmd *cmd);

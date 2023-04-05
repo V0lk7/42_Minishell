@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:07:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/04 12:33:30 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/05 15:20:17 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 		return (NULL);
 	}
 	tmp = cmdline;
+	/*
 	while (tmp)
 	{
 		if (tmp->name == COMMAND)
 			expansion(&tmp->data.cmd);
 		tmp = tmp->next;
-	}
+	}*/
 	cmdline = command_manager(&cmdline);
 	return (cmdline);
 }
@@ -46,7 +47,11 @@ static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 static void	execution_management(t_data *cmdline, t_mini *mini, t_fd *fds)
 {
 	if (here_doc(cmdline) == -1)
+	{
+		if (g_status == -130)
+			g_status *= -1;
 		return ;
+	}
 	if (is_pipeline(cmdline) == TRUE)
 		g_status = pipeline_execution(cmdline, fds, mini);
 	else

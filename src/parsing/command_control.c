@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:02:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/30 11:52:27 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/05 14:26:03 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ static int	is_builtin(const char *cmd)
 	else if (ft_strncmp(cmd, "env", 3) == 0 && len_cmd == 3)
 		return (2);
 	else if (ft_strncmp(cmd, "exit", 4) == 0 && len_cmd == 4)
-		return (3);
-	else if (ft_strncmp(cmd, "export", 6) == 0 && len_cmd == 6)
-		return (4);
-	else if (ft_strncmp(cmd, "pwd", 3) == 0 && len_cmd == 3)
-		return (5);
-	else if (ft_strncmp(cmd, "unset", 5) == 0 && len_cmd == 5)
 		return (6);
+	else if (ft_strncmp(cmd, "export", 6) == 0 && len_cmd == 6)
+		return (3);
+	else if (ft_strncmp(cmd, "pwd", 3) == 0 && len_cmd == 3)
+		return (4);
+	else if (ft_strncmp(cmd, "unset", 5) == 0 && len_cmd == 5)
+		return (5);
 	else
 		return (-1);
 }

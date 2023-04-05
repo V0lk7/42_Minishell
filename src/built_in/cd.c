@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:28:37 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/26 16:45:53 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/05 14:30:58 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	update_pwd(t_mini *mini)
 		i++;
 	if (i != count_args_2d(mini->envp_cpy))
 		mini->envp_cpy[i] = ft_strjoin("OLDPWD=", mini->old_dir);
-	while (mini->envp_cpy[i] && ft_strncmp(mini->envp_cpy[j], "PWD=", 4))
+	while (mini->envp_cpy[j] && ft_strncmp(mini->envp_cpy[j], "PWD=", 4))
 		j++;
 	if (j != count_args_2d(mini->envp_cpy))
 		mini->envp_cpy[j] = ft_strjoin("PWD=", mini->current_dir);

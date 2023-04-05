@@ -6,11 +6,13 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:56:15 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/04 16:03:04 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/05 10:04:42 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/built_in.h"
+#include "../../includes/utils.h"
+#include "../../includes/clear.h"
 #include "../../includes/parsing.h"
 #include "../libft/include/libft.h"
 
@@ -46,77 +48,58 @@ static t_bool	check_overflow(const char *str)
 	return (FALSE);
 }
 
-void	ft_exit(t_cmd *cmd)
+static int	syntax_error_exit(char **cmd)
 {
-	long long	value;
-
-	if (cmd->cmd[1] == NULL)
+	if (cmd[1] == NULL)
 	{
 		g_status = 0;
 		exit(g_status);
 	}
-	if (non_numeric_args(cmd->cmd[1]) == TRUE)
+	if (non_numeric_args(cmd[1]) == TRUE)
 	{
 		ft_putstr_fd(2, "exit: Numeric argument required\n");
 		g_status = 2;
 		exit(g_status);
 	}
-	else if (count_args_2d(cmd->cmd) > 2)
+	else if (count_args_2d(cmd) > 2)
 	{
 		ft_putstr_fd(2, "exit: Too many arguments\n");
 		g_status = 1;
-		return ;
+		return (TRUE);
 	}
-	else
-	{
-		value = ft_atoll(cmd->cmd[1]);
-		//printf("%lli\n", value);
-		if (value == 0 && check_overflow(cmd->cmd[1]) == TRUE)
-		{
-			ft_putstr_fd(2, "😈 Minishell 😈 : exit: ");
-			ft_putstr_fd(2, cmd->cmd[1]);
-			ft_putstr_fd(2, ": Numeric argument required\n");
-			g_status = 2;
-			exit(g_status);
-		}
-		else if (value == 256 || value == -256)
-		{
-			g_status = 0;
-			exit (g_status);
-		}
-		else if (value > 256)
-			exit(value % 256);
-		else if (value < 0 && value > -256)
-			exit (256 + value);
-		else if (value < -256)
-			exit (256 + (value % 256));
-	}
+	return (FALSE);
 }
-/*
-void	ft_exit(t_cmd *cmd)
+
+static int	exit_status(long long value, char *str)
 {
-	g_status = 0;
-	if (cmd->cmd[1] && !ft_isdigit(cmd->cmd[1][0]))
+	if (value == 0 && check_overflow(str) == TRUE)
 	{
-		ft_putstr_fd(2, "exit: Numeric argument required\n");
-		g_status = 2;
-		exit(g_status);
+		error_exit(str);
+		return (2);
 	}
-	else if (count_args_2d(cmd->cmd) > 2)
+	else if (value == 256 || value == -256)
 	{
-		ft_putstr_fd(2, "exit: Too many arguments\n");
-		g_status = 1;
+		g_status = 0;
+		return (0);
 	}
-	else if (!cmd->cmd[1])
-		exit(g_status);
+	else if (value > 256)
+		return (value % 256);
+	else if (value < 0 && value > -256)
+		return (256 + value);
+	else if (value < -256)
+		return (256 + (value % 256));
 	else
-	{
-		if (!ft_strncmp(cmd->cmd[1], "-1", 2))
-			g_status = 255;
-		else if (!ft_strncmp(cmd->cmd[1], "256", 3))
-			g_status = 0;
-		else
-			g_status = ft_atoi(cmd->cmd[1]);
-		exit(g_status);
-	}
-}*/
+		return (value);
+}
+
+void	ft_exit(t_cmd *cmd, t_data *lst, t_mini *mini)
+{
+	long long	value;
+
+	if (syntax_error_exit(cmd->cmd) == TRUE)
+		return ;
+	value = ft_atoll(cmd->cmd[1]);
+	g_status = exit_status(value, cmd->cmd[1]);
+	free_all(lst, mini);
+	exit (g_status);
+}
