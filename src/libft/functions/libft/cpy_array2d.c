@@ -20,7 +20,7 @@ char	**cpy_array2d(char **array2d)
 	i = 0;
 	if (array2d == NULL)
 		return (NULL);
-	cpy = malloc (sizeof(char *) * count_args_2d(array2d));
+	cpy = malloc (sizeof(char *) * (count_args_2d(array2d) + 1));
 	if (!cpy || !array2d)
 		return (NULL);
 	while (array2d[i])
@@ -29,6 +29,6 @@ char	**cpy_array2d(char **array2d)
 		ft_strcpy(cpy[i], array2d[i]);
 		i++;
 	}
-	cpy[i - 1] = NULL;
+	cpy[i] = NULL;
 	return (cpy);
 }

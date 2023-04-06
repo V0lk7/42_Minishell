@@ -33,13 +33,12 @@ static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 		return (NULL);
 	}
 	tmp = cmdline;
-	/*
 	while (tmp)
 	{
 		if (tmp->name == COMMAND)
 			expansion(&tmp->data.cmd);
 		tmp = tmp->next;
-	}*/
+	}
 	cmdline = command_manager(&cmdline);
 	return (cmdline);
 }

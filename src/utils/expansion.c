@@ -14,22 +14,33 @@ static void	find_dollar(t_cmd *cmd, char *dollar, int index)
 	j = 1;
 	while (++i < count_c(dollar, '$'))
 	{
-		if (i != 0)
-			c_dollar += search_c(ft_substr(dollar, c_dollar + 1, ft_strlen(dollar)), '$') + 1;
-		while (ft_isalpha(dollar[j]) != 0 || dollar[j] == '_' || ft_isdigit(dollar[j]) != 0)
+		while (dollar[j] && dollar[j] != '$')
 			j++;
-		ft_printf("%s\n", ft_substr(dollar, c_dollar + 1, j));
-		if (find_in(cmd->mini->envp_cpy, ft_substr(dollar, c_dollar + 1, j)) != -1)
+		if (i)
 		{
-			find = find_in(cmd->mini->envp_cpy, ft_substr(dollar, c_dollar + 1, j));
-			if (!c_dollar)
+			c_dollar += search_c(ft_substr(dollar, c_dollar + 1, ft_strlen(dollar)), '$') + 1;
+			j++;
+		}
+		else
+			j--;
+		ft_printf("STR %c\n", dollar[j]);
+		ft_printf("J %d\n", j);
+		ft_printf("%s\n", ft_substr(dollar, c_dollar + 1, j));
+		if (find_expansion_array(cmd->mini->envp_cpy, ft_substr(dollar, c_dollar + 1, j)) != -1)
+		{
+			find = find_expansion_array(cmd->mini->envp_cpy, ft_substr(dollar, c_dollar + 1, j));
+			if (!i)
 				cmd->cmd[index] = ft_strjoin("", ft_substr(cmd->mini->envp_cpy[find], search_c(cmd->mini->envp_cpy[find], '=') + 1, ft_strlen(cmd->mini->envp_cpy[find])));
 			else
 				cmd->cmd[index] = ft_strjoin(cmd->cmd[index], ft_substr(cmd->mini->envp_cpy[find], search_c(cmd->mini->envp_cpy[find], '=') + 1, ft_strlen(cmd->mini->envp_cpy[find])));
-			break ;
 		}
 		else
-			cmd->cmd[index] = ft_strdup("");
+		{
+			if (!i)
+				cmd->cmd[index] = ft_strdup("");
+			else
+				cmd->cmd[index] = ft_strjoin(cmd->cmd[index], "");
+		}
 	}
 }
 
