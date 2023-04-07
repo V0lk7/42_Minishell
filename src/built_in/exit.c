@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:56:15 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/05 10:04:42 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/07 13:41:42 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,18 @@ static t_bool	check_overflow(const char *str)
 	return (FALSE);
 }
 
-static int	syntax_error_exit(char **cmd)
+static t_bool	syntax_error_exit(char **cmd)
 {
 	if (cmd[1] == NULL)
 	{
 		g_status = 0;
-		exit(g_status);
+		return (TRUE);
 	}
 	if (non_numeric_args(cmd[1]) == TRUE)
 	{
 		ft_putstr_fd(2, "exit: Numeric argument required\n");
 		g_status = 2;
-		exit(g_status);
+		return (TRUE);
 	}
 	else if (count_args_2d(cmd) > 2)
 	{
@@ -97,7 +97,10 @@ void	ft_exit(t_cmd *cmd, t_data *lst, t_mini *mini)
 	long long	value;
 
 	if (syntax_error_exit(cmd->cmd) == TRUE)
-		return ;
+	{
+		free_all(lst, mini);
+		exit (g_status);
+	}
 	value = ft_atoll(cmd->cmd[1]);
 	g_status = exit_status(value, cmd->cmd[1]);
 	free_all(lst, mini);
