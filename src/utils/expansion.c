@@ -1,22 +1,25 @@
 #include "../../includes/utils.h"
 
+static void	replace_first_arg(t_cmd *cmd, char *substr, int index, int find)
+{
+	if (find == -1)
+	{
+		cmd->cmd[index] = ft_strdup("");
+		return ;
+	}
+	substr = ft_substr(cmd->mini->envp_cpy[find],
+			search_c(cmd->mini->envp_cpy[find], '=') + 1,
+			ft_strlen(cmd->mini->envp_cpy[find]));
+	cmd->cmd[index] = substr;
+}
+
 static void	replace_dollar(t_cmd *cmd, char *substr, int index, int i)
 {		
 	int	find;
 
 	find = find_expansion_array(cmd->mini->envp_cpy, substr);
 	if (!i)
-	{
-		if (find == -1)
-		{
-			cmd->cmd[index] = ft_strdup("");
-			return ;
-		}
-		substr = ft_substr(cmd->mini->envp_cpy[find],
-				search_c(cmd->mini->envp_cpy[find], '=') + 1,
-				ft_strlen(cmd->mini->envp_cpy[find]));
-		cmd->cmd[index] = substr;
-	}
+		replace_first_arg(cmd, substr, index, find);
 	else
 	{
 		if (find == -1)
@@ -39,9 +42,9 @@ static void	find_dollar(t_cmd *cmd, char *dollar, int index)
 	int		j;
 
 	c_dollar = search_c(dollar, '$');
-	i = 0;
+	i = -1;
 	j = c_dollar + 1;
-	while (i < count_c(dollar, '$'))
+	while (++i < count_c(dollar, '$'))
 	{
 		while (dollar[j] && dollar[j] != '$')
 			j++;
@@ -57,7 +60,6 @@ static void	find_dollar(t_cmd *cmd, char *dollar, int index)
 			replace_dollar(cmd, substr, index, i);
 		else if (!i)
 			cmd->cmd[index] = ft_strdup("");
-		i++;
 	}
 }
 
