@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:42:35 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/26 16:21:56 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/06 10:58:26 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static void	join_export(t_mini *mini, char *export)
 	if (mini->envp_cpy[i][ft_strlen(mini->envp_cpy[i])] == '\0'
 		&& search_c(mini->envp_cpy[i], '=') == -1)
 		cpy = ft_strjoin("=", cpy);
+	free(mini->envp_cpy[i]);
 	mini->envp_cpy[i] = ft_strjoin(mini->envp_cpy[i], cpy);
 	free(cpy);
 }

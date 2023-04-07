@@ -6,11 +6,12 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:46:10 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/26 15:59:11 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/07 18:09:04 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/built_in.h"
+#include "../libft/include/libft.h"
 
 static char	**realloc_unset(char **envp_cpy, int unset)
 {
@@ -37,6 +38,28 @@ static char	**realloc_unset(char **envp_cpy, int unset)
 	return (array);
 }
 
+static t_bool	find_variable(char *str, char *cmd)
+{
+	int	equal;
+	int	len;
+
+	equal = search_c(str, '=');
+	len = (int)ft_strlen(cmd);
+	if (equal < 0)
+	{
+		if (len != (int)ft_strlen(str))
+			return (FALSE);
+		else if (ft_strncmp(str, cmd, len) == 0)
+			return (TRUE);
+		return (FALSE);
+	}
+	if (len != equal)
+		return (FALSE);
+	if (ft_strncmp(str, cmd, len) == 0)
+		return (TRUE);
+	return (FALSE);
+}
+
 void	ft_unset(t_cmd *cmd)
 {
 	int		i;
@@ -46,11 +69,12 @@ void	ft_unset(t_cmd *cmd)
 	length = count_args_2d(cmd->cmd);
 	if (length != 2 || !cmd->cmd[0] || !cmd->cmd[1])
 		return ;
-	while (cmd->mini->envp_cpy[i]
-		&& ft_strncmp(cmd->cmd[1], cmd->mini->envp_cpy[i],
-			ft_strlen(cmd->cmd[1])))
+	while (cmd->mini->envp_cpy[i])
+	{
+		if (find_variable(cmd->mini->envp_cpy[i], cmd->cmd[1]) == TRUE)
+			break ;
 		i++;
-	if (!cmd->mini->envp_cpy[i])
-		return ;
-	cmd->mini->envp_cpy = realloc_unset(cmd->mini->envp_cpy, i);
+	}
+	if (cmd->mini->envp_cpy[i] != NULL)
+		cmd->mini->envp_cpy = realloc_unset(cmd->mini->envp_cpy, i);
 }
