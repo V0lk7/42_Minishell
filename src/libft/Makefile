@@ -6,13 +6,13 @@
 #    By: jduval <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 13:18:12 by jduval            #+#    #+#              #
-#    Updated: 2023/04/04 15:24:22 by jduval           ###   ########.fr        #
+#    Updated: 2023/04/07 17:36:35 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= libft.a
 
-CFLAGS		:= -Wall -Werror -Wextra
+CFLAGS		:= -Wall -Werror -Wextra -ggdb3
 
 CPPFLAGS	:= -MMD -MP -I ./include 
 
