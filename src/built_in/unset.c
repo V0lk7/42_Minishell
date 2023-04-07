@@ -20,7 +20,7 @@ static char	**realloc_unset(char **envp_cpy, int unset)
 
 	i = 0;
 	j = 0;
-	array = malloc(sizeof(char *) * count_args_2d(envp_cpy));
+	array = malloc(sizeof(char *) * count_args_2d(envp_cpy) + 1);
 	while (envp_cpy[i])
 	{
 		if (i == unset && unset == count_args_2d(envp_cpy) - 1)
@@ -33,6 +33,7 @@ static char	**realloc_unset(char **envp_cpy, int unset)
 		j++;
 	}
 	array[j] = NULL;
+	free_array2d(envp_cpy);
 	return (array);
 }
 

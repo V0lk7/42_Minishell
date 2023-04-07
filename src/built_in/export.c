@@ -18,16 +18,14 @@ static char	**add_export(t_mini *mini, char *export)
 	int		i;
 	int		length;
 
-	i = 0;
+	i = -1;
 	length = count_args_2d(mini->envp_cpy);
 	cpy = malloc(sizeof(char *) * (length + 2));
-	while (i < length)
-	{
+	while (++i < length)
 		cpy[i] = ft_strdup(mini->envp_cpy[i]);
-		i++;
-	}
 	cpy[i] = ft_strdup(export);
 	cpy[i + 1] = NULL;
+	free_array2d(mini->envp_cpy);
 	return (cpy);
 }
 
@@ -74,18 +72,18 @@ static void	join_export(t_mini *mini, char *export)
 			break ;
 	}
 	cpy = malloc(sizeof(char) * (ft_strlen(export) - equal + 1));
-	j = 0;
-	while (equal < (int)ft_strlen(export))
+	j = -1;
+	while (++j && equal < (int)ft_strlen(export))
 	{
 		cpy[j] = export[equal];
 		equal++;
-		j++;
 	}
 	cpy[j] = '\0';
 	if (mini->envp_cpy[i][ft_strlen(mini->envp_cpy[i])] == '\0'
 		&& search_c(mini->envp_cpy[i], '=') == -1)
 		cpy = ft_strjoin("=", cpy);
 	mini->envp_cpy[i] = ft_strjoin(mini->envp_cpy[i], cpy);
+	free(cpy);
 }
 
 static void	ifs_export(t_cmd *cmd, int equal, int i)
