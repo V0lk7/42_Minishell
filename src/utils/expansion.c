@@ -1,6 +1,24 @@
 #include "../../includes/utils.h"
 
-static void	replace_first_arg(t_cmd *cmd, char *substr, int index, int find)
+static int	replace_after_arg(t_cmd *cmd, char *dollar, int index, int j)
+{
+	char	*substr;
+	int		next_dollar;
+
+	if (dollar[j - 1] != '$' && dollar[j - 1] != '\0')
+	{
+		substr = ft_substr(dollar, j - 1, ft_strlen(dollar));
+		next_dollar = search_c(substr, '$');
+		if (next_dollar != -1)
+			substr = ft_substr(dollar, j - 1, next_dollar);
+		cmd->cmd[index] = ft_strjoin(cmd->cmd[index], substr);
+		free(substr);
+		return (ft_strlen(substr));
+	}
+	return (0);
+}
+
+static void	replace_before_arg(t_cmd *cmd, char *substr, int index, int find)
 {
 	if (find == -1)
 	{
@@ -19,7 +37,7 @@ static void	replace_dollar(t_cmd *cmd, char *substr, int index, int i)
 
 	find = find_expansion_array(cmd->mini->envp_cpy, substr);
 	if (!i)
-		replace_first_arg(cmd, substr, index, find);
+		replace_before_arg(cmd, substr, index, find);
 	else
 	{
 		if (find == -1)
@@ -30,6 +48,8 @@ static void	replace_dollar(t_cmd *cmd, char *substr, int index, int i)
 		substr = ft_substr(cmd->mini->envp_cpy[find],
 				search_c(cmd->mini->envp_cpy[find], '=') + 1,
 				ft_strlen(cmd->mini->envp_cpy[find]));
+		if (!substr)
+			return ;
 		cmd->cmd[index] = ft_strjoin(cmd->cmd[index], substr);
 	}
 }
@@ -46,11 +66,11 @@ static void	find_dollar(t_cmd *cmd, char *dollar, int index)
 	j = c_dollar + 1;
 	while (++i < count_c(dollar, '$'))
 	{
-		while (dollar[j] && dollar[j] != '$')
+		while ((dollar[j] && dollar[j] != '$' && (ft_isalpha(dollar[j])
+					|| ft_isdigit(dollar[j]) || dollar[j] == '_')))
 			j++;
 		if (i)
 		{
-			free(substr);
 			substr = ft_substr(dollar, c_dollar + 1, ft_strlen(dollar));
 			c_dollar += search_c(substr, '$') + 1;
 		}
@@ -60,6 +80,8 @@ static void	find_dollar(t_cmd *cmd, char *dollar, int index)
 			replace_dollar(cmd, substr, index, i);
 		else if (!i)
 			cmd->cmd[index] = ft_strdup("");
+		j += replace_after_arg(cmd, dollar, index, j);
+		free(substr);
 	}
 }
 
@@ -79,11 +101,13 @@ void	expansion(t_cmd *cmd)
 				join = ft_substr(cmd->cmd[i], 0, c_dollar);
 		}
 		find_dollar(cmd, cmd->cmd[i], i);
-		if (i && c_dollar > 0)
+		if (i)
 		{
-			cmd->cmd[i] = ft_strjoin(join, cmd->cmd[i]);
-			if (join)
+			if (c_dollar > 0)
+			{
+				cmd->cmd[i] = ft_strjoin(join, cmd->cmd[i]);
 				free(join);
+			}
 		}
 	}
 }

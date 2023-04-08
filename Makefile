@@ -49,15 +49,16 @@ SRCS		+=	process/history.c				process/main.c						\
 				process/pipeline_execution.c	process/here_doc.c					\
 				process/signals.c				process/utils_pipeline.c			\
 
-SRCS		+=	utils/split_by_pipe_utils.c											\
-				utils/list_utils.c													\
+SRCS		+=	utils/command_data_utils.c											\
 				utils/data_by_line_utils.c											\
-				utils/make_command_utils.c											\
-				utils/command_data_utils.c											\
 				utils/errors.c														\
-				utils/list_utils2.c													\
 				utils/expansion.c													\
+      			utils/expansion_quotes.c											\
 				utils/hdoc_utils.c													\
+				utils/list_utils.c													\
+				utils/list_utils2.c													\
+				utils/make_command_utils.c											\
+				utils/split_by_pipe_utils.c											\
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 
