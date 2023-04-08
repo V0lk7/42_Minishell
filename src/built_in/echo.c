@@ -63,9 +63,7 @@ void	ft_echo(t_cmd *cmd)
 	}
 	while (cmd->cmd[i])
 	{
-		if (cmd->cmd[i] && !ft_strncmp(cmd->cmd[i], "$?", 2))
-			ft_printf("%d\n", g_status);
-		else if (count_flags(cmd->cmd))
+		if (count_flags(cmd->cmd))
 			ft_printf("%s", cmd->cmd[i]);
 		else if (!count_flags(cmd->cmd))
 			without_flag(cmd->cmd, i);

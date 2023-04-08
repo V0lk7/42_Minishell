@@ -54,6 +54,7 @@ SRCS		+=	utils/command_data_utils.c											\
 				utils/errors.c														\
 				utils/expansion.c													\
       			utils/expansion_quotes.c											\
+      			utils/expansion_utils.c	 											\
 				utils/hdoc_utils.c													\
 				utils/list_utils.c													\
 				utils/list_utils2.c													\

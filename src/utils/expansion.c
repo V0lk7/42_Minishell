@@ -36,6 +36,11 @@ static void	replace_dollar(t_cmd *cmd, char *substr, int index, int i)
 	int	find;
 
 	find = find_expansion_array(cmd->mini->envp_cpy, substr);
+	if (!ft_strncmp(substr, "?", 1))
+	{
+		interrogation_dollar(cmd, i, index);
+		return ;
+	}
 	if (!i)
 		replace_before_arg(cmd, substr, index, find);
 	else
@@ -66,22 +71,32 @@ static void	find_dollar(t_cmd *cmd, char *dollar, int index)
 	j = c_dollar + 1;
 	while (++i < count_c(dollar, '$'))
 	{
-		while ((dollar[j] && dollar[j] != '$' && (ft_isalpha(dollar[j])
-					|| ft_isdigit(dollar[j]) || dollar[j] == '_')))
-			j++;
-		if (i)
+		if (dollar[j - 1] == '$' && !ft_isalnum(dollar[j]))
 		{
-			substr = ft_substr(dollar, c_dollar + 1, ft_strlen(dollar));
-			c_dollar += search_c(substr, '$') + 1;
+			if (!i)
+				cmd->cmd[index] = ft_strdup("$");
+			else
+				cmd->cmd[index] = ft_strjoin(cmd->cmd[index], "$");
 		}
-		substr = ft_substr(dollar, c_dollar + 1, j - c_dollar - 1);
-		j++;
-		if (find_expansion_array(cmd->mini->envp_cpy, substr) != 0)
-			replace_dollar(cmd, substr, index, i);
-		else if (!i)
-			cmd->cmd[index] = ft_strdup("");
-		j += replace_after_arg(cmd, dollar, index, j);
-		free(substr);
+		else
+		{
+			while ((dollar[j] && dollar[j] != '$' && (ft_isalnum(dollar[j])
+						|| dollar[j] == '_' || dollar[j] == '?')))
+				j++;
+			if (i)
+			{
+				substr = ft_substr(dollar, c_dollar + 1, ft_strlen(dollar));
+				c_dollar += search_c(substr, '$') + 1;
+			}
+			substr = ft_substr(dollar, c_dollar + 1, j - c_dollar - 1);
+			j++;
+			if (find_expansion_array(cmd->mini->envp_cpy, substr) != 0)
+				replace_dollar(cmd, substr, index, i);
+			else if (!i)
+				cmd->cmd[index] = ft_strdup("");
+			j += replace_after_arg(cmd, dollar, index, j);
+			free(substr);
+		}
 	}
 }
 

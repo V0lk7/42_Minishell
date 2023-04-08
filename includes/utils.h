@@ -55,6 +55,7 @@ void	error_exit(char *str);
 
 /*--------$-------*/
 void	expansion(t_cmd *cmd);
+void	interrogation_dollar(t_cmd *cmd, int i, int index);
 
 /*--------hdoc_utils.c-------*/
 int		create_tmp_hdoc(t_red *node);
