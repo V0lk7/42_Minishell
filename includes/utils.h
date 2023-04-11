@@ -55,6 +55,7 @@ void	error_exit(char *str);
 
 /*--------$-------*/
 void	expansion(t_cmd *cmd);
+int		expansion_simple_quote(t_cmd *cmd, char *str, int index, int value_i);
 void	interrogation_dollar(t_cmd *cmd, int i, int index);
 
 /*--------hdoc_utils.c-------*/

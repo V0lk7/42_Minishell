@@ -34,9 +34,11 @@ int	errors_command(t_cmd *cmd)
 
 void	command_not_found(char *cmd)
 {
-	ft_putstr_fd(2, "😈 Minishell 😈 : Command '");
+	if (!ft_strcmp(cmd, ""))
+		return ;
+	ft_putstr_fd(2, "😈 Minishell 😈: ");
 	ft_putstr_fd(2, cmd);
-	ft_putstr_fd(2, "' not found\n");
+	ft_putstr_fd(2, ": command not found\n");
 }
 
 void	command_is_directory(char *cmd)
