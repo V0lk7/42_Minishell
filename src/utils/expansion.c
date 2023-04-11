@@ -107,7 +107,7 @@ void	expansion(t_cmd *cmd)
 	int		i;
 
 	i = -1;
-	while (++i < count_args_2d(cmd->cmd))
+	while (cmd->cmd[++i])
 	{
 		if (i)
 		{

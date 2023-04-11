@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:42:35 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/06 10:58:26 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/11 09:22:03 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,17 @@ static void	ifs_export(t_cmd *cmd, int equal, int i)
 
 void	ft_export(t_cmd *cmd)
 {
-	int	i;
-	int	equal;
+	int		i;
+	int		equal;
+	char	**sorted;
 
 	i = 1;
 	if (!cmd->cmd[1])
-		print_export(sort_export(cmd->mini));
+	{
+		sorted = sort_export(cmd->mini);
+		print_export(sorted);
+		free_array2d(sorted);
+	}
 	else if (cmd->cmd[1])
 	{
 		while (cmd->cmd[i] && verif_export(cmd->cmd[i]))

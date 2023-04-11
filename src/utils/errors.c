@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:59:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/05 14:11:32 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/11 11:23:25 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	errors_command(t_cmd *cmd)
 
 void	command_not_found(char *cmd)
 {
-	ft_putstr_fd(2, "😈 Minishell 😈 : Command '");
+	ft_putstr_fd(2, "command '");
 	ft_putstr_fd(2, cmd);
 	ft_putstr_fd(2, "' not found\n");
 }
