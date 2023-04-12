@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:57:41 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/05 14:19:02 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:00:35 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	free_all_nodes(t_data **head)
 		tmp = *head;
 		if (tmp->name == REDIRECT)
 		{
-			free((*head)->data.rdict.file);
+			free_array2d(tmp->data.rdict.file);
 			if (tmp->data.rdict.way == HDOC)
 			{
 				if (tmp->data.rdict.r_fd > 0)

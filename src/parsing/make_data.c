@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 12:04:02 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/23 18:12:46 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:10:59 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,17 @@ t_data	*create_node_redirect(const char *str, int *i, int tmp, int index)
 {
 	t_data	*node;
 	int		len;
-	char	*file;
+	char	**file;
 
 	*i = rafter_index(str, *i);
 	len = normal_word_lengh(str, *i);
-	file = ft_substr(str, *i, len + 1);
+	file = malloc(sizeof(char *) * 2);
 	if (file == NULL)
 		return (NULL);
+	file[0] = ft_substr(str, *i, len + 1);
+	if (file == NULL)
+		return (NULL);
+	file[1] = NULL;
 	node = new_node_redirect(REDIRECT, file, rafter_id(str, tmp), index);
 	if (node == NULL)
 		return (NULL);

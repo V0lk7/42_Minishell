@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:53:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/31 15:43:49 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/12 12:23:09 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ char	**make_array_path(char **envp);
 /*-------make_path.c-------*/
 t_data	*command_manager(t_data	**head);
 int		type_of_command(t_cmd *cmd, t_mini *utils);
+/*-------quote_removal.c-------*/
+int		quote_removal(t_data *lst);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:07:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/11 09:51:54 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/12 12:26:21 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	display_lst(t_data *data, int flag);
 static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 {
 	t_data	*cmdline;
-	t_data	*tmp;
+	//t_data	*tmp;
 
 	mini->path = make_array_path(envp);
 	if (mini->path == NULL)
@@ -32,13 +32,15 @@ static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 		free_array2d(mini->path);
 		return (NULL);
 	}
-	tmp = cmdline;
+/*	tmp = cmdline;
 	while (tmp)
 	{
 		if (tmp->name == COMMAND)
 			expansion(&tmp->data.cmd);
 		tmp = tmp->next;
-	}
+	}*/
+	if (quote_removal(cmdline) < -1)
+		return (cmdline);
 	cmdline = command_manager(&cmdline);
 	return (cmdline);
 }
@@ -76,7 +78,7 @@ void	minishell_management(char *line, t_mini *mini, char **envp)
 		return ;
 	}
 	execution_management(cmdline, mini, &fds);
-	display_lst(cmdline, 0);
+	display_lst(cmdline, 1);
 	free_all_nodes(&cmdline);
 	free_array2d(mini->path);
 	return ;
@@ -95,12 +97,12 @@ static void	display_lst(t_data *data, int flag)
 		if (tmp->name == REDIRECTION)
 		{
 			if (tmp->data.rdict.way == HDOC)
-				display_hdoc(tmp->data.rdict.file, tmp->data.rdict.input);
+				display_hdoc(tmp->data.rdict.file[0], tmp->data.rdict.input);
 			else
 			{
 				ft_printf("-----|REDIRECTION|-----\n");
 				ft_printf("-----|INDEX = %i|-----\n", tmp->index);
-				ft_printf("|-|file = %s|-|\n", tmp->data.rdict.file);
+				ft_printf("|-|file = %s|-|\n", tmp->data.rdict.file[0]);
 				ft_printf("|-|WAY = %i|-|\n", tmp->data.rdict.way);
 				ft_printf("|-|fd = %i|-|\n", tmp->data.rdict.r_fd);
 				ft_printf("|-|fd = %i|-|\n", tmp->data.rdict.w_fd);
@@ -122,7 +124,7 @@ static void	display_lst(t_data *data, int flag)
 
 static void	display_hdoc(char *file, t_hdoc *hdoc)
 {
-	ft_printf("file = %s\n", file);
+	ft_printf("------|HDOC|------\nfile = %s\n", file);
 	while (hdoc != NULL)
 	{
 		ft_printf("\n|last = %i|\n", hdoc->last);

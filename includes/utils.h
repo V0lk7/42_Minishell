@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:14:38 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/05 10:02:52 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:02:50 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /*--------list_utils.c-------*/
 t_data	*new_node_command(char **array, t_mini *utils, int index);
-t_data	*new_node_redirect(t_class name, char *file, t_way way, int index);
+t_data	*new_node_redirect(t_class name, char **file, t_way way, int index);
 void	add_back_node(t_data **head, t_data *node);
 t_data	*reach_last_node(t_data *head);
 int		type_of_cmd(t_data *lst);
@@ -44,7 +44,7 @@ int		pass_next_word(const char *str, int i);
 char	**fill_array_cmd(const char *str, int words);
 
 /*--------command_data_utils.c-------*/
-int		type_of_file(char *str);
+int		type_of_file(char *str, int index);
 
 /*--------errors.c-------*/
 int		errors_command(t_cmd *cmd);

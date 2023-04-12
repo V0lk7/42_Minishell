@@ -46,6 +46,7 @@ static int	*is_quoted(char *str, int start, int end)
 		}
 
 	}
+	free(dollar);
 }
 
 void	split_expansion(t_cmd *cmd, char *str, int index)
