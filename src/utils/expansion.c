@@ -103,6 +103,7 @@ static void	find_dollar(t_cmd *cmd, char *dollar, int index)
 			}
 		}
 	}
+	free(dollar);
 }
 
 void	expansion(t_cmd *cmd)

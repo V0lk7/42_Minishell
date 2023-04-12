@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:17:14 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/05 13:53:40 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:09:27 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_data	*redirection_management(t_data *lst, t_fd *fds, int index)
 int	in_redirection(t_red *rdict, t_fd *fds)
 {
 	if (rdict->way == IN)
-		fds->read = open(rdict->file, O_RDONLY);
+		fds->read = open(rdict->file[0], O_RDONLY);
 	else
 		fds->read = rdict->r_fd;
 	if (fds->read == -1)
@@ -101,9 +101,9 @@ int	in_redirection(t_red *rdict, t_fd *fds)
 int	out_redirection(t_red *rdict, t_fd *fds)
 {
 	if (rdict->way == OUT)
-		fds->write = open(rdict->file, O_CREAT | O_TRUNC | O_WRONLY, 0644);
+		fds->write = open(rdict->file[0], O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	else
-		fds->write = open(rdict->file, O_CREAT | O_APPEND | O_WRONLY, 0644);
+		fds->write = open(rdict->file[0], O_CREAT | O_APPEND | O_WRONLY, 0644);
 	if (fds->write == -1)
 	{
 		perror("😈 Minishell 😈 ");

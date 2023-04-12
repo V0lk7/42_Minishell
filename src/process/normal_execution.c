@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:30:42 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/05 15:41:05 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/11 13:25:07 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../../includes/utils.h"
 #include "../../includes/built_in.h"
 #include "../../includes/enum.h"
+#include "../../includes/clear.h"
 #include <errno.h>
 
 static int	cmd_exec_part(t_data *tmp, t_mini *mini)

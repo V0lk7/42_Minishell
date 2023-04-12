@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:37:20 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/31 12:45:58 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/11 15:56:38 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_data	*new_node_command(char **array, t_mini *utils, int index)
 	return (node);
 }
 
-t_data	*new_node_redirect(t_class name, char *file, t_way way, int index)
+t_data	*new_node_redirect(t_class name, char **file, t_way way, int index)
 {
 	t_data	*node;
 

@@ -6,27 +6,27 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 13:58:52 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/05 13:28:08 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:15:37 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/process.h"
 #include "../../includes/utils.h"
 
-static int	hdoc_node_create(char *limits, char *str, t_hdoc **head, int line)
+static int	hdoc_node_create(char **limits, char *str, t_hdoc **head, int line)
 {
 	int		flag;
 	size_t	len;
 	t_hdoc	*node;
 
-	len = ft_strlen(limits);
+	len = ft_strlen(limits[0]);
 	flag = 0;
 	if (str == NULL
-		|| (ft_strncmp(str, limits, len) == 0 && len == ft_strlen(str)))
+		|| (ft_strncmp(str, limits[0], len) == 0 && len == ft_strlen(str)))
 	{
 		flag = 1;
 		if (str == NULL)
-			ctrl_d_hdoc(limits, line);
+			ctrl_d_hdoc(limits[0], line);
 		str = ft_calloc(1, sizeof(char));
 		if (str == NULL)
 			return (-1);

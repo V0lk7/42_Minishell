@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/05 14:20:16 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/11 15:54:24 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_hdoc
 
 typedef struct s_red
 {
-	char	*file;
+	char	**file;
 	t_way	way;
 	t_hdoc	*input;
 	int		r_fd;

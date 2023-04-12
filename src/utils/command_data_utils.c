@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 11:01:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/04 12:29:36 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/11 14:09:39 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../include/libft.h"
 #include <dirent.h>
 
-int	type_of_file(char *str)
+int	type_of_file(char *str, int index)
 {
 	DIR	*directory;
 	int	valid;
@@ -23,10 +23,14 @@ int	type_of_file(char *str)
 	if (valid == -1)
 		return (valid);
 	directory = opendir(str);
-	if (directory == NULL)
-		return (0);
-	if (ft_strncmp(str, "./", 2) != 0)
+	if (directory != NULL)
+	{
+		closedir(directory);
+		if (ft_strncmp(str, "./", 2) == 0)
+			return (-1);
+		return (-2);
+	}
+	else if (valid == 0 && index == 0 && ft_strncmp(str, "./", 2) != 0)
 		return (-1);
-	closedir(directory);
-	return (-2);
+	return (valid);
 }

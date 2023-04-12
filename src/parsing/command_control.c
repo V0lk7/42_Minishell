@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:02:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/05 14:26:03 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/11 14:53:34 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ static int	is_cmd_valid(char *cmd, char *arg, char **path)
 
 	i = 0;
 	len = ft_strlen(cmd);
+	if (len == 0)
+		return (-1);
 	ft_strlcpy(arg, cmd, len + 1);
-	valid = type_of_file(arg);
+	valid = type_of_file(arg, i);
 	if (valid == -2 || ft_strncmp(arg, "./", 2) == 0)
 		return (valid);
 	else if (valid == 0 && ft_strncmp(arg, "./", 2) != 0)
@@ -60,7 +62,7 @@ static int	is_cmd_valid(char *cmd, char *arg, char **path)
 		ft_strlcpy(arg, path[i], len + 1);
 		len += ft_strlen(arg) + 1;
 		ft_strlcat(arg, cmd, len);
-		valid = type_of_file(arg);
+		valid = type_of_file(arg, i);
 		i++;
 	}
 	return (valid);
