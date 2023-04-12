@@ -1,134 +1,91 @@
 #include "../../includes/utils.h"
+#define SIMPLE '\''
+#define DOUBLE '"'
 
-static int	replace_after_arg(t_cmd *cmd, char *dollar, int index, int j)
+
+
+int	next_carac(char *str, int start)
+{
+	int	i;
+
+	i = 0;
+	while (str[++start])
+		if (str[start] == '$')
+			return (start);
+	return (-1);
+}
+
+static int	*is_quoted(char *str, int start, int end)
 {
 	char	*substr;
-	int		next_dollar;
+	int		i;
+	int		j;
+	int		simple_q[2];
+	int		double_q[2];
 
-	if (dollar[j - 1] != '$' && dollar[j - 1] != '\0')
+	i = 0;
+	j = 0;
+	while (str[i])
 	{
-		substr = ft_substr(dollar, j - 1, ft_strlen(dollar));
-		next_dollar = search_c(substr, '$');
-		if (next_dollar != -1)
-			substr = ft_substr(dollar, j - 1, next_dollar);
-		cmd->cmd[index] = ft_strjoin(cmd->cmd[index], substr);
-		free(substr);
-		return (ft_strlen(substr));
-	}
-	return (0);
-}
-
-static void	replace_before_arg(t_cmd *cmd, char *substr, int index, int find)
-{
-	if (find == -1)
-	{
-		cmd->cmd[index] = ft_strdup("");
-		return ;
-	}
-	substr = ft_substr(cmd->mini->envp_cpy[find],
-			search_c(cmd->mini->envp_cpy[find], '=') + 1,
-			ft_strlen(cmd->mini->envp_cpy[find]));
-	cmd->cmd[index] = substr;
-}
-
-static void	replace_dollar(t_cmd *cmd, char *substr, int index, int i)
-{		
-	int	find;
-
-	find = find_expansion_array(cmd->mini->envp_cpy, substr);
-	if (!ft_strncmp(substr, "?", 1))
-	{
-		interrogation_dollar(cmd, i, index);
-		return ;
-	}
-	if (!i)
-		replace_before_arg(cmd, substr, index, find);
-	else
-	{
-		if (find == -1)
+		if (str[i] == '\'' || str[i] == '"')
 		{
-			cmd->cmd[index] = ft_strjoin(cmd->cmd[index], "");
-			return ;
+			if (str[i] == '\'')
+			{
+				simple_q[j] = i;
+				j++;
+				if (j == 2)
+					return (simple_q);
+			}
+			if (str[i] == '"')
+			{
+				double_q[j] = i;
+				j++;
+				if (j == 2)
+					return (double_q);
+			}
 		}
-		substr = ft_substr(cmd->mini->envp_cpy[find],
-				search_c(cmd->mini->envp_cpy[find], '=') + 1,
-				ft_strlen(cmd->mini->envp_cpy[find]));
-		if (!substr)
-			return ;
-		cmd->cmd[index] = ft_strjoin(cmd->cmd[index], substr);
+
 	}
 }
 
-static void	find_dollar(t_cmd *cmd, char *dollar, int index)
+void	split_expansion(t_cmd *cmd, char *str, int index)
 {
-	char	*substr;
-	int		c_dollar;
+	char	**array;
+	char	*tmp;
+	int		*quoted;
 	int		i;
 	int		j;
 
-	c_dollar = search_c(dollar, '$');
-	i = -1;
-	j = c_dollar + 1;
-	while (++i < count_c(dollar, '$'))
+	(void)index;
+	i = 0;
+	j = 0;
+	array = malloc(sizeof (char *) * count_args_2d(cmd->cmd));
+	quoted = malloc(sizeof (int *) * count_args_2d(cmd->cmd));
+	while (str[i])
 	{
-		if (count_c(dollar, '\'') > 0)
-			expansion_simple_quote(cmd, dollar, index, i);
-		else
+		if (str[i] == '$')
 		{
-			if (dollar[j - 1] == '$' && !ft_isalnum(dollar[j]) && dollar[j] != '?')
-			{
-				if (!i)
-					cmd->cmd[index] = ft_strdup("$");
-				else
-					cmd->cmd[index] = ft_strjoin(cmd->cmd[index], "$");
-			}
-			else
-			{
-				while ((dollar[j] && dollar[j] != '$' && (ft_isalnum(dollar[j])
-							|| dollar[j] == '_' || dollar[j] == '?')))
-					j++;
-				if (i)
-				{
-					substr = ft_substr(dollar, c_dollar + 1, ft_strlen(dollar));
-					c_dollar += search_c(substr, '$') + 1;
-				}
-				substr = ft_substr(dollar, c_dollar + 1, j - c_dollar - 1);
-				j++;
-				if (find_expansion_array(cmd->mini->envp_cpy, substr) != 0)
-					replace_dollar(cmd, substr, index, i);
-				else if (!i)
-					cmd->cmd[index] = ft_strdup("");
-				j += replace_after_arg(cmd, dollar, index, j);
-				free(substr);
-			}
+			tmp = ft_substr(str, i + 1, next_carac(str, i) - 1);
+			quoted[j] = is_quoted(str, i, next_carac(str, i));
+			array[j] = tmp;
+			ft_printf("STR %s\n", str);
+			ft_printf("START %d\n", i);
+			ft_printf("END %d\n", next_carac(str, i) - 1);
+			ft_printf("TMP %s\n", tmp);
+			ft_printf("------------------------------\n");
+			i += ((next_carac(str, i) - 1) - i);
+			free(tmp);
+			j++;
 		}
+			i++;
 	}
 }
 
 void	expansion(t_cmd *cmd)
 {
-	char	*join;
-	int		c_dollar;
-	int		i;
+	int	i;
 
-	i = -1;
+	i = 0;
 	while (cmd->cmd[++i])
-	{
-		if (i)
-		{
-			c_dollar = search_c(cmd->cmd[i], '$');
-			if (c_dollar > 0)
-				join = ft_substr(cmd->cmd[i], 0, c_dollar);
-		}
-		find_dollar(cmd, cmd->cmd[i], i);
-		//if (i && join[0] != '\'' && join[c_dollar - 1] != '\'')
-		if (i)
-		{
-			if (c_dollar > 0)
-			{
-				cmd->cmd[i] = ft_strjoin(join, cmd->cmd[i]);
-				free(join);
-			}
-		}
-	}
+		split_expansion(cmd, cmd->cmd[i], i);
 }
