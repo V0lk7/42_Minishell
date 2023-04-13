@@ -2,8 +2,6 @@
 #define SIMPLE '\''
 #define DOUBLE '"'
 
-
-
 int	next_carac(char *str, int start)
 {
 	int	i;

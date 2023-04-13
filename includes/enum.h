@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/11 15:54:24 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/13 13:30:13 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_red
 	char	**file;
 	t_way	way;
 	t_hdoc	*input;
+	int		expand;
 	int		r_fd;
 	int		w_fd;
 }	t_red;

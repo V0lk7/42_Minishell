@@ -6,52 +6,72 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:03:21 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/12 17:01:20 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/13 17:59:27 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 static int	redirect_expand_setting(t_rdict *red)
 {
+	int	flag;
+
 	if (red->way == HDOC)
 	{
 		if (ft_strcspn(red->file[0], "\'\"") != ft_strlen(red->file[0]))
 			red->expand = 1;
 		else
 			red->expand = 0;
-		if (remove_the_quote(red->file[0]) < 0)
-			return (-1);
+		flag = remove_the_quote(red->file[0]);
 	}
 	else
 	{
 		if (dollar_in_quote(rdict->file[0]) == TRUE)
-			//expansion normal sans wordsplitting; -1 malloc prob, 0 O$K
+			flag = expansion(red->file[0]);
 		else
 		{
-			//expansion avex wordsplitting
-			//-1 = malloc prob, -2 ambiguous redirection, 0 OK
+			flag = expansion_wdsplit(red->file, NULL);
+			if (red->expand == -2)
+				flag = -2;
 		}
 	}
-	return (0);
+	return (flag);
 }
 
 static int	command_expand_setting(t_cmd *cmd)
 {
+	int	i;
+	int	flag;
 
+	i = 0;
+	while (cmd->cmd[i] != NULL)
+	{
+		if (dollar_in_quote(cmd->cmd[i]) == TRUE)
+			flag = expansion(cmd->cmd[0]);
+		else
+			flag = expansion_wdsplit(cmd->cmd, &i);
+		if (flag == -1)
+			return (-1);
+		i++;
+	}
+	return (0);
 }
 
 int	expansion_management(t_data *lst)
 {
+	int	flag;
+
 	while (lst != NULL)
 	{
 		if (lst->name == REDIRECTION && search_c(lst->data.rdict.file[0]) > -1)
 		{
-			if (redirect_expand_setting(lst->data.rdict) == -1)
-				return (-1);
+			flag = redirect_expand_setting(slt->data.rdict);
+			if (flag < 0)
+				return (flag);
 		}
 		else
 		{
-			if (command_expand_setting(lst->data.cmd) == -1)
-				return (-1);
+			flag = command_expand_setting(lst->data.cmd);
+			if (flag < 0)
+				return (flag);
 		}
 		lst = lst->next;
 	}

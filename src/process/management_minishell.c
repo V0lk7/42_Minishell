@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:07:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/12 12:26:21 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/13 15:52:25 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	display_lst(t_data *data, int flag);
 static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 {
 	t_data	*cmdline;
-	//t_data	*tmp;
 
 	mini->path = make_array_path(envp);
 	if (mini->path == NULL)
@@ -32,13 +31,6 @@ static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 		free_array2d(mini->path);
 		return (NULL);
 	}
-/*	tmp = cmdline;
-	while (tmp)
-	{
-		if (tmp->name == COMMAND)
-			expansion(&tmp->data.cmd);
-		tmp = tmp->next;
-	}*/
 	if (quote_removal(cmdline) < -1)
 		return (cmdline);
 	cmdline = command_manager(&cmdline);
