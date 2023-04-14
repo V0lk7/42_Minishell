@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 18:03:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/13 18:10:49 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/14 15:15:28 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_bool	dollar_in_quote(const char *str)
 		else if (quote > 0 && quote == str[i])
 			quote = 0;
 		else if (quote == 0 && str[i] == '$')
-			return (TRUE):
+			return (TRUE);
 		i++;
 	}
 	return (FALSE);

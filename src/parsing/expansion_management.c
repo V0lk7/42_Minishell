@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:03:21 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/13 17:59:27 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/14 15:20:38 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ static int	redirect_expand_setting(t_rdict *red)
 		else
 		{
 			flag = expansion_wdsplit(red->file, NULL);
-			if (red->expand == -2)
-				flag = -2;
+			if (flag == -1)
+				return (flag);
+			red->expansion = count_args_2d(red->file);
 		}
 	}
 	return (flag);
