@@ -47,5 +47,6 @@ t_data	*command_manager(t_data	**head);
 int		type_of_command(t_cmd *cmd, t_mini *utils);
 /*-------quote_removal.c-------*/
 int		quote_removal(t_data *lst);
+int		remove_the_quote(char *str);
 
 #endif

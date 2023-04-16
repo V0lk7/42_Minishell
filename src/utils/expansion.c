@@ -2,18 +2,7 @@
 #define SIMPLE '\''
 #define DOUBLE '"'
 
-int	next_carac(char *str, int start)
-{
-	int	i;
-
-	i = 0;
-	while (str[++start])
-		if (str[start] == '$')
-			return (start);
-	return (-1);
-}
-
-static int	*is_quoted(char *str, int start, int end)
+/*static int	*is_quoted(char *str, int start, int end)
 {
 	char	*substr;
 	int		i;
@@ -45,44 +34,98 @@ static int	*is_quoted(char *str, int start, int end)
 
 	}
 	free(dollar);
+}*/
+
+static void	replace_command(t_cmd *cmd, char **array, int index)
+{
+	char	*new_command;
+	int		i;
+
+	i = 0;
+	while (array[i])
+	{
+		if (!i)
+			new_command = ft_strdup(array[i]);
+		else
+			new_command = ft_strjoin(new_command, array[i]);
+		i++;
+	}
+	free(cmd->cmd[index]);
+	cmd->cmd[index] = ft_strdup(new_command);
+}
+
+static void	replace_expansion(t_cmd *cmd, char **envp, char **array, int index)
+{
+	int	equal;
+	int	i;
+	int	find;
+
+	i = 0;
+	while (array[i])
+	{
+		if (!ft_strcmp(array[i], "$?"))
+		{
+			free(array[i]);
+			array[i] = ft_itoa(g_status);
+		}
+		else if (array[i][0] == '$')
+		{
+			if (count_c(array[i - 1], '\'') % 2 == 0 && count_c(array[i + 1], '\'') % 2 == 0)
+			{
+				if (find_expansion_array(envp, ft_substr(array[i], 1, ft_strlen(array[i]))) != -1)
+				{
+					find = find_expansion_array(envp, ft_substr(array[i], 1, ft_strlen(array[i])));
+					equal = search_c(envp[find], '=') + 1;
+					free(array[i]);
+					array[i] = ft_substr(envp[find], equal, ft_strlen(envp[find]));
+				}
+				else
+				{
+					free(array[i]);
+					array[i] = ft_strdup("");
+				}
+			}
+		}
+		i++;
+	}
+	replace_command(cmd, array, index);
 }
 
 void	split_expansion(t_cmd *cmd, char *str, int index)
 {
 	char	**array;
 	char	*tmp;
-	int		*quoted;
 	int		i;
 	int		j;
 
-	(void)index;
 	i = 0;
 	j = 0;
-	array = malloc(sizeof (char *) * count_args_2d(cmd->cmd));
-	quoted = malloc(sizeof (int *) * count_args_2d(cmd->cmd));
-	while (str[i])
+	array = malloc(sizeof (char *) * (count_args_2d(cmd->cmd) + 2) + 1);//Malloc au hasard, creer une fonction pour quantifier le malloc
+	remove_the_quote(str);
+	while (i < (int)ft_strlen(str))
 	{
 		if (str[i] == '$')
 		{
-			tmp = ft_substr(str, i + 1, next_carac(str, i) - 1);
-			quoted[j] = is_quoted(str, i, next_carac(str, i));
-			array[j] = tmp;
-			ft_printf("STR %s\n", str);
-			ft_printf("START %d\n", i);
-			ft_printf("END %d\n", next_carac(str, i) - 1);
-			ft_printf("TMP %s\n", tmp);
-			ft_printf("------------------------------\n");
-			i += ((next_carac(str, i) - 1) - i);
+			tmp = ft_substr(str, i, (next_carac(str, i + 1) + 1) - i);
+			array[j] = ft_strdup(tmp);
+			i = (next_carac(str, i + 1) + 1);
 			free(tmp);
 			j++;
 		}
-			i++;
+		else
+		{
+			array[j] = ft_substr(str, i, (next_carac(str, i) + 1) - i);
+			j++;
+			i = next_carac(str, i) + 1;
+		}
 	}
+	array[j] = NULL;
+	replace_expansion(cmd, cmd->mini->envp_cpy, array, index);
 }
 
 void	expansion(t_cmd *cmd)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (cmd->cmd[++i])

@@ -12,7 +12,7 @@
 
 NAME		:= libft.a
 
-CFLAGS		:= -Wall -Werror -Wextra -ggdb3
+CFLAGS		:= -Wall -Werror -Wextra -ggdb3 -gdwarf-2
 
 CPPFLAGS	:= -MMD -MP -I ./include 
 

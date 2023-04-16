@@ -13,7 +13,7 @@
 #include "../../includes/enum.h"
 #include "../libft/include/libft.h"
 
-static int	remove_the_quote(char *str)
+int	remove_the_quote(char *str)
 {
 	char	*tmp;
 	int		i;

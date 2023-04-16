@@ -69,8 +69,9 @@ void	minishell_management(char *line, t_mini *mini, char **envp)
 		g_status = 1;
 		return ;
 	}
+	expansion(&cmdline->data.cmd);// A SUPPRIMER
 	execution_management(cmdline, mini, &fds);
-	display_lst(cmdline, 1);
+	display_lst(cmdline, 0);
 	free_all_nodes(&cmdline);
 	free_array2d(mini->path);
 	return ;

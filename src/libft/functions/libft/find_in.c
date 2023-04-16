@@ -53,7 +53,7 @@ int	find_expansion_array(char **array, char *str)
 	while (++i < count_args_2d(array))
 	{
 		equal = search_c(array[i], '=');
-		if ((equal) > (int)ft_strlen(str))
+		if ((equal) >= (int)ft_strlen(str))
 		{
 			if (!ft_strncmp(array[i], str, equal))
 				return (i);
