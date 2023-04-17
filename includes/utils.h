@@ -62,8 +62,13 @@ void	error_exit(char *str);
 
 /*--------$-------*/
 
-int		next_carac(char *str, int start);
+int		count_args_expansion(char *str);
 void	expansion(t_cmd *cmd);
+int		is_quoted(char *str, int start, int end);
+char	*join_array(char **array);
+void	replace_expansion(t_cmd *cmd, char **envp, char **array, int index);
+void	split_expansion(t_cmd *cmd, char *str, int index);
+int		next_carac(char *str, int start);
 
 /*--------hdoc_utils.c-------*/
 

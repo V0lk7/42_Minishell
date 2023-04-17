@@ -59,7 +59,9 @@ SRCS		+=	utils/command_data_utils.c											\
 				utils/list_utils.c													\
 				utils/list_utils2.c													\
 				utils/make_command_utils.c											\
+				utils/replace_expansion.c											\
 				utils/split_by_pipe_utils.c											\
+				utils/split_expansion.c												\
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 
