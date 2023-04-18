@@ -72,6 +72,6 @@ char	*replace_expansion(char **envp, char **array)
 		i++;
 	}
 	free(join);
-	replace_command(array);
+	final_value = replace_command(array);
 	return (final_value);
 }
