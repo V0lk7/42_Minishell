@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:53:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/12 12:23:09 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/18 16:00:21 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,8 @@ int		type_of_command(t_cmd *cmd, t_mini *utils);
 /*-------quote_removal.c-------*/
 int		quote_removal(t_data *lst);
 int		remove_the_quote(char *str);
-
+/*-------dollar_in_quote.c-------*/
+t_bool	dollar_in_quote(const char *str);
+/*-------expansion_management.c-------*/
+int		expansion_management(t_data *lst, t_mini *mini);
 #endif

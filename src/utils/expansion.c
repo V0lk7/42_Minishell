@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expansion.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/18 16:11:36 by jduval            #+#    #+#             */
+/*   Updated: 2023/04/18 16:13:54 by jduval           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/utils.h"
 
 static void	loop_split_expansion(char **array, char *str)
@@ -26,6 +38,7 @@ static void	loop_split_expansion(char **array, char *str)
 		}
 	}
 	array[j] = NULL;
+	free(str);
 }
 
 char	*expansion(t_mini *mini, char *str)

@@ -6,7 +6,7 @@
 #    By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 16:36:26 by kramjatt          #+#    #+#              #
-#    Updated: 2023/04/13 19:30:47 by jduval           ###   ########.fr        #
+#    Updated: 2023/04/18 15:57:20 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRCS		+=	parsing/valid_quotes.c			parsing/syntax_is_valid.c			\
 				parsing/simplify_user_input.c	parsing/make_cmdline.c				\
 				parsing/make_data.c				parsing/make_path.c					\
 				parsing/command_control.c		parsing/quote_removal.c				\
-				parsing/dollar_in_quote.c	\
+				parsing/dollar_in_quote.c		parsing/expansion_management.c	\
 
 SRCS		+=	process/history.c				process/main.c						\
 				process/init_f.c				process/management_minishell.c		\

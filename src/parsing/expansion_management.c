@@ -6,51 +6,49 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:03:21 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/18 12:59:01 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/18 16:04:16 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	redirect_expand_setting(t_rdict *red, t_mini *mini)
-{
-	int	flag;
+#include "../../includes/enum.h"
+#include "../../includes/utils.h"
+#include "../include/libft.h"
 
+static int	redirect_expand_setting(t_red *red, t_mini *mini)
+{
 	if (red->way == HDOC)
 	{
-		if (ft_strcspn(red->file[0], "\'\"") != ft_strlen(red->file[0]))
+		if (ft_strcspn(red->file[0], "\'\"") != (int)ft_strlen(red->file[0]))
 			red->expand = 1;
 		else
 			red->expand = 0;
-		flag = remove_the_quote(red->file[0]);
+		if (remove_the_quote(red->file[0]) == -1)
+			return (1);
 	}
 	else
 	{
-		if (dollar_in_quote(rdict->file[0]) == TRUE)
-			flag = expansion(red->file[0], mini);
+		if (dollar_in_quote(red->file[0]) == TRUE)
+			red->file[0] = expansion(mini, red->file[0]);
 		else
 		{
-			flag = expansion_wdsplit(red->file, mini, NULL);
-			if (flag == -1)
-				return (flag);
-			red->expansion = count_args_2d(red->file);
+			//expansion_wdsplit(red->file, mini, NULL);
+			red->expand = count_args_2d(red->file);
 		}
 	}
-	return (flag);
+	return (0);
 }
 
 static int	command_expand_setting(t_cmd *cmd, t_mini *mini)
 {
 	int	i;
-	int	flag;
 
 	i = 0;
 	while (cmd->cmd[i] != NULL)
 	{
 		if (dollar_in_quote(cmd->cmd[i]) == TRUE)
 			cmd->cmd[i] = expansion(mini, cmd->cmd[i]);
-		else
-			flag = expansion_wdsplit(cmd->cmd, mini, &i);
-		if (flag == -1)
-			return (-1);
+//		else
+//			expansion_wdsplit(cmd->cmd, mini, &i);
 		i++;
 	}
 	return (0);
@@ -62,15 +60,16 @@ int	expansion_management(t_data *lst, t_mini *mini)
 
 	while (lst != NULL)
 	{
-		if (lst->name == REDIRECTION && search_c(lst->data.rdict.file[0]) > -1)
+		if (lst->name == REDIRECTION
+			&& search_c(lst->data.rdict.file[0], '$') > -1)
 		{
-			flag = redirect_expand_setting(slt->data.rdict, mini);
-			if (flag < 0)
+			flag = redirect_expand_setting(&lst->data.rdict, mini);
+			if (flag > 0)
 				return (flag);
 		}
 		else
 		{
-			flag = command_expand_setting(lst->data.cmd, mini);
+			flag = command_expand_setting(&lst->data.cmd, mini);
 			if (flag < 0)
 				return (flag);
 		}

@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 13:07:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/13 15:52:25 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/18 15:56:45 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static t_data	*data_treatment(char *line, t_mini *mini, char **envp)
 	}
 	if (quote_removal(cmdline) < -1)
 		return (cmdline);
+	expansion_management(cmdline, mini);
 	cmdline = command_manager(&cmdline);
 	return (cmdline);
 }
