@@ -46,7 +46,7 @@ static int	command_expand_setting(t_cmd *cmd, t_mini *mini)
 	while (cmd->cmd[i] != NULL)
 	{
 		if (dollar_in_quote(cmd->cmd[i]) == TRUE)
-			flag = expansion(cmd->cmd[0], mini);
+			cmd->cmd[i] = expansion(mini, cmd->cmd[i]);
 		else
 			flag = expansion_wdsplit(cmd->cmd, mini, &i);
 		if (flag == -1)
