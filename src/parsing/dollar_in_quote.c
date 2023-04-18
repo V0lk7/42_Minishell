@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 18:03:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/14 15:15:28 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/18 17:16:58 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_bool	dollar_in_quote(const char *str)
 {
-	int	i;
-	int	quote;
+	int		i;
+	int		quote;
 
 	quote = 0;
 	i = 0;
@@ -26,8 +26,8 @@ t_bool	dollar_in_quote(const char *str)
 		else if (quote > 0 && quote == str[i])
 			quote = 0;
 		else if (quote == 0 && str[i] == '$')
-			return (TRUE);
+			return (FALSE);
 		i++;
 	}
-	return (FALSE);
+	return (TRUE);
 }
