@@ -1,5 +1,6 @@
 #include "../../includes/utils.h"
 #define SIMPLE 39
+#define DOUBLE 34
 
 static void	status_expansion(char **str)
 {
@@ -45,6 +46,7 @@ static void	replace_command(t_cmd *cmd, char **array, int index)
 	}
 	free(cmd->cmd[index]);
 	free_array2d(array);
+	remove_the_quote(new_command);
 	cmd->cmd[index] = new_command;
 }
 
@@ -60,7 +62,7 @@ void	replace_expansion(t_cmd *cmd, char **envp, char **array, int index)
 	while (array[i])
 	{
 		length += ft_strlen(array[i]);
-		if (is_quoted(join, length - ft_strlen(array[i]), length) != 39)
+		if (is_quoted(join, length - ft_strlen(array[i]), length) != SIMPLE)
 		{
 			if (!ft_strcmp(array[i], "$?"))
 				status_expansion(&array[i]);

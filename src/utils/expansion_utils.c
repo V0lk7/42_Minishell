@@ -60,7 +60,6 @@ int	count_args_expansion(char *str)
 
 	i = 0;
 	j = 0;
-	remove_the_quote(str);
 	while (i < (int)ft_strlen(str))
 	{
 		if (str[i] == '$')
