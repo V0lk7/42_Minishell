@@ -30,7 +30,7 @@ static void	loop_replace_expansion(char **envp, char **str)
 	}
 }
 
-static void	replace_command(t_cmd *cmd, char **array, int index)
+static char	*replace_command(char **array)
 {
 	char	*new_command;
 	int		i;
@@ -44,15 +44,15 @@ static void	replace_command(t_cmd *cmd, char **array, int index)
 			new_command = ft_strjoin_free(new_command, array[i]);
 		i++;
 	}
-	free(cmd->cmd[index]);
 	free_array2d(array);
 	remove_the_quote(new_command);
-	cmd->cmd[index] = new_command;
+	return (new_command);
 }
 
-void	replace_expansion(t_cmd *cmd, char **envp, char **array, int index)
+char	*replace_expansion(char **envp, char **array)
 {
 	char	*join;
+	char	*final_value;
 	int		i;
 	int		length;
 
@@ -72,5 +72,6 @@ void	replace_expansion(t_cmd *cmd, char **envp, char **array, int index)
 		i++;
 	}
 	free(join);
-	replace_command(cmd, array, index);
+	replace_command(array);
+	return (final_value);
 }

@@ -63,11 +63,11 @@ void	error_exit(char *str);
 /*--------$-------*/
 
 int		count_args_expansion(char *str);
-void	expansion(t_cmd *cmd);
+char	*expansion(t_mini *mini, char *str);
 int		is_quoted(char *str, int start, int end);
 char	*join_array(char **array);
-void	replace_expansion(t_cmd *cmd, char **envp, char **array, int index);
-void	split_expansion(t_cmd *cmd, char *str, int index);
+char	*replace_expansion(char **envp, char **array);
+void	split_expansion(t_cmd *cmd, char *str);
 int		next_carac(char *str, int start);
 
 /*--------hdoc_utils.c-------*/
