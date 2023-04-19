@@ -48,5 +48,6 @@ char	*expansion(t_mini *mini, char *str)
 	array = malloc(sizeof (char *) * (count_args_expansion(str) + 1));
 	loop_split_expansion(array, str);
 	str = replace_expansion(mini->envp_cpy, array);
+	remove_the_quote(str);
 	return (str);
 }

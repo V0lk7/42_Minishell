@@ -21,12 +21,15 @@ static void	loop_replace_expansion(char **envp, char **str)
 		equal = search_c(envp[find], '=') + 1;
 		free(*str);
 		free(substr);
-		*str = ft_substr(envp[find], equal, ft_strlen(envp[find]));
+		substr = ft_substr(envp[find], equal, ft_strlen(envp[find]));
+		*str = ft_strdup(substr);
+		free(substr);
 	}
 	else
 	{
 		free(*str);
 		*str = ft_strdup("");
+		free(substr);
 	}
 }
 
@@ -45,8 +48,23 @@ static char	*replace_command(char **array)
 		i++;
 	}
 	free_array2d(array);
-	remove_the_quote(new_command);
 	return (new_command);
+}
+
+static void	check_in_env(char **envp, char **str, int index)
+{
+	char	*substr;
+
+	substr = ft_substr(*str, 1, ft_strlen(*str));
+	if (find_expansion_array(envp, substr) == -1)
+	{
+		free(*str);
+		if (!index)
+			*str = ft_strdup("");
+		else
+			*str = ft_strjoin_free(*str, "");
+	}
+	free(substr);
 }
 
 char	*replace_expansion(char **envp, char **array)
@@ -57,11 +75,16 @@ char	*replace_expansion(char **envp, char **array)
 	int		length;
 
 	join = join_array(array);
-	i = 0;
+	i = -1;
 	length = 0;
-	while (array[i])
+	while (array[++i])
 	{
 		length += ft_strlen(array[i]);
+		ft_printf("STR %s\n", join);
+		ft_printf("ARR %s\n", array[i]);
+		ft_printf("START %d\n", length - ft_strlen(array[i]));
+		ft_printf("END %d\n", length);
+		ft_printf("QUOTED %d\n", is_quoted(join, length - ft_strlen(array[i]), length));
 		if (is_quoted(join, length - ft_strlen(array[i]), length) != SIMPLE)
 		{
 			if (!ft_strcmp(array[i], "$?"))
@@ -69,7 +92,8 @@ char	*replace_expansion(char **envp, char **array)
 			else if (array[i][0] == '$')
 				loop_replace_expansion(envp, &array[i]);
 		}
-		i++;
+		else if (array[i][0] == '$')
+			check_in_env(envp, &array[i], i);
 	}
 	free(join);
 	final_value = replace_command(array);
