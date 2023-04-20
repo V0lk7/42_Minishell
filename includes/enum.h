@@ -6,18 +6,12 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/13 13:30:13 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/20 18:43:26 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENUM_H
 # define ENUM_H
-
-/*-------Libraries------*/
-
-/*-------Headers------*/
-
-/*--------Structs-------*/
 
 /*--------Enum-------*/
 
@@ -53,6 +47,13 @@ typedef struct s_mini
 	char		**envp_cpy;
 	char		**path;
 }	t_mini;
+
+typedef struct s_expand
+{
+	char			**array;
+	int				id;
+	struct s_expand	*next;
+}	t_expand;
 
 typedef struct s_hdoc
 {

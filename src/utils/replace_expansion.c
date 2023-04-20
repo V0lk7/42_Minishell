@@ -58,9 +58,11 @@ static void	check_in_env(char **envp, char **str, int index)
 	substr = ft_substr(*str, 1, ft_strlen(*str));
 	if (find_expansion_array(envp, substr) == -1)
 	{
-		free(*str);
 		if (!index)
+		{
+			free(*str);
 			*str = ft_strdup("");
+		}
 		else
 			*str = ft_strjoin_free(*str, "");
 	}
