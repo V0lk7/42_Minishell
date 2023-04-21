@@ -6,7 +6,7 @@
 #    By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 16:36:26 by kramjatt          #+#    #+#              #
-#    Updated: 2023/04/18 15:57:20 by jduval           ###   ########.fr        #
+#    Updated: 2023/04/21 13:31:51 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,8 @@ SRCS		+=	utils/command_data_utils.c											\
 				utils/make_command_utils.c											\
 				utils/replace_expansion.c											\
 				utils/split_by_pipe_utils.c											\
+				utils/split_by_str_utils.c											\
+				utils/split_by_str.c												\
 
 SRCS		:=	$(SRCS:%=$(SRC_DIR)/%)
 

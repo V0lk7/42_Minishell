@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:56:09 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/22 18:46:20 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/21 17:24:26 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ SUITE(test_rafter_id);
 SUITE(test_count_words);
 SUITE(test_pass_next_word);
 SUITE(test_fill_array_cmd);
+
+SUITE(test_split_countwords);
+SUITE(test_split_findword);
+SUITE(test_split_comparedelim);
+SUITE(test_split_endword);
+SUITE(test_split);
+
 /*-------TEST_LINKED_LST---------*/
 SUITE(test_create_node_redirect);
 SUITE(test_put_redirection);
@@ -60,6 +67,12 @@ int	main(int argc, char **argv)
 	RUN_SUITE(test_put_redirection);
 	RUN_SUITE(test_pass_next_word);
 	RUN_SUITE(test_fill_array_cmd);
+
+	RUN_SUITE(test_split_comparedelim);
+	RUN_SUITE(test_split_countwords);
+	RUN_SUITE(test_split_findword);
+	RUN_SUITE(test_split_endword);
+	RUN_SUITE(test_split);
 
 	GREATEST_MAIN_END();	/* display result */
 }

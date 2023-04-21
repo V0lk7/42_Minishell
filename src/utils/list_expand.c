@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:48:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/20 19:42:19 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/21 17:48:57 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ void	add_back_expand(t_expand **head, t_expand *node)
 		*head = node;
 	else
 	{
-		tmp = reach_last_node(*head);
+		tmp = reach_last_expand(*head);
 		tmp->next = node;
 	}
 	return ;
 }
 
-t_data	*reach_last_node(t_data *head)
+t_expand	*reach_last_expand(t_data *head)
 {
-	t_data	*tmp;
+	t_expand	*tmp;
 
 	if (head == NULL)
 		return (NULL);
@@ -57,4 +57,3 @@ t_data	*reach_last_node(t_data *head)
 	}
 	return (tmp);
 }
-

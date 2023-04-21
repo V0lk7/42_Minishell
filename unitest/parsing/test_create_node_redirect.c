@@ -6,13 +6,14 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:05:40 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/24 13:25:10 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/21 16:44:48 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../greatest.h"
 #include "../../includes/utils.h"
 #include "../../includes/parsing.h"
+#include "../../includes/clear.h"
 #include "../../includes/enum.h"
 
 static t_data	*node;
@@ -26,8 +27,7 @@ static void	setup(void *data)
 static void teardown(void *data)
 {
 	(void) data;
-	free(node->data.rdict.file);
-	free(node);
+	free_all_nodes(&node);
 }
 
 TEST	test1(void)
@@ -36,9 +36,8 @@ TEST	test1(void)
 	node = create_node_redirect("cat < lol mdr", &i, i, 0);
 	ASSERT_EQ_FMT(REDIRECTION, node->name, "%d");
 	ASSERT_EQ_FMT(IN, node->data.rdict.way, "%d");
-	ASSERT_EQ_FMT(0, node->data.rdict.fd, "%d");
 	ASSERT_EQ_FMT(6, i, "%d");
-	ASSERT_STR_EQ("lol", node->data.rdict.file);
+	ASSERT_STR_EQ("lol", node->data.rdict.file[0]);
 	PASS();
 }
 
@@ -48,9 +47,8 @@ TEST	test2(void)
 	node = create_node_redirect("cat << lol mdr", &i, i, 0);
 	ASSERT_EQ_FMT(REDIRECTION, node->name, "%d");
 	ASSERT_EQ_FMT(HDOC, node->data.rdict.way, "%d");
-	ASSERT_EQ_FMT(0, node->data.rdict.fd, "%d");
 	ASSERT_EQ_FMT(7, i, "%d");
-	ASSERT_STR_EQ("lol", node->data.rdict.file);
+	ASSERT_STR_EQ("lol", node->data.rdict.file[0]);
 	PASS();
 }
 
@@ -60,9 +58,8 @@ TEST	test3(void)
 	node = create_node_redirect("cat >> \'lol  \' mdr", &i, i, 0);
 	ASSERT_EQ_FMT(REDIRECTION, node->name, "%d");
 	ASSERT_EQ_FMT(APPEND, node->data.rdict.way, "%d");
-	ASSERT_EQ_FMT(0, node->data.rdict.fd, "%d");
 	ASSERT_EQ_FMT(7, i, "%d");
-	ASSERT_STR_EQ("\'lol  \'", node->data.rdict.file);
+	ASSERT_STR_EQ("\'lol  \'", node->data.rdict.file[0]);
 	PASS();
 }
 
@@ -72,9 +69,8 @@ TEST	test4(void)
 	node = create_node_redirect("cat\'lol > \'< mdr", &i, i, 0);
 	ASSERT_EQ_FMT(REDIRECTION, node->name, "%d");
 	ASSERT_EQ_FMT(IN, node->data.rdict.way, "%d");
-	ASSERT_EQ_FMT(0, node->data.rdict.fd, "%d");
 	ASSERT_EQ_FMT(13, i, "%d");
-	ASSERT_STR_EQ("mdr", node->data.rdict.file);
+	ASSERT_STR_EQ("mdr", node->data.rdict.file[0]);
 	PASS();
 }
 

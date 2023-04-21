@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:57:41 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/11 16:00:35 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/21 10:49:11 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,18 @@ void	free_all_nodes(t_data **head)
 			free_array2d(tmp->data.cmd.cmd);
 		*head = (*head)->next;
 		free(tmp);
+	}
+}
+
+void	free_lst_expand(t_expand *head)
+{
+	t_expand	*tmp;
+
+	while (head != NULL)
+	{
+		tmp = head;
+		free_array2d(tmp->array);
+		head = head->next;
+		free (tmp);
 	}
 }

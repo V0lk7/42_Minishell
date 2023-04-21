@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:59:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/12 14:47:14 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/21 17:54:12 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ctrl_d_hdoc(char *str, int n)
 	return (0);
 }
 
-void error_exit(char *str)
+void	error_exit(char *str)
 {
 	ft_putstr_fd(2, "😈 Minishell 😈 : exit: ");
 	ft_putstr_fd(2, str);

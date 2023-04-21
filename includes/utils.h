@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:14:38 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/11 16:02:50 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/21 17:33:06 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,23 @@ t_bool	is_pipeline(t_data *cmdline);
 int		find_last_sequence(t_data *lst);
 t_data	*next_sequence(t_data *lst);
 
+/*--------list_expand.c-------*/
+t_expand	*new_node_expand(char **array, int id);
+void		add_back_expand(t_expand **head, t_expand *node);
+t_expand	*reach_last_expand(t_data *head);
+
 /*--------split_by_pipe_utils.c-------*/
 int		*find_index_pipe(char *str);
+
+/*--------split_by_str_utils.c-------*/
+int		split_count_words(const char *s, const char *delim);	
+int		fill_empty_array(char **array);
+/*--------split_by_str_.c-------*/
+char	**split_by_str(const char *s, const char *delim);
+int		end_word(const char *str, const char *delim);
+t_bool	compare_delim(int c, const char *delim);
+int		find_word(const char *str, const char *delim);
+int		fill_array(char **array, int word, const char *s, const char *delim);
 
 /*--------data_by_line_utils.c-------*/
 

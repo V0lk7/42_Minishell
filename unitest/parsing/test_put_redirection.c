@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:44:19 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/24 13:26:14 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/21 16:42:18 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ TEST	test1(void)
 	node = put_redirection("cat < lol >> hey ", 2, 0);
 	ASSERT_EQ_FMT(REDIRECTION, node->name, "%d");
 	ASSERT_EQ_FMT(IN, node->data.rdict.way, "%d");
-	ASSERT_EQ_FMT(0, node->data.rdict.fd, "%d");
-	ASSERT_STR_EQ("lol", node->data.rdict.file);
+	ASSERT_STR_EQ("lol", node->data.rdict.file[0]);
 
 	ASSERT_EQ_FMT(REDIRECTION, node->next->name, "%d");
 	ASSERT_EQ_FMT(APPEND, node->next->data.rdict.way, "%d");
-	ASSERT_EQ_FMT(0, node->next->data.rdict.fd, "%d");
-	ASSERT_STR_EQ("hey", node->next->data.rdict.file);
+	ASSERT_STR_EQ("hey", node->next->data.rdict.file[0]);
 	PASS();
 }
 
@@ -50,18 +48,15 @@ TEST	test2(void)
 	node = put_redirection("cat < lol >> hey < \'  mdr\'", 3, 0);
 	ASSERT_EQ_FMT(REDIRECTION, node->name, "%d");
 	ASSERT_EQ_FMT(IN, node->data.rdict.way, "%d");
-	ASSERT_EQ_FMT(0, node->data.rdict.fd, "%d");
-	ASSERT_STR_EQ("lol", node->data.rdict.file);
+	ASSERT_STR_EQ("lol", node->data.rdict.file[0]);
 
 	ASSERT_EQ_FMT(REDIRECTION, node->next->name, "%d");
 	ASSERT_EQ_FMT(APPEND, node->next->data.rdict.way, "%d");
-	ASSERT_EQ_FMT(0, node->next->data.rdict.fd, "%d");
-	ASSERT_STR_EQ("hey", node->next->data.rdict.file);
+	ASSERT_STR_EQ("hey", node->next->data.rdict.file[0]);
 
 	ASSERT_EQ_FMT(REDIRECTION, node->next->next->name, "%d");
 	ASSERT_EQ_FMT(IN, node->next->next->data.rdict.way, "%d");
-	ASSERT_EQ_FMT(0, node->next->next->data.rdict.fd, "%d");
-	ASSERT_STR_EQ("\'  mdr\'", node->next->next->data.rdict.file);
+	ASSERT_STR_EQ("\'  mdr\'", node->next->next->data.rdict.file[0]);
 	PASS();
 }
 
