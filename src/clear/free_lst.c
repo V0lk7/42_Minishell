@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:57:41 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/21 10:49:11 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/24 11:58:06 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	free_lst_expand(t_expand *head)
 	{
 		tmp = head;
 		free_array2d(tmp->array);
+		if (tmp->word != NULL)
+			free(tmp->word);
 		head = head->next;
 		free (tmp);
 	}

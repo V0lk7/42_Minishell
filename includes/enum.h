@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:25 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/20 18:43:26 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/24 10:53:45 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_mini
 typedef struct s_expand
 {
 	char			**array;
+	char			*word;
 	int				id;
 	struct s_expand	*next;
 }	t_expand;

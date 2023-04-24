@@ -6,14 +6,14 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:48:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/21 17:48:57 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/24 10:58:06 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/enum.h"
 #include "../../includes/utils.h"
 
-t_expand	*new_node_expand(char **array, int id)
+t_expand	*new_node_expand(char *str, int id)
 {
 	t_expand	*node;
 
@@ -21,7 +21,8 @@ t_expand	*new_node_expand(char **array, int id)
 	if (node == NULL)
 		return (NULL);
 	node->id = id;
-	node->array = array;
+	node->word = str;
+	node->array = NULL;
 	node->next = NULL;
 	return (node);
 }
@@ -42,7 +43,7 @@ void	add_back_expand(t_expand **head, t_expand *node)
 	return ;
 }
 
-t_expand	*reach_last_expand(t_data *head)
+t_expand	*reach_last_expand(t_expand *head)
 {
 	t_expand	*tmp;
 
