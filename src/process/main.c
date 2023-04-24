@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/04 10:24:38 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/24 08:56:46 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	prompt(t_mini *mini, char **envp)
 	{
 		signal(SIGINT, n_handler);
 		signal(SIGQUIT, SIG_IGN);
-		line = readline("😈 Minishell 😈 ");
+		line = readline("Minishell : ");
 		if (line == NULL)
 		{
 			ft_printf("exit\n");

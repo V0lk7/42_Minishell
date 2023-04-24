@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:49:42 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/21 17:49:43 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/24 09:00:18 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,6 @@ char	*replace_expansion(char **envp, char **array)
 	while (array[++i])
 	{
 		length += ft_strlen(array[i]);
-		ft_printf("STR %s\n", join);
-		ft_printf("ARR %s\n", array[i]);
-		ft_printf("START %d\n", length - ft_strlen(array[i]));
-		ft_printf("END %d\n", length);
-		ft_printf("QUOTED %d\n", is_quoted(join, length - ft_strlen(array[i]), length));
 		if (is_quoted(join, length - ft_strlen(array[i]), length) != SIMPLE)
 		{
 			if (!ft_strcmp(array[i], "$?"))

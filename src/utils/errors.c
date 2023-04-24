@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:59:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/21 17:54:12 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/24 08:57:20 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	command_not_found(char *cmd)
 
 void	command_is_directory(char *cmd)
 {
-	ft_putstr_fd(2, "😈 Minishell 😈 : ");
+	ft_putstr_fd(2, "Minishell : ");
 	ft_putstr_fd(2, cmd);
 	ft_putstr_fd(2, ": Is a directory\n");
 }
@@ -57,7 +57,7 @@ int	ctrl_d_hdoc(char *str, int n)
 		perror(NULL);
 		return (1);
 	}
-	ft_putstr_fd(2, "😈 Minishell 😈: warning: here-document at line ");
+	ft_putstr_fd(2, "Minishell : warning: here-document at line ");
 	ft_putstr_fd(2, line);
 	ft_putstr_fd(2, " delimited by end-of-file (wanted `");
 	ft_putstr_fd(2, str);
@@ -68,7 +68,7 @@ int	ctrl_d_hdoc(char *str, int n)
 
 void	error_exit(char *str)
 {
-	ft_putstr_fd(2, "😈 Minishell 😈 : exit: ");
+	ft_putstr_fd(2, "Minishell : exit: ");
 	ft_putstr_fd(2, str);
 	ft_putstr_fd(2, ": Numeric argument required\n");
 }

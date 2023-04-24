@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:42:35 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/11 09:22:03 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/24 08:59:56 by kramjatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,8 @@ static void	join_export(t_mini *mini, char *export)
 	equal = search_c(export, '=') + 1;
 	i = -1;
 	while (++i < count_args_2d(mini->envp_cpy) - 1)
-	{
 		if (!ft_strncmp(mini->envp_cpy[i], export, equal - 2))
 			break ;
-	}
 	cpy = malloc(sizeof(char) * (ft_strlen(export) - equal + 1));
 	j = -1;
 	while (++j && equal < (int)ft_strlen(export))
