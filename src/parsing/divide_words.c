@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 09:31:19 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/24 12:07:51 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/24 13:27:01 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	dollar_end(const char *str, int i)
 {
 	while (str[i])
 	{
-		if (str[i] == '\'' || str[i] == '\"')
+		if (str[i] == '\'' || str[i] == '\"' || str[i] == '$')
 			return (i);
 		i++;
 	}

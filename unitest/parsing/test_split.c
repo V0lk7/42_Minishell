@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:37:25 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/21 17:24:07 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/24 15:47:43 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ TEST	test4(void)
 	PASS();
 }
 
+TEST	test5(void)
+{
+	array = split_by_str("$lol", "\n\t ");
+	ASSERT_STR_EQ("$lol", array[0]);
+	PASS();
+}
 
 SUITE (test_split)
 {
@@ -70,4 +76,5 @@ SUITE (test_split)
 	RUN_TEST(test2);
 	RUN_TEST(test3);
 	RUN_TEST(test4);
+	RUN_TEST(test5);
 }

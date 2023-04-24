@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:03:21 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/24 09:04:26 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/24 15:36:54 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	redirect_expand_setting(t_red *red, t_mini *mini)
 			red->file[0] = expansion(mini, red->file[0]);
 		else
 		{
-			//expansion_wdsplit(red->file, mini, NULL);
+			expansion_wdsplit(red->file, mini, NULL);
 			red->expand = count_args_2d(red->file);
 		}
 	}
@@ -50,8 +50,8 @@ static int	command_expand_setting(t_cmd *cmd, t_mini *mini)
 			cmd->cmd[i] = expansion(mini, cmd->cmd[i]);
 		else if (cmd->id == 3 && dollar_in_quote(cmd->cmd[i]) == TRUE)
 			cmd->cmd[i] = expansion(mini, cmd->cmd[i]);
-//		else if (search_c(cmd->cmd[i], '$') > -1)
-//			expansion_wdsplit(cmd->cmd, mini, &i);
+		else if (search_c(cmd->cmd[i], '$') > -1)
+			expansion_wdsplit(cmd->cmd, mini, &i);
 		i++;
 	}
 	return (0);

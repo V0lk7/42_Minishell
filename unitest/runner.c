@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 13:56:09 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/24 11:53:46 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/24 13:18:19 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ SUITE(test_split);
 SUITE(test_exp_nextword);
 SUITE(test_exp_dollarvariable);
 SUITE(test_node_expand);
+SUITE(test_lstexpand);
 
 /*-------TEST_LINKED_LST---------*/
 SUITE(test_create_node_redirect);
@@ -81,6 +82,7 @@ int	main(int argc, char **argv)
 	RUN_SUITE(test_exp_nextword);
 	RUN_SUITE(test_exp_dollarvariable);
 	RUN_SUITE(test_node_expand);
+	RUN_SUITE(test_lstexpand);
 
 	GREATEST_MAIN_END();	/* display result */
 }

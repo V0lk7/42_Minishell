@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:53:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/24 11:16:16 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/24 17:34:27 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ int			remove_the_quote(char *str);
 t_bool		dollar_in_quote(const char *str);
 /*-------expansion_management.c-------*/
 int			expansion_management(t_data *lst, t_mini *mini);
+/*-------name a changer.c-------*/
+int			expansion_wdsplit(char **cmd, t_mini *mini, int *i);
+/*-------shapeshift_str.c-------*/
+int			number_of_whitespace(t_expand *cmd);
+int			save_whitespace(t_expand *cmd, char **tmp);
+void		restore_whitespace(char **array, char *tmp);
 /*-------divide_words.c-------*/
 int			next_expand_word(const char *str, int i);
 int			id_word(const char *str, int start);
