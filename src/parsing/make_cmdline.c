@@ -6,13 +6,12 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 14:42:19 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/23 18:13:50 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:21:50 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/enum.h"
-#include "../../includes/parsing.h"
 #include "../../includes/utils.h"
+#include "../../includes/parsing.h"
 #include "../../includes/clear.h"
 
 static t_data	*nodes_creator(char *str, t_mini *utils, int *data)

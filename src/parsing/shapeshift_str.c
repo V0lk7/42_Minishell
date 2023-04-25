@@ -6,13 +6,11 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 16:52:35 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/25 12:59:41 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 17:54:54 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/enum.h"
 #include "../../includes/utils.h"
-#include "../libft/include/libft.h"
 
 int	number_of_whitespace(t_expand *cmd)
 {

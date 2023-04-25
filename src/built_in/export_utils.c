@@ -6,11 +6,12 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:16:38 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/18 18:16:22 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:40:31 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/built_in.h"
+#include "../libft/include/libft.h"
 
 void	print_export(char **array)
 {

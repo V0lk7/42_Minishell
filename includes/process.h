@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:54 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/25 16:03:06 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:19:27 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,8 @@
 # define PROCESS_H
 
 /*-------Libraries------*/
-# include <stdlib.h>
-# include <string.h>
-# include <readline/readline.h>
-# include <readline/history.h>
 /*-------Headers------*/
-# include "built_in.h"
 # include "enum.h"
-# include "clear.h"
-# include "utils.h"
-# include "../src/libft/include/libft.h"
 
 void	history(char *argv);
 

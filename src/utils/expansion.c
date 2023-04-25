@@ -6,11 +6,12 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:11:36 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/25 17:04:34 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:26:49 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/utils.h"
+#include "../../includes/parsing.h"
 
 static void	loop_split_expansion(char **array, char *str)
 {

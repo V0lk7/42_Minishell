@@ -6,11 +6,11 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 19:18:20 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/03/10 15:46:32 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:04:04 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/process.h"
+#include <readline/history.h>
 
 void	history(char *argv)
 {

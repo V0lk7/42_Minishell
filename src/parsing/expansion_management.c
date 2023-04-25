@@ -6,13 +6,12 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:03:21 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/25 15:34:00 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:22:42 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/enum.h"
 #include "../../includes/utils.h"
-#include "../include/libft.h"
+#include "../../includes/parsing.h"
 
 static int	redirect_expand_setting(t_red *red, t_mini *mini)
 {

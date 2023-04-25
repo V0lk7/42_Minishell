@@ -6,11 +6,17 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 18:28:37 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/05 14:30:58 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 17:36:43 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/built_in.h"
+#include "../libft/include/libft.h"
+#include "../../includes/enum.h"
+#include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 static void	update_pwd(t_mini *mini)
 {

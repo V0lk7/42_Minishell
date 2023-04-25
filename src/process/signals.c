@@ -6,12 +6,13 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:45:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/05 13:21:19 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:16:54 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/process.h"
-#include "../../includes/enum.h"
+#include "../libft/include/libft.h"
+#include <readline/readline.h>
 #include <signal.h>
 
 void	n_handler(int signal)

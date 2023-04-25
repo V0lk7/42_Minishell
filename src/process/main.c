@@ -6,15 +6,14 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 17:47:13 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/24 08:56:46 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:07:48 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/process.h"
-#include "../../includes/parsing.h"
+#include <readline/readline.h>
+#include "../libft/include/libft.h"
 #include "../../includes/clear.h"
-#include "../../includes/enum.h"
-#include "../../includes/utils.h"
 #include <signal.h>
 
 int	g_status;

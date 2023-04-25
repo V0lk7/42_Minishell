@@ -6,14 +6,12 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 12:04:02 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/25 13:51:45 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 17:53:50 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parsing.h"
 #include "../../includes/utils.h"
 #include "../../includes/clear.h"
-#include "../../includes/enum.h"
 
 t_data	*create_node_command(char *str, t_mini *utils, int words, int i)
 {

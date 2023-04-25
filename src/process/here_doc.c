@@ -6,12 +6,15 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 13:58:52 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/25 16:03:11 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:24:04 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/process.h"
+#include "../../includes/parsing.h"
+#include "../../includes/clear.h"
 #include "../../includes/utils.h"
+#include <readline/readline.h>
 
 static int	hdoc_node_create(char **limits, char *str, t_hdoc **head, int line)
 {

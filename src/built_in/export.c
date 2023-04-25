@@ -6,11 +6,12 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 16:42:35 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/24 08:59:56 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:40:11 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/built_in.h"
+#include "../libft/include/libft.h"
 
 static char	**add_export(t_mini *mini, char *export)
 {

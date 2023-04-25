@@ -6,16 +6,17 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:50:12 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/05 15:45:45 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:14:29 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/enum.h"
 #include "../../includes/utils.h"
+#include "../../includes/clear.h"
 #include "../../includes/process.h"
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <errno.h>
+#include <stdio.h>
 
 int	exec_utils(t_data *tmp, t_mini *mini)
 {

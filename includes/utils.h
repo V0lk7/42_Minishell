@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:14:38 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/25 15:39:06 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:26:58 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 /*-------Headers------*/
 # include "enum.h"
-# include "parsing.h"
 # include "../src/libft/include/libft.h"
 
 /*--------list_utils.c-------*/

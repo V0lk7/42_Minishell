@@ -6,12 +6,11 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 14:06:46 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/25 16:03:16 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 17:49:17 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/utils.h"
-#include "../../includes/enum.h"
 
 int	expand_heredoc(t_red *hdoc, t_mini *mini)
 {

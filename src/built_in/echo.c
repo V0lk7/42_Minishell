@@ -6,11 +6,12 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:45:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/04 12:51:06 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 17:37:11 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/built_in.h"
+#include "../libft/include/libft.h"
 
 static int	find_multiples_n(char *str)
 {

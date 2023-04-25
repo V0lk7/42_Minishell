@@ -6,12 +6,11 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 11:09:23 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/17 16:48:40 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 17:56:20 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parsing.h"
-#include "../../includes/enum.h"
 
 int	first_character(const char *str)
 {

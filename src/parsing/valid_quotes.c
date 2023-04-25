@@ -6,11 +6,12 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:51:19 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/14 11:12:32 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:00:25 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parsing.h"
+#include "../libft/include/libft.h"
+#include "../../includes/enum.h"
 
 t_bool	valid_quotes(const char *str)
 {

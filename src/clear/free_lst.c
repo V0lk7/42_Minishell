@@ -6,14 +6,12 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:57:41 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/25 16:10:01 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 17:45:17 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/clear.h"
-#include "../../includes/enum.h"
 #include "../libft/include/libft.h"
-#include <stdlib.h>
 
 void	free_hdoc(t_hdoc *input)
 {

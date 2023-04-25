@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:17:14 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/25 14:26:45 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:13:21 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../../includes/utils.h"
 #include "../../includes/enum.h"
 #include <fcntl.h>
+#include <stdio.h>
 #include <unistd.h>
 
 int	pipe_redirection(t_data *tmp, t_fd *fds, int last)

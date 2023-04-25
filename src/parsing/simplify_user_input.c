@@ -6,13 +6,11 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:54:42 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/23 13:42:39 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 17:55:39 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parsing.h"
 #include "../../includes/utils.h"
-#include "../../includes/enum.h"
 
 static void	check_and_free(char **array, int *index)
 {

@@ -6,12 +6,11 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 14:14:34 by jduval            #+#    #+#             */
-/*   Updated: 2023/03/17 16:43:55 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 17:58:45 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parsing.h"
-#include "../../includes/enum.h"
 
 int	redirection_case(const char *str, int i)
 {

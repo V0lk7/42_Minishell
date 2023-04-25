@@ -6,16 +6,16 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:30:42 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/25 14:29:05 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:12:22 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/process.h"
 #include "../../includes/utils.h"
 #include "../../includes/built_in.h"
-#include "../../includes/enum.h"
 #include "../../includes/clear.h"
 #include <errno.h>
+#include <stdio.h>
 
 static int	cmd_exec_part(t_data *tmp, t_mini *mini)
 {
