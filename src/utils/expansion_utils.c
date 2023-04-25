@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:11:56 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/18 16:11:57 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 17:04:39 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 int	next_carac(char *str, int start)
 {
-	while (str[++start])
+	while (str[start])
+	{
+		if (str[start] == '?')
+			return (start);
+		start++;
 		if ((!ft_isalnum(str[start])
-				&& str[start] != 32 && str[start] != '_')
+			&& str[start] != 32 && str[start] != '_') 
 			|| str[start] == '\0')
 			return (start - 1);
+	}
 	return (ft_strlen(str));
 }
 

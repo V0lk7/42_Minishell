@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:48:18 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/24 10:58:06 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 11:11:41 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_expand	*new_node_expand(char *str, int id)
 		return (NULL);
 	node->id = id;
 	node->word = str;
-	node->array = NULL;
 	node->next = NULL;
 	return (node);
 }

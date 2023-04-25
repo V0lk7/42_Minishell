@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   expand_hdoc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 09:53:07 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/25 12:03:44 by jduval           ###   ########.fr       */
+/*   Created: 2023/04/25 14:06:46 by jduval            #+#    #+#             */
+/*   Updated: 2023/04/25 16:03:16 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/utils.h"
+#include "../../includes/enum.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	expand_heredoc(t_red *hdoc, t_mini *mini)
 {
-	size_t			i;
-	unsigned char	*ndest;
-	unsigned char	*nsrc;
+	t_hdoc	*tmp;
 
-	ndest = (unsigned char *) dest;
-	nsrc = (unsigned char *) src;
-	i = 0;
-	if (dest == NULL && src == NULL)
-		return (NULL);
-	while (i < n)
+	if (hdoc->expand == 1)
+		return (0);
+	tmp = hdoc->input;
+	while (tmp != NULL)
 	{
-		ndest[i] = nsrc[i];
-		i++;
+		if (search_c(tmp->line, '$') > -1)
+		{
+			tmp->line = expansion(mini, tmp->line, HDOC);
+			if (tmp->line == NULL)
+				return (1);
+		}
+		tmp = tmp->next;
 	}
-	return (ndest);
+	return (0);
 }

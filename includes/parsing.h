@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:53:48 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/24 17:34:27 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 15:34:46 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char		**isolate_by_pipe(char *str);
 /*-------make_cmdline.c-------*/
 t_data		*make_lst_line(char *str, t_mini *utils);
 /*-------make_data.c-------*/
-t_data		*create_node_command(const char *str, t_mini *utils, int words, int i);
+t_data		*create_node_command(char *str, t_mini *utils, int words, int i);
 t_data		*create_node_redirect(const char *str, int *i, int tmp, int index);
 t_data		*put_redirection(const char *str, int nbr, int index);
 /*-------make_path.c-------*/
@@ -52,8 +52,10 @@ int			remove_the_quote(char *str);
 t_bool		dollar_in_quote(const char *str);
 /*-------expansion_management.c-------*/
 int			expansion_management(t_data *lst, t_mini *mini);
-/*-------name a changer.c-------*/
-int			expansion_wdsplit(char **cmd, t_mini *mini, int *i);
+/*-------expand_wordsplitting.c-------*/
+char		**expansion_wdsplit(char **cmd, t_mini *mini, int i);
+/*-------expand_building.c-------*/
+char		**rebuild_cmd(char **cmd, int i, t_expand *words);
 /*-------shapeshift_str.c-------*/
 int			number_of_whitespace(t_expand *cmd);
 int			save_whitespace(t_expand *cmd, char **tmp);
@@ -64,4 +66,6 @@ int			id_word(const char *str, int start);
 int			dollar_end(const char *str, int i);
 t_expand	*node_expand(const char *cmd, int *i);
 t_expand	*divide_words(const char *cmd);
+/*-------expand_hdoc.c-------*/
+int			expand_heredoc(t_red *hdoc, t_mini *mini);
 #endif

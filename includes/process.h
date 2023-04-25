@@ -6,7 +6,7 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:54 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/05 13:20:27 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 16:03:06 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		in_redirection(t_red *rdict, t_fd *fds);
 int		out_redirection(t_red *rdict, t_fd *fds);
 /*-----here_doc.c-----*/
 int		hdoc_rl_event_hook(void);
-int		here_doc(t_data *lst);
+int		here_doc(t_data *lst, t_mini *mini);
 /*-----signals.c-----*/
 void	n_handler(int signal);
 void	f_handler(int signal);

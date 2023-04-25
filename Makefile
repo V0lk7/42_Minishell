@@ -6,7 +6,7 @@
 #    By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 16:36:26 by kramjatt          #+#    #+#              #
-#    Updated: 2023/04/24 17:20:41 by jduval           ###   ########.fr        #
+#    Updated: 2023/04/25 15:38:00 by jduval           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ SRCS		+=	parsing/valid_quotes.c			parsing/syntax_is_valid.c			\
 				parsing/command_control.c		parsing/quote_removal.c				\
 				parsing/dollar_in_quote.c		parsing/expansion_management.c		\
 				parsing/divide_words.c			parsing/expand_words_splitting.c	\
-				parsing/shapeshift_str.c	\
+				parsing/shapeshift_str.c		parsing/expand_building.c			\
+				parsing/expand_hdoc.c	\
 
 SRCS		+=	process/history.c				process/main.c						\
 				process/init_f.c				process/management_minishell.c		\
@@ -55,6 +56,7 @@ SRCS		+=	process/history.c				process/main.c						\
 SRCS		+=	utils/command_data_utils.c											\
 				utils/data_by_line_utils.c											\
 				utils/errors.c														\
+				utils/errors2.c														\
 				utils/expansion.c													\
 				utils/expansion_utils.c												\
 				utils/hdoc_utils.c													\

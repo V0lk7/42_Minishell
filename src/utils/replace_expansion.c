@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:49:42 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/24 09:00:18 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/04/25 16:33:03 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ char	*replace_expansion(char **envp, char **array)
 	length = 0;
 	while (array[++i])
 	{
+		ft_printf("%s\n", array[i]);
 		length += ft_strlen(array[i]);
 		if (is_quoted(join, length - ft_strlen(array[i]), length) != SIMPLE)
 		{

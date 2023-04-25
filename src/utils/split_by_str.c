@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 10:56:34 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/21 17:47:31 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 13:54:12 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**split_by_str(const char *s, const char *delim)
 		return (NULL);
 	array[len] = NULL;
 	if (s[0] != '\0')
-		flag = fill_array(array, len, s, delim);
+		flag = fill_array(array, len, (char *)s, delim);
 	else
 		flag = fill_empty_array(array);
 	if (flag == 1)
@@ -79,7 +79,7 @@ int	find_word(const char *str, const char *delim)
 	return (i);
 }
 
-int	fill_array(char **array, int word, const char *s, const char *delim)
+int	fill_array(char **array, int word, char *s, const char *delim)
 {
 	int	i;
 	int	start;

@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:03:21 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/24 15:36:54 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 15:34:00 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@ static int	redirect_expand_setting(t_red *red, t_mini *mini)
 	else
 	{
 		if (dollar_in_quote(red->file[0]) == TRUE)
-			red->file[0] = expansion(mini, red->file[0]);
+			red->file[0] = expansion(mini, red->file[0], 0);
 		else
 		{
-			expansion_wdsplit(red->file, mini, NULL);
+			red->file = expansion_wdsplit(red->file, mini, 0);
 			red->expand = count_args_2d(red->file);
 		}
 	}
+	if (red->file == NULL || red->file[0] == NULL)
+		return (1);
 	return (0);
 }
 
@@ -47,11 +49,13 @@ static int	command_expand_setting(t_cmd *cmd, t_mini *mini)
 	{
 		if (search_c(cmd->cmd[i], '$') > -1
 			&& dollar_in_quote(cmd->cmd[i]) == TRUE)
-			cmd->cmd[i] = expansion(mini, cmd->cmd[i]);
+			cmd->cmd[i] = expansion(mini, cmd->cmd[i], 0);
 		else if (cmd->id == 3 && dollar_in_quote(cmd->cmd[i]) == TRUE)
-			cmd->cmd[i] = expansion(mini, cmd->cmd[i]);
+			cmd->cmd[i] = expansion(mini, cmd->cmd[i], 0);
 		else if (search_c(cmd->cmd[i], '$') > -1)
-			expansion_wdsplit(cmd->cmd, mini, &i);
+			cmd->cmd = expansion_wdsplit(cmd->cmd, mini, i);
+		if (cmd->cmd == NULL || cmd->cmd[i] == NULL)
+			return (1);
 		i++;
 	}
 	return (0);
@@ -66,14 +70,17 @@ int	expansion_management(t_data *lst, t_mini *mini)
 		if (lst->name == REDIRECTION
 			&& search_c(lst->data.rdict.file[0], '$') > -1)
 		{
+			lst->data.rdict.save = ft_strdup(lst->data.rdict.file[0]);
+			if (lst->data.rdict.save == NULL)
+				return (1);
 			flag = redirect_expand_setting(&lst->data.rdict, mini);
-			if (flag > 0)
+			if (flag == 1)
 				return (flag);
 		}
-		else
+		else if (lst->name == COMMAND)
 		{
 			flag = command_expand_setting(&lst->data.cmd, mini);
-			if (flag < 0)
+			if (flag == 1)
 				return (flag);
 		}
 		lst = lst->next;

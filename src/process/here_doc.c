@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 13:58:52 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/11 16:15:37 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 16:03:11 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static int	put_hdoc_in_file(t_red *red)
 	return (0);
 }
 
-int	here_doc(t_data *lst)
+int	here_doc(t_data *lst, t_mini *mini)
 {
 	int	status;
 
@@ -106,10 +106,13 @@ int	here_doc(t_data *lst)
 			if (lst->data.rdict.way == HDOC)
 			{
 				status = do_here_doc(&lst->data.rdict);
-				if (status == -1)
-					return (-1);
+				if (status == 1)
+					return (1);
+				status = expand_heredoc(&lst->data.rdict, mini);
+				if (status == 1)
+					return (1);
 				if (put_hdoc_in_file(&lst->data.rdict) == -1)
-					return (-1);
+					return (1);
 			}
 		}
 		lst = lst->next;

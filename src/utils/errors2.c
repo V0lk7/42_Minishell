@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_in_fork.c                                     :+:      :+:    :+:   */
+/*   errors2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/28 13:36:30 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/25 16:30:41 by jduval           ###   ########.fr       */
+/*   Created: 2023/04/25 14:19:15 by jduval            #+#    #+#             */
+/*   Updated: 2023/04/25 14:53:49 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/clear.h"
+#include "../../includes/enum.h"
 #include "../libft/include/libft.h"
 
-void	free_all(t_data *lst, t_mini *mini)
+void	ambiguous_redirection(char *str)
 {
-	free_all_nodes(&lst);
-	free_array2d(mini->path);
-	free_exit(mini);
+	ft_putstr_fd(2, "😈 Minishell 😈: ");
+	ft_putstr_fd(2, str);
+	ft_putstr_fd(2, ": ambiguous redirection\n");
 }

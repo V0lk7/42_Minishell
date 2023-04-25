@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 12:04:02 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/11 16:10:59 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 13:51:45 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../../includes/clear.h"
 #include "../../includes/enum.h"
 
-t_data	*create_node_command(const char *str, t_mini *utils, int words, int i)
+t_data	*create_node_command(char *str, t_mini *utils, int words, int i)
 {
 	t_data	*cmd;
 	char	**array;

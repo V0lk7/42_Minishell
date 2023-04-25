@@ -6,11 +6,12 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:17:14 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/11 16:09:27 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 14:26:45 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/process.h"
+#include "../../includes/utils.h"
 #include "../../includes/enum.h"
 #include <fcntl.h>
 #include <unistd.h>
@@ -79,6 +80,11 @@ t_data	*redirection_management(t_data *lst, t_fd *fds, int index)
 
 int	in_redirection(t_red *rdict, t_fd *fds)
 {
+	if (rdict->expand > 1)
+	{
+		ambiguous_redirection(rdict->save);
+		return (-1);
+	}
 	if (rdict->way == IN)
 		fds->read = open(rdict->file[0], O_RDONLY);
 	else
@@ -100,6 +106,11 @@ int	in_redirection(t_red *rdict, t_fd *fds)
 
 int	out_redirection(t_red *rdict, t_fd *fds)
 {
+	if (rdict->expand > 1)
+	{
+		ambiguous_redirection(rdict->save);
+		return (-1);
+	}
 	if (rdict->way == OUT)
 		fds->write = open(rdict->file[0], O_CREAT | O_TRUNC | O_WRONLY, 0644);
 	else

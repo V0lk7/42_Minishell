@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 12:59:08 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/24 08:57:20 by kramjatt         ###   ########.fr       */
+/*   Updated: 2023/04/25 14:19:04 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,9 @@ int	errors_command(t_cmd *cmd)
 
 void	command_not_found(char *cmd)
 {
-	if (cmd[0] == '\0')
-		return ;
+	ft_putstr_fd(2, "\'");
 	ft_putstr_fd(2, cmd);
-	ft_putstr_fd(2, ": command not found\n");
+	ft_putstr_fd(2, "\': command not found\n");
 }
 
 void	command_is_directory(char *cmd)

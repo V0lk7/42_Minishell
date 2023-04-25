@@ -6,16 +6,15 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:02:47 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/11 14:53:34 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 16:11:51 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parsing.h"
-#include "../../includes/enum.h"
 #include "../../includes/clear.h"
+#include "../libft/include/libft.h"
 #include "../../includes/utils.h"
+#include <stdlib.h>
 #include <limits.h>
-#include <unistd.h>
 
 static int	is_builtin(const char *cmd)
 {

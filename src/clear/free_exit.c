@@ -6,11 +6,13 @@
 /*   By: kramjatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:56:05 by kramjatt          #+#    #+#             */
-/*   Updated: 2023/04/04 10:09:54 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 16:08:34 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/clear.h"
+#include "../../includes/enum.h"
+#include "../libft/include/libft.h"
+#include <stdlib.h>
 
 void	free_exit(t_mini *mini)
 {

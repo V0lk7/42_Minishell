@@ -6,7 +6,7 @@
 /*   By: jduval <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:37:20 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/13 13:31:11 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 14:29:56 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_data	*new_node_redirect(t_class name, char **file, t_way way, int index)
 	node->name = name;
 	node->index = index;
 	node->data.rdict.file = file;
+	node->data.rdict.save = NULL;
 	node->data.rdict.way = way;
 	node->data.rdict.expand = 0;
 	node->data.rdict.w_fd = -1;

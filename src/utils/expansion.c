@@ -6,7 +6,7 @@
 /*   By: jduval <jduval@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:11:36 by jduval            #+#    #+#             */
-/*   Updated: 2023/04/20 15:22:43 by jduval           ###   ########.fr       */
+/*   Updated: 2023/04/25 17:04:34 by jduval           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,16 @@ static void	loop_split_expansion(char **array, char *str)
 	free(str);
 }
 
-char	*expansion(t_mini *mini, char *str)
+
+
+char	*expansion(t_mini *mini, char *str, t_way way)
 {
 	char	**array;
 
 	array = malloc(sizeof (char *) * (count_args_expansion(str) + 1));
 	loop_split_expansion(array, str);
 	str = replace_expansion(mini->envp_cpy, array);
-	remove_the_quote(str);
+	if (way != HDOC)
+		remove_the_quote(str);
 	return (str);
 }
