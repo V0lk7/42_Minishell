@@ -83,12 +83,10 @@ int	fill_array(char **array, int word, char *s, const char *delim)
 {
 	int	i;
 	int	start;
-	int	size;
 	int	len;
 
 	start = 0;
 	len = 0;
-	size = (int)ft_strlen(s);
 	i = 0;
 	while (i < word)
 	{

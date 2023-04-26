@@ -15,7 +15,7 @@
 
 void	ambiguous_redirection(char *str)
 {
-	ft_putstr_fd(2, "😈 Minishell 😈: ");
+	ft_putstr_fd(2, "Minishell : ");
 	ft_putstr_fd(2, str);
 	ft_putstr_fd(2, ": ambiguous redirection\n");
 }
