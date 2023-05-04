@@ -1,0 +1,200 @@
+#################################################################
+/bin/ls															#
+-> marcher -_-						|| fixed					#
+																#
+echo $?															#
+-> print encore $?, a enlever !			|| fixed				#
+																#
+exit 23 23														#
+-> ne dois pas quitter                                || fixed	#
+#################################################################
+^C																#
+^D (ou juste exit sans arg aussi)			fixed				#
+-> $? = 130														#
+#################################################################################################
+^C																			FIXED				#
+(juste entré)																					#
+-> $? = 130 (le $? ne dois pas être modifier quand la ligne est vide ou rempli de space / tab)	#
+#################################################################################################
+								#
+echo $ ------> OK				#
+								#
+echo "$" ---> OK				#
+echo '$' ---> OK				#
+#########################################################
+./minishell				FIXED							#
+^\														#
+-> ne dois pas quit minishell (pas obligé)				#
+#########################################################
+export | cat											#
+-> marche pas								|| fixed	#
+#############################################################################
+export tkt=oui | cat					FIXED								#
+-> $tkt est toujours vide, ne print pas 'exit: Numeric argument required'	#
+#############################################################################
+$tkt ($tkt vaut rien)														#
+-> ne fais rien, comme si y'avais juste une nouvelle ligne			FIXED	#
+#############################################################################
+------FIXED------
+export tkt=oui
+export tkt=oui
+-> leak
+
+------FIXED-----
+export tkt=oui
+export tkt+=oui
+-> invalid read
+
+------FIXED-----
+export tkt+=oui
+-> leak
+
+------FIXED---------
+export a=a b=b c=c
+unset a b c
+-> ne dois plus avoir a b c
+
+-----FIXED-----
+export a b 6 c d e
+-> dois créer a b c d e mais mettre l'erreur du 6 $? = 1
+
+-----FIXED-----
+export a 1 2 b
+-> créer a b et met l'erreur pour 1 et 2
+
+-----FIXED-----
+cd ..
+echo $PWD $OLDPWD
+-> PWD et OLDPWD doivent être différent
+
+cd ..
+unset PWD
+cd test
+-> $PWD vaut le directory current et $OLDPWD est vide
+
+-----FIXED-----
+cd ..
+-> leak
+
+-----FIXED-----
+cd qqch
+-> leak
+
+-----FIXED-----
+pwd -e 
+-> ptete change le message + $? != 2
+
+-----FIXED-----
+unset -r
+-> message + $? = 2
+#############################################################################
+unset PATH																	#
+-> le path ne dois pluis exister et ls ne dois pas marcher		|| fixed	#
+#############################################################################
+-----FIXED-----
+export e -e
+-> invalid identifier et non invalid option
+#############################################################
+<oui				FIXED									#
+-> $? != 1													#
+#############################################################
+<<oui														#
+^C															#
+-> $? != 130 + frero, y'a un \n en trop là					#
+															#
+>tkt <<oui										FIXED		#
+^C															#
+-> tkt ne dois pas exister									#
+#############################################################
+cat <in														#
+-> $? != 1													#
+															#
+touch perm													#
+chmod 000 perm												#
+echo -_- >perm												#
+-> $? != 1													#
+									FIXED					#
+touch bob // eh oui !										#
+./bob														#
+-> $? != 126												#
+															#
+./src														#
+-> bash: ./src/: Is a directory + $? != 126					#
+#############################################################
+-----FIXED-----			#
+echo $ 					#
+2-> echo le $			#
+#########################
+
+-----FIXED-----
+export lol++a
+not a valid identifier mais export quand meme lol++a alors qu'il ne devrait pas
+
+-----FIXED-----
+export lol=========a
+	->lol="a" alors que ca devrait faire lol="========a"
+
+-----FIXED-----
+export TEST=coucou
+Minishell : echo "test  $TEST  test"
+--->test
+devrait mettre 
+Minishell : test coucou test
+
+-----FIXED-----
+Minishell : echo "$TEST  t  $TEST"
+coucou
+devrait -> Minishel : coucou t coucou
+
+-----FIXED-----
+export a =6_b
+	bash: export: `=6_b': not a valid identifier
+	-> $? = 1
+--> nous ca exporte normalement
+
+-----FIXED-----
+export 6_a not a valid identifier
+	->> message d'erreur ok mais export la variable
+
+-----FIXED-----
+unset 6_a
+	bash: export: `6_a=b': not a valid identifier
+	-> $? = 1
+--> nous ca unset normal
+
+-----FIXED-----
+unset 0oui
+	-> invalid identifier + $? = 1
+ca unset normal
+
+==123218==    by 0x40A07B: ft_calloc (ft_calloc.c:21)
+==123218==    by 0x40A0EA: ft_strdup (ft_strdup.c:21)
+==123218==    by 0x4020C0: add_export (export.c:27)
+==123218==    by 0x402438: ifs_export (export.c:108)
+==123218==    by 0x4021C8: ft_export (export.c:131)
+==123218==    by 0x4012F8: is_built (builts.c:33)
+==123218==    by 0x40631E: builtin_execution (normal_execution.c:77)
+==123218==    by 0x406263: normal_execution (normal_execution.c:99)
+==123218==    by 0x4061FE: execution_management (management_minishell.c:52)
+==123218==    by 0x40606E: minishell_management (management_minishell.c:75)
+==123218==    by 0x405F60: prompt (main.c:35)
+
+-----FIXED-----
+unset tkt 1mdr
+	-> invalid identifier + $? = 1 + $tkt n'existe plus
+pas de message d'erreur
+
+#########################################################################################
+
+-------------------------------------------FIXED--------------------------------------
+jduval@3G7:~/Documents/Cursus/Projet en cours/minishell$ export lol=""
+jduval@3G7:~/Documents/Cursus/Projet en cours/minishell$ export lol+++++++++++++++++++=2
+bash: export: `lol+++++++++++++++++++=2': not a valid identifier
+jduval@3G7:~/Documents/Cursus/Projet en cours/minishell$
+|
+|
+->declare -x lol="2"
+Minishell : export lol=""
+Minishell : export lol+++++++++++++++="2"
+declare -x lol="2"
+

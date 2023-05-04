@@ -1,0 +1,65 @@
+RACINE	.----------INCLUDES/--struct/enum.h		| -> contient toutes les struct et les enum du projet	
+		|					|					|
+		|					--Process.h			| -> contient toutes les fonctions des .c dans process/
+		|					|					|
+		|					--Parsing.h			| -> idem
+		|					|					|
+		|					--Construct.h		| -> idem
+		|					|					|
+		|					--Execution.h		| -> idem
+		|					|					|
+		|					--Clear.h			| -> idem
+		|					|					|
+		|					--Errors.h			| -> idem
+		|					|					|
+		|					--Utils.h			| -> idem
+		|										|
+		|										| 
+		.---------SRC/--LIBFT/					| -> dossier mere avec sous dossier de tout les .c
+		|			  |							|
+		|			  --PROCESS/				|
+		|			  |							|
+		|			  --PARSING/				|
+		|			  |							|
+		|			  --BUILT_IN/				|
+		|			  |							|
+		|			  --CONSTRUCT/				|
+		|			  |							|
+		|			  --EXECUTION/				|
+		|			  |							|
+		|			  --CLEAR/					|
+		|			  |							|
+		|			  --ERRORS/					|
+		|			  |							|
+		|			  --UTILS/					|
+		|										|
+		|										|
+		.---------Makefile						|
+-------------------------------------------------
+
+include dans les .h
+	-> ne pas mettre les librairies diverses
+	-> seulement fonctions adéquate (hors statique dans les fichiers)
+
+librairies des fonctions spécifique et de la libft:
+	->les inclures dans les .c en fonctions des besoins. (beaucoup plus visible et compréhensible)
+
+PROCESS/ 	: contient les .c qui execute les etape de minishell (le marionnettiste).
+
+PARSING/	: analyse des données entré par l'utilisateur.
+
+CONSTRUCT/ 	: Construction de la ligne de commande a executer. (liste chainé, tableau...).
+
+EXECUTION/ 	: Exectution de la ligne de commande, built_in ... etape de passage dans execve, redirection et
+				gestion des expansion ($variable_name).
+
+CLEAR/ 		: liberer la memoire non essentiel et/ou de fin de programme.
+
+ERRORS/ 	: Gestion de toute les possible erreur (malloc, fonction interne, 
+				mauvaise commande, parsing ...).
+
+UTILS/ 		: Fichier utilitaire qui ne se retrouve dans aucun dossier du dessus.
+
+TEST :
+
+
